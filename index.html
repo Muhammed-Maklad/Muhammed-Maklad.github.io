@@ -7,6 +7,349 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
+    
+
+.achievement-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Main ribbon container */
+.achievement-ribbon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px 12px 16px;
+  backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: white;
+  z-index: 10;
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: fadeInScale 1s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* Smooth fade and scale entrance */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-30px);
+    filter: blur(10px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Gold gradient with wave */
+.achievement-ribbon.gold {
+  background: linear-gradient(135deg, 
+    rgba(96,165,250,0.5) 0%,
+    rgba(96,165,250,0.5) 25%,
+    rgba(96,165,250,0.5) 50%,
+    rgba(96,165,250,0.5) 75%,
+    rgba(96,165,250,0.5) 100%);
+  background-size: 300% 300%;
+  box-shadow: 
+    0 4px 20px rgba(255, 193, 7, 0.5),
+    0 8px 40px rgba(255, 193, 7, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  animation: waveGradient 4s ease-in-out infinite;
+  border: 2px solid rgba(255, 235, 59, 0.6);
+}
+
+/* Bronze gradient with wave */
+.achievement-ribbon.bronze {
+  background: linear-gradient(135deg, 
+    rgba(96,165,250,0.5) 0%,
+    rgba(96,165,250,0.5) 25%,
+    rgba(96,165,250,0.5)50%,
+    rgba(96,165,250,0.5) 75%,
+    rgba(96,165,250,0.5) 100%);
+  background-size: 300% 300%;
+  box-shadow: 
+    0 4px 20px rgba(205, 127, 50, 0.5),
+    0 8px 40px rgba(205, 127, 50, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  animation: waveGradient 4s ease-in-out infinite;
+  border: 2px solid rgba(212, 165, 116, 0.6);
+}
+
+@keyframes waveGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Smooth hover with elastic effect */
+.achievement-card:hover .achievement-ribbon {
+  transform: translateY(-8px) scale(1.1);
+  filter: brightness(1.15);
+}
+
+.achievement-card:hover .achievement-ribbon.gold {
+  box-shadow: 
+    0 12px 40px rgba(255, 193, 7, 0.8),
+    0 20px 60px rgba(255, 193, 7, 0.6),
+    inset 0 2px 0 rgba(255, 255, 255, 0.6),
+    0 0 40px rgba(255, 215, 0, 1);
+}
+
+.achievement-card:hover .achievement-ribbon.bronze {
+  box-shadow: 
+    0 12px 40px rgba(205, 127, 50, 0.8),
+    0 20px 60px rgba(205, 127, 50, 0.6),
+    inset 0 2px 0 rgba(255, 255, 255, 0.5),
+    0 0 40px rgba(205, 127, 50, 1);
+}
+
+/* Icon with smooth breathing animation */
+.ribbon-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.3);
+  position: relative;
+  animation: breathe 3s ease-in-out infinite;
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.4),
+    inset 0 2px 5px rgba(255, 255, 255, 0.3);
+  transition: all 0.4s ease;
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
+  }
+}
+
+.achievement-card:hover .ribbon-icon {
+  animation: iconSwing 0.6s ease-in-out;
+  transform: scale(1.15);
+}
+
+@keyframes iconSwing {
+  0%, 100% {
+    transform: rotate(0deg) scale(1.15);
+  }
+  25% {
+    transform: rotate(-15deg) scale(1.2);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.25);
+  }
+  75% {
+    transform: rotate(15deg) scale(1.2);
+  }
+}
+
+/* Smooth expanding ring */
+.ribbon-icon::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  animation: smoothPulse 2.5s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes smoothPulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Soft glow sparkle */
+.ribbon-icon::after {
+  content: '✨';
+  position: absolute;
+  font-size: 0.7rem;
+  top: -6px;
+  right: -6px;
+  animation: gentleSparkle 3s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes gentleSparkle {
+  0%, 80%, 100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+  }
+  85%, 95% {
+    opacity: 1;
+    transform: scale(1) rotate(90deg);
+  }
+}
+
+/* Smooth orbital glow */
+.achievement-ribbon::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 20%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.5) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.5s;
+  animation: smoothOrbit 3s linear infinite;
+  z-index: -1;
+}
+
+@keyframes smoothOrbit {
+  from {
+    background-position: 200% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+.achievement-card:hover .achievement-ribbon::before {
+  opacity: 1;
+}
+
+/* Gentle light sweep */
+.achievement-ribbon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.4), 
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: gentleSweep 5s ease-in-out infinite;
+}
+
+@keyframes gentleSweep {
+  0%, 85%, 100% {
+    left: -150%;
+    opacity: 0;
+  }
+  88%, 97% {
+    opacity: 1;
+  }
+  90% {
+    left: 150%;
+  }
+}
+
+/* Text with smooth reveal */
+.ribbon-text {
+  position: relative;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  animation: textFadeIn 1.2s ease-out 0.3s backwards;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.achievement-card:hover .ribbon-text {
+  letter-spacing: 1.2px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Smooth pulsing dot */
+.achievement-ribbon .ribbon-text::before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: smoothDotPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes smoothDotPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: translateY(-50%) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.3);
+  }
+}
+
+/* Smooth depth effect */
+.achievement-ribbon {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  transition: filter 0.5s ease;
+}
+
+.achievement-card:hover .achievement-ribbon {
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.35));
+}
+
+/* Gentle 3D perspective on hover */
+@media (hover: hover) {
+  .achievement-card {
+    perspective: 1500px;
+  }
+  
+  .achievement-card:hover .achievement-ribbon {
+    transform: translateY(-8px) scale(1.1) rotateX(5deg);
+  }
+}
+
+    
     :root {
       --bg: #0a0e1a;
       --bg-secondary: #0f1427;
@@ -767,13 +1110,14 @@
         <div class="card">
           <h2>About Me</h2>
           <p class="muted" style="font-size: 18px; line-height: 1.8;">
-  I'm a <span style="color: rgba(16,185,129,1); font-weight: bold;">Computer Science graduate</span> from Mansoura University, Egypt, 
-  where I ranked in the <span style="color: rgba(16,185,129,1); font-weight: bold;">Top 5%</span> and graduated with Very Good with Honors.
-  I achieved a perfect <span style="color: rgba(16,185,129,1); font-weight: bold;">200/200 score</span> on my Graduation Project. 
-  I thrive at the intersection of data, software engineering, and problem-solving, 
-  constantly pushing the boundaries of what's possible with 
-  <span style="color: rgba(16,185,129,1); font-weight: bold;">AI and machine learning</span>.
-</p>
+        I'm a <span style="color: rgba(16,185,129,1); font-weight: bold;">Computer Science graduate</span> from Mansoura University, Egypt, 
+        where I ranked in the <span style="color: rgba(16,185,129,1); font-weight: bold;">Top 5%</span> and graduated with 
+        <span style="color: rgba(16,185,129,1); font-weight: bold;">Very Good with Honors</span>.
+        I achieved a perfect <span style="color: rgba(16,185,129,1); font-weight: bold;">200/200 score</span> on my Graduation Project. 
+        I thrive at the intersection of data, software engineering, and problem-solving, 
+        constantly pushing the boundaries of what's possible with 
+        <span style="color: rgba(16,185,129,1); font-weight: bold;">AI and machine learning</span>.
+      </p>
 
 
 
@@ -804,29 +1148,47 @@
         </div>
       </div>
     </section>
-    <section id = "achievements">
-      <div class="container">
-        <h2>Achievements & Recognition</h2>
-        <div class="cards-list">
-          <div class="achievement-card">
-            <img src="MIE.png" alt="Made In Egypt Competition" />
-            <h3>Made In Egypt (MIE) Competition</h3>
-            <p>Participated with a project focused on AI in agriculture, developing an intelligent system to monitor and 
-              analyze crop health, detect plant diseases early, optimize irrigation, and predict yield using cutting-edge machine learning techniques.</p>
-          </div>
-          <div class="achievement-card">
-            <img src="IEEE.png" alt="IEEE Victories 3.0" />
-            <h3>IEEE Victories 3.0</h3>
-            <p>A 1-month intensive competition in Software Engineering and AI, combining mentorship, 
-              technical challenges, and on-site presentations evaluated by industry experts. Demonstrated excellence in both practical implementation and theoretical knowledge.</p>
-          </div>
-          <div class="achievement-card">
-            <img src="GDG.png" alt="GDG DevFest Hackathon" />
-            <h3>GDG DevFest Hackathon</h3>
-            <p>Google Developer Groups hackathon focusing on innovative solutions. Developed creative applications utilizing Google 
-              technologies to solve real-world problems, showcasing innovation and technical prowess in a competitive environment.
 
-            </p></section>
+
+<section id="achievements">
+  <div class="container">
+    <h2>Achievements & Recognition</h2>
+    <div class="cards-list">
+      <div class="achievement-card">
+        <div class="achievement-ribbon gold">
+          <span class="ribbon-icon">🏆</span>
+          <span class="ribbon-text">Best Business Model</span>
+        </div>
+        <img src="MIE.png" alt="Made In Egypt Competition" />
+        <h3>Made In Egypt (MIE) Competition</h3>
+        <p>Made In Egypt is a competition between their peers with their graduation projects. The target is to bring the best out of them so they are 
+          able and ready to convert their graduation projects into their startups by connecting them with business approaches besides the technical ones.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-ribbon bronze">
+          <span class="ribbon-icon">🥉</span>
+          <span class="ribbon-text">3rd Place</span>
+        </div>
+        <img src="IEEE.png" alt="IEEE Victories 3.0" />
+        <h3>IEEE Victories 3.0</h3>
+        <p>A 1-month intensive competition in Software Engineering and AI, combining mentorship, 
+          technical challenges, and on-site presentations evaluated by industry experts. Demonstrated excellence in both practical implementation and theoretical knowledge.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-ribbon bronze">
+          <span class="ribbon-icon">🥉</span>
+          <span class="ribbon-text">3rd Place</span>
+        </div>
+        <img src="GDG.png" alt="GDG DevFest Hackathon" />
+        <h3>GDG DevFest Hackathon</h3>
+        <p>Google Developer Groups hackathon focusing on innovative solutions. Developed creative applications utilizing 
+          technologies to solve real-world problems, showcasing innovation and technical prowess in a competitive environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
     <section id="skills" style="background: var(--bg-secondary);">
       <div class="container">
         <h2>Technical Skills</h2>
@@ -1104,5 +1466,7 @@
       });
     });
   </script>
+
+  
 </body>
 </html>
