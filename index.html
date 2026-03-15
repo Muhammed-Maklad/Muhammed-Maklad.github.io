@@ -403,6 +403,12 @@
       backdrop-filter: blur(10px);
     }
     .btn-outline:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); }
+    .btn-cv {
+      background: linear-gradient(135deg, var(--purple), var(--primary));
+      color: white;
+      box-shadow: 0 8px 24px rgba(167,139,250,0.3);
+    }
+    .btn-cv:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(167,139,250,0.45); }
 
     /* ─── SOCIAL STRIP ───────────────────────────────────────── */
     .social-strip {
@@ -800,7 +806,7 @@
       <div class="profile-photo-wrap">
         <div class="ring"></div>
         <div class="ring ring-2"></div>
-        <img class="profile-photo" src="MyPhoto.jpg" alt="Muhammed Gamal Maklad" />
+        <img class="profile-photo" src="Imags\MyPhoto.jpg" alt="Muhammed Gamal Maklad" />
       </div>
       <h1>Muhammed Gamal Maklad</h1>
       <div class="hero-role">Data & BI Solutions Engineer</div>
@@ -808,6 +814,14 @@
       <div class="cta">
         <a class="btn btn-primary" href="#projects">View Projects</a>
         <a class="btn btn-outline" href="#contact">Get in Touch</a>
+        <a class="btn btn-cv" href="https://github.com/Muhammed-Maklad/Muhammed-Maklad.github.io/raw/master/Mohamed_Gamal_Maklad_DSolution.pdf" download="Mohamed_Gamal_Maklad_CV.pdf" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download CV
+        </a>
       </div>
       <div class="social-strip">
         <a class="social-chip" href="https://linkedin.com/in/muhammed-maklad" target="_blank">
@@ -822,7 +836,7 @@
           <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/leetcode.svg" style="filter:invert(65%) sepia(90%) saturate(500%) hue-rotate(10deg);" />
           LeetCode
         </a>
-        <a class="social-chip" href="mailto:mo7amedmaklad@gmail.com">
+        <a class="social-chip" href="/cdn-cgi/l/email-protection#e98486de88848c8d84888285888da98e84888085c78a8684">
           <img src="https://cdn.jsdelivr.net/npm/@internetarchive/icon-email@1.3.4/email.svg" id="emailIcon" />
           Email
         </a>
@@ -941,7 +955,7 @@
         <div class="grid cols-3">
           <div class="achievement-card fade-in">
             <div class="ribbon gold">🏆 Best Business Model</div>
-            <img src="MIE.png" alt="Made In Egypt Competition" onerror="this.style.display='none'" />
+            <img src="Imags\MIE.png" alt="Made In Egypt Competition" onerror="this.style.display='none'" />
             <div class="achievement-body">
               <h3>Made In Egypt (MIE) Competition</h3>
               <p class="muted">A competition that bridges technical and business approaches, helping graduates convert their projects into startups. Awarded Best Business Model for the Roshtty medical prescription system.</p>
@@ -949,7 +963,7 @@
           </div>
           <div class="achievement-card fade-in">
             <div class="ribbon bronze">🥉 3rd Place</div>
-            <img src="IEEE.png" alt="IEEE Victories 3.0" onerror="this.style.display='none'" />
+            <img src="Imags\IEEE.png" alt="IEEE Victories 3.0" onerror="this.style.display='none'" />
             <div class="achievement-body">
               <h3>IEEE Victories 3.0</h3>
               <p class="muted">A 1-month intensive competition in Software Engineering and AI, combining mentorship, technical challenges, and on-site presentations evaluated by industry experts.</p>
@@ -957,7 +971,7 @@
           </div>
           <div class="achievement-card fade-in">
             <div class="ribbon bronze">🥉 3rd Place</div>
-            <img src="GDG.png" alt="GDG DevFest Hackathon" onerror="this.style.display='none'" />
+            <img src="Imags\GDG.png" alt="GDG DevFest Hackathon" onerror="this.style.display='none'" />
             <div class="achievement-body">
               <h3>GDG DevFest Hackathon</h3>
               <p class="muted">Google Developer Groups hackathon focused on innovative real-world solutions. Demonstrated technical excellence and creativity in a competitive environment.</p>
@@ -1224,9 +1238,9 @@
             and <strong style="color:var(--purple);">Machine Learning</strong>. Whether you have a project in mind or just want to connect — I'd love to hear from you!
           </p>
           <div class="contact-grid">
-            <a class="contact-chip" href="mailto:mo7amedmaklad@gmail.com">
+            <a class="contact-chip" href="/cdn-cgi/l/email-protection#bdd0d28adcd0d8d9d0dcd6d1dcd9fddad0dcd4d193ded2d0">
               <img src="https://cdn.jsdelivr.net/npm/@internetarchive/icon-email@1.3.4/email.svg" id="emailIcon2" />
-              mo7amedmaklad@gmail.com
+              <span class="__cf_email__" data-cfemail="dcb1b3ebbdb1b9b8b1bdb7b0bdb89cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</span>
             </a>
             <a class="contact-chip" href="https://linkedin.com/in/muhammed-maklad" target="_blank">
               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" style="filter:invert(55%) sepia(80%) saturate(800%) hue-rotate(185deg);" />
@@ -1263,7 +1277,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── YEAR ─────────────────────────────────────────────────
     document.getElementById('year').textContent = new Date().getFullYear();
 
