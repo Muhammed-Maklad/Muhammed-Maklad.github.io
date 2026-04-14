@@ -4,769 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muhammed Gamal Maklad – Data Solutions Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  <style>
-    /* ─── CSS VARIABLES ─────────────────────────────────────── */
-    :root {
-      --bg: #080c18;
-      --bg-secondary: #0c1124;
-      --card: rgba(14, 20, 38, 0.85);
-      --primary: #60a5fa;
-      --accent: #10b981;
-      --purple: #a78bfa;
-      --orange: #fb923c;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --border: rgba(96,165,250,0.15);
-      --card-border: rgba(96,165,250,0.12);
-      --shadow: rgba(96,165,250,0.15);
-      --nav-bg: rgba(8,12,24,0.75);
-      --progress-height: 3px;
-    }
 
-    html[data-theme="light"] {
-      --bg: #f0f4ff;
-      --bg-secondary: #e8effc;
-      --card: rgba(255,255,255,0.9);
-      --primary: #2563eb;
-      --accent: #059669;
-      --purple: #7c3aed;
-      --orange: #ea580c;
-      --text: #0f172a;
-      --muted: #475569;
-      --border: rgba(37,99,235,0.2);
-      --card-border: rgba(37,99,235,0.15);
-      --shadow: rgba(37,99,235,0.12);
-      --nav-bg: rgba(240,244,255,0.85);
-    }
+  <meta name="description" content="Muhammed Gamal Maklad – Data & BI Solutions Engineer specializing in Power BI, ETL pipelines, and AI solutions. Explore my portfolio and projects." />
+  <meta name="keywords" content="Data Solutions, BI Engineer, Power BI, ETL, Machine Learning, AI, Muhammed Maklad, Data Engineering, Egypt" />
+  <meta name="author" content="Muhammed Gamal Maklad" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://muhammed-maklad.github.io/" />
+  <meta name="theme-color" content="#060a14" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f4f7ff" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
 
-    /* ─── RESET & BASE ──────────────────────────────────────── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://muhammed-maklad.github.io/" />
+  <meta property="og:title"       content="Muhammed Gamal Maklad – Data Solutions Engineer" />
+  <meta property="og:description" content="Transforming complex datasets into actionable insights with Power BI, ETL pipelines, and cloud-based AI solutions." />
+  <meta property="og:image"       content="https://muhammed-maklad.github.io/images/MyPhoto.jpg" />
+  <!-- Twitter -->
+  <meta property="twitter:card"        content="summary_large_image" />
+  <meta property="twitter:url"         content="https://muhammed-maklad.github.io/" />
+  <meta property="twitter:title"       content="Muhammed Gamal Maklad – Data Solutions Engineer" />
+  <meta property="twitter:description" content="Transforming complex datasets into actionable insights with Power BI, ETL pipelines, and cloud-based AI solutions." />
+  <meta property="twitter:image"       content="https://muhammed-maklad.github.io/images/MyPhoto.jpg" />
 
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
-      transition: background 0.4s ease, color 0.4s ease;
-    }
-
-    /* ─── ANIMATED BACKGROUND ───────────────────────────────── */
-    .bg-orbs {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.12;
-      animation: orbFloat 20s ease-in-out infinite;
-    }
-    .orb-1 { width: 600px; height: 600px; background: #60a5fa; top: -10%; left: -10%; animation-delay: 0s; }
-    .orb-2 { width: 500px; height: 500px; background: #10b981; bottom: 10%; right: -5%; animation-delay: -7s; }
-    .orb-3 { width: 400px; height: 400px; background: #a78bfa; top: 40%; left: 30%; animation-delay: -14s; }
-    html[data-theme="light"] .orb { opacity: 0.08; }
-
-    @keyframes orbFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -40px) scale(1.05); }
-      66% { transform: translate(-20px, 20px) scale(0.95); }
-    }
-
-    /* ─── PARTICLES ─────────────────────────────────────────── */
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0;
-      animation: particleDrift linear infinite;
-    }
-    @keyframes particleDrift {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      10% { opacity: 0.6; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
-    }
-
-    /* ─── SCROLL PROGRESS ───────────────────────────────────── */
-    .scroll-progress {
-      position: fixed;
-      top: 0; left: 0;
-      height: var(--progress-height);
-      width: 0;
-      background: linear-gradient(90deg, var(--primary), var(--accent), var(--purple));
-      z-index: 9999;
-      transition: width 0.1s linear;
-      box-shadow: 0 0 8px var(--primary);
-    }
-
-    /* ─── NAVIGATION ─────────────────────────────────────────── */
-    .nav {
-      position: fixed;
-      top: 0; width: 100%;
-      z-index: 1000;
-      background: var(--nav-bg);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--border);
-      transition: all 0.4s ease;
-    }
-    .nav.scrolled {
-      background: var(--nav-bg);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    }
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .brand {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 22px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex-wrap: nowrap;
-    }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: all 0.25s;
-      white-space: nowrap;
-    }
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--primary);
-      background: rgba(96,165,250,0.1);
-    }
-
-    /* ─── THEME TOGGLE ──────────────────────────────────────── */
-    .theme-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      border-radius: 50px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .theme-btn:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 16px rgba(96,165,250,0.2);
-      transform: translateY(-1px);
-    }
-    .theme-icon { font-size: 16px; transition: transform 0.4s ease; }
-    .theme-btn:hover .theme-icon { transform: rotate(20deg); }
-    .theme-label { display: none; }
-    @media (min-width: 900px) { .theme-label { display: block; } }
-
-    /* ─── MOBILE MENU ────────────────────────────────────────── */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 8px;
-      background: var(--card);
-      border: 1px solid var(--border);
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 68px;
-      left: 0;
-      right: 0;
-      background: var(--nav-bg);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
-      z-index: 999;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      padding: 12px 16px;
-      border-radius: 10px;
-      transition: all 0.25s;
-    }
-    .mobile-menu a:hover { color: var(--primary); background: rgba(96,165,250,0.08); }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-    }
-
-    /* ─── LAYOUT ─────────────────────────────────────────────── */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 100px 0; position: relative; }
-
-    /* ─── HERO ───────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-    }
-
-    .availability-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 20px;
-      background: rgba(16,185,129,0.12);
-      border: 1px solid rgba(16,185,129,0.3);
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 32px;
-      animation: fadeUp 0.8s ease-out 0.2s backwards;
-    }
-    .availability-dot {
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
-      50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
-    }
-
-    .profile-photo-wrap {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 36px;
-      animation: fadeUp 0.8s ease-out backwards;
-    }
-    .profile-photo {
-      width: 180px; height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--primary);
-      display: block;
-      box-shadow: 0 0 0 8px rgba(96,165,250,0.08), 0 20px 60px rgba(96,165,250,0.25);
-      transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
-      cursor: pointer;
-    }
-    .profile-photo:hover { transform: scale(1.07) rotate(5deg); box-shadow: 0 0 0 12px rgba(96,165,250,0.12), 0 30px 80px rgba(96,165,250,0.4); }
-    .ring {
-      position: absolute;
-      inset: -14px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      border-top-color: var(--primary);
-      border-right-color: var(--accent);
-      animation: spin 8s linear infinite;
-      pointer-events: none;
-    }
-    .ring-2 {
-      inset: -22px;
-      border-top-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: var(--purple);
-      border-left-color: var(--accent);
-      animation: spin 14s linear infinite reverse;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(38px, 7vw, 72px);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--text) 30%, var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeUp 0.8s ease-out 0.4s backwards;
-    }
-    .hero-role {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(18px, 3vw, 26px);
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 16px;
-      animation: fadeUp 0.8s ease-out 0.5s backwards;
-    }
-    .hero-desc {
-      font-size: clamp(15px, 2vw, 18px);
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      animation: fadeUp 0.8s ease-out 0.6s backwards;
-    }
-    .cta {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fadeUp 0.8s ease-out 0.7s backwards;
-      margin-bottom: 48px;
-    }
-
-    /* ─── BUTTONS ────────────────────────────────────────────── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 28px;
-      border-radius: 12px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 600;
-      font-size: 15px;
-      text-decoration: none;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0);
-      transition: background 0.2s;
-    }
-    .btn:hover::after { background: rgba(255,255,255,0.06); }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      box-shadow: 0 8px 24px rgba(96,165,250,0.3);
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(96,165,250,0.45); }
-    .btn-outline {
-      background: var(--card);
-      color: var(--text);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(10px);
-    }
-    .btn-outline:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); }
-    .btn-cv {
-      background: linear-gradient(135deg, var(--purple), var(--primary));
-      color: white;
-      box-shadow: 0 8px 24px rgba(167,139,250,0.3);
-    }
-    .btn-cv:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(167,139,250,0.45); }
-
-    /* ─── SOCIAL STRIP ───────────────────────────────────────── */
-    .social-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      animation: fadeUp 0.8s ease-out 0.8s backwards;
-    }
-    .social-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 18px;
-      border-radius: 50px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-    .social-chip:hover {
-      color: var(--primary);
-      border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px var(--shadow);
-    }
-    .social-chip img { width: 18px; height: 18px; }
-
-    /* ─── SECTION HEADERS ────────────────────────────────────── */
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    .section-label {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 12px;
-      background: rgba(96,165,250,0.1);
-      padding: 5px 14px;
-      border-radius: 50px;
-      border: 1px solid rgba(96,165,250,0.2);
-    }
-    h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--text), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      display: inline-block;
-    }
-    .section-line {
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      margin: 16px auto 0;
-      border-radius: 2px;
-    }
-
-    /* ─── CARDS ──────────────────────────────────────────────── */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 32px;
-      backdrop-filter: blur(12px);
-      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-      position: relative;
-      overflow: hidden;
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(96,165,250,0.05), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-      pointer-events: none;
-    }
-    .card:hover { transform: translateY(-6px); border-color: rgba(96,165,250,0.3); box-shadow: 0 24px 60px -12px rgba(96,165,250,0.2); }
-    .card:hover::before { opacity: 1; }
-
-    .grid { display: grid; gap: 28px; }
-    .cols-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
-    .cols-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
-
-    h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .muted { color: var(--muted); font-size: 15px; line-height: 1.7; }
-
-    /* ─── CHIPS ──────────────────────────────────────────────── */
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .chip {
-      padding: 5px 14px;
-      background: rgba(96,165,250,0.1);
-      border: 1px solid rgba(96,165,250,0.25);
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary);
-      transition: all 0.25s;
-      cursor: default;
-    }
-    .chip:hover { background: rgba(96,165,250,0.2); transform: translateY(-1px); }
-    .chip.accent { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.25); color: var(--accent); }
-    .chip.purple { background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.25); color: var(--purple); }
-    .chip.orange { background: rgba(251,146,60,0.1); border-color: rgba(251,146,60,0.25); color: var(--orange); }
-
-    /* ─── ABOUT STATS ────────────────────────────────────────── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
-    .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
-    .stat-card {
-      background: rgba(96,165,250,0.06);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      text-align: center;
-    }
-    .stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--primary); }
-    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
-    /* ─── TIMELINE ───────────────────────────────────────────── */
-    .timeline { position: relative; padding-left: 40px; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 7px; top: 8px; bottom: 8px;
-      width: 2px;
-      background: linear-gradient(180deg, var(--primary), var(--accent), var(--purple));
-      border-radius: 2px;
-    }
-    .tl-item {
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      padding: 28px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(10px);
-      transition: all 0.35s ease;
-    }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -37px; top: 28px;
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      background: var(--primary);
-      border: 3px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--primary);
-      transition: all 0.3s;
-    }
-    .tl-item:hover { transform: translateX(6px); border-color: rgba(96,165,250,0.3); box-shadow: 0 12px 40px rgba(96,165,250,0.15); }
-    .tl-item:hover::before { background: var(--accent); box-shadow: 0 0 0 2px var(--accent), 0 0 12px var(--accent); }
-    .tl-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
-    .tl-date { font-size: 13px; color: var(--primary); font-weight: 700; background: rgba(96,165,250,0.1); padding: 3px 10px; border-radius: 6px; }
-    .tl-org { font-size: 13px; color: var(--accent); font-weight: 600; }
-
-    /* ─── ACHIEVEMENTS ───────────────────────────────────────── */
-    .ribbon {
-      position: absolute;
-      top: 14px; right: 14px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px 6px 10px;
-      border-radius: 50px;
-      font-size: 12px;
-      font-weight: 700;
-      color: white;
-      z-index: 2;
-      backdrop-filter: blur(10px);
-      animation: fadeInScale 0.6s ease-out;
-    }
-    .ribbon.gold { background: linear-gradient(135deg, rgba(251,191,36,0.85), rgba(245,158,11,0.9)); border: 1px solid rgba(251,191,36,0.5); box-shadow: 0 4px 16px rgba(251,191,36,0.3); }
-    .ribbon.bronze { background: linear-gradient(135deg, rgba(180,83,9,0.8), rgba(217,119,6,0.85)); border: 1px solid rgba(217,119,6,0.5); box-shadow: 0 4px 16px rgba(180,83,9,0.3); }
-    @keyframes fadeInScale {
-      from { opacity: 0; transform: scale(0.5) translateY(-10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .achievement-card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      position: relative;
-    }
-    .achievement-card:hover { transform: translateY(-6px); border-color: rgba(96,165,250,0.3); box-shadow: 0 24px 60px rgba(96,165,250,0.18); }
-    .achievement-card img { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.5s ease; }
-    .achievement-card:hover img { transform: scale(1.04); }
-    .achievement-body { padding: 24px; }
-    .achievement-body h3 { font-size: 18px; margin-bottom: 8px; }
-
-    /* ─── SKILLS ─────────────────────────────────────────────── */
-    .skill-card { border-left: 3px solid var(--primary); }
-    .skill-card:nth-child(2) { border-left-color: var(--accent); }
-    .skill-card:nth-child(3) { border-left-color: var(--purple); }
-    .skill-card:nth-child(4) { border-left-color: var(--orange); }
-    .skill-card:nth-child(5) { border-left-color: var(--primary); }
-    .skill-card:nth-child(6) { border-left-color: var(--accent); }
-    .skill-icon { font-size: 32px; margin-bottom: 12px; display: block; }
-
-    /* ─── PROJECTS ───────────────────────────────────────────── */
-    .project-card { display: flex; flex-direction: column; }
-    .project-card .card-top {
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 12px;
-      margin-bottom: 12px;
-    }
-    .project-Tableau { font-size: 36px; flex-shrink: 0; }
-    .project-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 20px; }
-
-    /* ─── PROBLEM SOLVING SECTION ────────────────────────────── */
-    .ps-hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 48px;
-      align-items: center;
-    }
-    @media (max-width: 768px) { .ps-hero { grid-template-columns: 1fr; } }
-    .ps-stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .ps-stat {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .ps-stat:hover { transform: translateY(-3px); border-color: var(--primary); }
-    .ps-stat-num { font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .ps-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px; }
-    .category-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      text-decoration: none;
-      display: block;
-      color: inherit;
-    }
-    .category-card:hover { transform: translateY(-4px); border-color: var(--primary); box-shadow: 0 12px 32px var(--shadow); }
-    .cat-icon { font-size: 28px; margin-bottom: 10px; display: block; }
-    .cat-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--text); }
-    .cat-count {
-      font-size: 13px; color: var(--muted); margin-top: 4px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .cat-bar { height: 3px; background: var(--border); border-radius: 2px; margin-top: 12px; overflow: hidden; }
-    .cat-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
-    .diff-pills { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-    .diff-pill {
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 700;
-    }
-    .easy { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
-    .medium { background: rgba(251,146,60,0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
-    .hard { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
-
-    /* ─── CONTACT ────────────────────────────────────────────── */
-    .contact-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
-    .contact-chip {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 22px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-    .contact-chip img { width: 20px; height: 20px; }
-    .contact-chip:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 24px var(--shadow); color: var(--primary); }
-
-    /* ─── FOOTER ─────────────────────────────────────────────── */
-    .footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      background: var(--bg-secondary);
-    }
-    .footer-name { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-
-    /* ─── ANIMATIONS ─────────────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .fade-in:nth-child(1) { transition-delay: 0s; }
-    .fade-in:nth-child(2) { transition-delay: 0.1s; }
-    .fade-in:nth-child(3) { transition-delay: 0.2s; }
-    .fade-in:nth-child(4) { transition-delay: 0.3s; }
-    .fade-in:nth-child(5) { transition-delay: 0.4s; }
-
-    /* ─── RESPONSIVE FIXES ───────────────────────────────────── */
-    @media (max-width: 480px) {
-      section { padding: 70px 0; }
-      .container { padding: 0 16px; }
-      .card { padding: 22px; }
-      .tl-item { padding: 20px; }
-    }
-
-    /* ─── SECTION ALT BG ─────────────────────────────────────── */
-    .bg-alt { background: var(--bg-secondary); }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="scroll-progress" id="scrollProgress"></div>
+  <!-- ── CUSTOM CURSOR ─────────────────────────────────────── -->
+  <div class="cursor-dot"  id="cursorDot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-  <!-- Animated Background -->
-  <div class="bg-orbs">
+  <!-- ── SCROLL PROGRESS ───────────────────────────────────── -->
+  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-label="Page scroll progress"></div>
+
+  <!-- ── BACKGROUND ────────────────────────────────────────── -->
+  <div class="bg-orbs" aria-hidden="true">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
   </div>
-  <div id="particles"></div>
+  <div id="particles" aria-hidden="true"></div>
 
-  <!-- Navigation -->
+  <!-- ── NAVIGATION ────────────────────────────────────────── -->
   <header class="nav" id="navbar">
     <div class="nav-inner">
-      <div class="brand" onclick="window.scrollTo({top:0,behavior:'smooth'})">Muhammed Maklad</div>
-      <nav class="nav-links" id="navLinks">
+      <div class="brand" tabindex="0" role="link" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <span class="brand-dot" aria-hidden="true"></span>MM
+      </div>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#achievements">Awards</a>
@@ -775,144 +66,172 @@
         <a href="#problem-solving">Problem Solving</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
-        <span class="theme-icon" id="themeIcon">🌙</span>
-        <span class="theme-label" id="themeLabel">Light Mode</span>
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle color theme">
+        <span class="theme-icon" id="themeIcon" aria-hidden="true">
+          <svg id="themeIconSvg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </span>
+        <span class="theme-label" id="themeLabel">Light</span>
       </button>
-      <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
-      </div>
+      </button>
     </div>
   </header>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#about" onclick="closeMobile()">About</a>
-    <a href="#experience" onclick="closeMobile()">Experience</a>
-    <a href="#achievements" onclick="closeMobile()">Awards</a>
-    <a href="#skills" onclick="closeMobile()">Skills</a>
-    <a href="#projects" onclick="closeMobile()">Projects</a>
-    <a href="#problem-solving" onclick="closeMobile()">Problem Solving</a>
-    <a href="#contact" onclick="closeMobile()">Contact</a>
-  </div>
+  <!-- ── MOBILE MENU ────────────────────────────────────────── -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Awards</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#problem-solving">Problem Solving</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <main>
-    <!-- ── HERO ─────────────────────────────────────────────── -->
-    <section class="hero" id="home">
+  <main id="main-content">
+
+    <!-- ════════════════════════════════════════
+         HERO
+    ════════════════════════════════════════ -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
       <div class="availability-badge">
-        <span class="availability-dot"></span>
+        <span class="availability-dot" aria-hidden="true"></span>
         Open to New Opportunities
       </div>
       <div class="profile-photo-wrap">
-        <div class="ring"></div>
-        <div class="ring ring-2"></div>
-        <img class="profile-photo" src="images\MyPhoto.jpg" alt="Muhammed Gamal Maklad" />
+        <div class="ring"   aria-hidden="true"></div>
+        <div class="ring ring-2" aria-hidden="true"></div>
+        <img class="profile-photo" src="images/MyPhoto.jpg"
+             alt="Muhammed Gamal Maklad — Data Solutions Engineer"
+             width="190" height="190" fetchpriority="high" />
       </div>
-      <h1>Muhammed Gamal Maklad</h1>
-      <div class="hero-role">Data & BI Solutions Engineer</div>
+      <h1 id="hero-heading">Muhammed Gamal Maklad</h1>
+      <div class="hero-role" aria-live="polite" aria-atomic="true">
+        <span id="typedRole">Data & BI Solutions Engineer</span><span class="typed-cursor" aria-hidden="true"></span>
+      </div>
       <p class="hero-desc">Transforming complex datasets into actionable insights with Power BI, ETL pipelines, machine learning, and cloud-based AI solutions.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#projects">View Projects</a>
         <a class="btn btn-outline" href="#contact">Get in Touch</a>
-        <a class="btn btn-cv" href="https://github.com/Muhammed-Maklad/Muhammed-Maklad.github.io/raw/master/Mohamed_Gamal_Maklad_DSolution.pdf" download="Mohamed_Gamal_Maklad_CV.pdf" target="_blank">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
+        <a class="btn btn-cv"
+           href="https://github.com/Muhammed-Maklad/Muhammed-Maklad.github.io/raw/master/Mohamed_Gamal_Maklad_DSolution.pdf"
+           download="Mohamed_Gamal_Maklad_CV.pdf" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
           Download CV
         </a>
       </div>
-      <div class="social-strip">
-        <a class="social-chip" href="https://linkedin.com/in/muhammed-maklad" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" style="filter:invert(55%) sepia(80%) saturate(800%) hue-rotate(185deg);" />
-          LinkedIn
+      <div class="social-strip" role="list">
+        <a class="social-chip" href="https://linkedin.com/in/muhammed-maklad" target="_blank" rel="noopener noreferrer" role="listitem">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" style="filter:invert(55%) sepia(80%) saturate(800%) hue-rotate(185deg);" alt="" width="17" height="17" />LinkedIn
         </a>
-        <a class="social-chip" href="https://github.com/Muhammed-Maklad" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" id="ghIcon" />
-          GitHub
+        <a class="social-chip" href="https://github.com/Muhammed-Maklad" target="_blank" rel="noopener noreferrer" role="listitem">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" id="ghIcon" alt="" width="17" height="17" />GitHub
         </a>
-        <a class="social-chip" href="https://leetcode.com/u/Muhamed_Maklad/" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/leetcode.svg" style="filter:invert(65%) sepia(90%) saturate(500%) hue-rotate(10deg);" />
-          LeetCode
+        <a class="social-chip" href="https://leetcode.com/u/Muhamed_Maklad/" target="_blank" rel="noopener noreferrer" role="listitem">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/leetcode.svg" style="filter:invert(65%) sepia(90%) saturate(500%) hue-rotate(10deg);" alt="" width="17" height="17" />LeetCode
         </a>
-        <a class="social-chip" href="/cdn-cgi/l/email-protection#e98486de88848c8d84888285888da98e84888085c78a8684">
-          <img src="https://cdn.jsdelivr.net/npm/@internetarchive/icon-email@1.3.4/email.svg" id="emailIcon" />
-          Email
+        <a class="social-chip" href="mailto:mo7amedmaklad@gmail.com" role="listitem">
+          <img src="https://cdn.jsdelivr.net/npm/@internetarchive/icon-email@1.3.4/email.svg" id="emailIcon" alt="" width="17" height="17" />Email
         </a>
-        <a class="social-chip" href="https://wa.me/201117717161" target="_blank">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" style="filter:invert(60%) sepia(90%) saturate(400%) hue-rotate(100deg);" />
-          WhatsApp
+        <a class="social-chip" href="https://wa.me/201117717161" target="_blank" rel="noopener noreferrer" role="listitem">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" style="filter:invert(60%) sepia(90%) saturate(400%) hue-rotate(100deg);" alt="" width="17" height="17" />WhatsApp
         </a>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="mouse-icon"><div class="mouse-wheel"></div></div>
+        <span>Scroll</span>
       </div>
     </section>
 
-    <!-- ── ABOUT ──────────────────────────────────────────────── -->
-    <section id="about" class="bg-alt">
+    <!-- ════════════════════════════════════════
+         01 — ABOUT
+    ════════════════════════════════════════ -->
+    <section id="about" aria-labelledby="about-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Who I Am</span><br/>
-          <h2>About Me</h2>
-          <span class="section-line"></span>
+          <div class="section-eyebrow">
+            <span class="section-label">Who I Am</span>
+            <span class="section-num" aria-hidden="true">01</span>
+          </div>
+          <h2 id="about-heading">About Me</h2>
+          <p class="section-sub">CS graduate, data enthusiast, and builder of intelligent systems — on a mission to turn raw data into real decisions.</p>
+          <div class="section-line"></div>
         </div>
         <div class="about-grid">
           <div class="card fade-in">
-            <p style="font-size:16px; line-height:1.9; color:var(--muted);">
-              I'm a <strong style="color:var(--accent);">Data & BI Solutions Engineer</strong> and Computer Science graduate from Mansoura University 
-              with a <strong style="color:var(--accent);">GPA of 3.45/4.0</strong>. Currently training at <strong style="color:var(--primary);">ITI Mansoura</strong> in Data & BI Solutions.
+            <p class="about-text">
+              I'm a <strong class="highlight-accent">Data & BI Solutions Engineer</strong> and Computer Science graduate from Mansoura University
+              with a <strong class="highlight-accent">GPA of 3.45/4.0</strong>. Currently training at <strong class="highlight-primary">ITI Mansoura</strong> in the Data & BI Solutions track.
             </p>
-            <p style="font-size:16px; line-height:1.9; color:var(--muted); margin-top:14px;">
-              I ranked in the <strong style="color:var(--accent);">Top 5%</strong> of my class and achieved a perfect 
-              <strong style="color:var(--accent);">200/200</strong> on my Graduation Project. I specialize in Power BI dashboards, 
+            <p class="about-text" style="margin-top:12px;">
+              I ranked in the <strong class="highlight-accent">Top 5%</strong> of my class and achieved a perfect
+              <strong class="highlight-accent">200/200</strong> on my Graduation Project. I specialize in Power BI dashboards,
               ETL pipelines, DAX analytics, and cloud-based AI deployments on Microsoft Azure.
             </p>
-            <div class="chips" style="margin-top:20px;">
-              <span class="chip">Cairo, Egypt</span>
-              <span class="chip accent">CS Graduate 2025</span>
-              <span class="chip purple">AI & Data Engineering</span>
+            <div class="chips" style="margin-top:18px;">
+              <span class="chip">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Cairo, Egypt
+              </span>
+              <span class="chip accent">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                CS Graduate 2025
+              </span>
+              <span class="chip purple">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+                AI &amp; Data Engineering
+              </span>
             </div>
           </div>
-          <div>
+          <div class="stats-col">
             <div class="stats-row">
               <div class="stat-card fade-in">
-                <div class="stat-num">3.45</div>
-                <div class="stat-label">University GPA / 4.0</div>
+                <div class="stat-num" data-target="3.45" data-decimal="true">3.45</div>
+                <div class="stat-label">University GPA</div>
+                <div class="stat-sub">Out of 4.0</div>
               </div>
               <div class="stat-card fade-in">
-                <div class="stat-num">200/200</div>
-                <div class="stat-label">Graduation Project Score</div>
+                <div class="stat-num" data-target="200" data-suffix="/200">200/200</div>
+                <div class="stat-label">Graduation Project</div>
+                <div class="stat-sub">Perfect Score</div>
               </div>
-
             </div>
-            <br>
             <div class="stat-card fade-in">
-              <div class="stat-num">400+</div>
-              <div class="stat-label">
-                Problems Solved <br>
-                <span class="stat-detail">300 on Codeforces • 100 on LeetCode</span>
-              </div>
+              <div class="stat-num" data-target="400" data-suffix="+">400+</div>
+              <div class="stat-label">Problems Solved</div>
+              <div class="stat-sub">300 on Codeforces · 100 on LeetCode</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ── EXPERIENCE ─────────────────────────────────────────── -->
-    <section id="experience">
+    <!-- ════════════════════════════════════════
+         02 — EXPERIENCE
+    ════════════════════════════════════════ -->
+    <section id="experience" aria-labelledby="experience-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Career Journey</span><br/>
-          <h2>Experience</h2>
-          <span class="section-line"></span>
+          <div class="section-eyebrow">
+            <span class="section-label">Career Journey</span>
+            <span class="section-num" aria-hidden="true">02</span>
+          </div>
+          <h2 id="experience-heading">Experience</h2>
+          <p class="section-sub">Hands-on training across BI, machine learning, and cloud deployment at Egypt's leading technical institutes.</p>
+          <div class="section-line"></div>
         </div>
         <div class="timeline">
-          <div class="tl-item fade-in">
-            <div class="tl-meta">
-              <span class="tl-date">Jan 2026 – Present</span>
-              <span class="tl-org">Information Technology Institute (ITI), Mansoura</span>
-            </div>
+          <div class="tl-item fade-in tl-present">
+            <div class="tl-marker" aria-hidden="true"></div>
             <h3>Data & BI Solutions Trainee</h3>
-            <p class="muted">Designing interactive Power BI dashboards to visualize KPIs and operational trends. Engineering ETL pipelines with Power Query, building advanced DAX measures for multidimensional reporting, and developing automation tools using Power Automate and PowerApps to streamline workflows.</p>
+            <div class="tl-meta">
+              <span class="tl-org">Information Technology Institute (ITI), Mansoura</span>
+              <span class="tl-date">Jan 2026 – Present</span>
+            </div>
+            <p class="muted">Designing interactive Power BI dashboards to visualize KPIs and operational trends. Engineering ETL pipelines with Power Query, building advanced DAX measures for multidimensional reporting, and developing automation tools using Power Automate and PowerApps.</p>
             <div class="chips">
               <span class="chip">Power BI</span>
               <span class="chip">DAX</span>
@@ -924,12 +243,13 @@
             </div>
           </div>
           <div class="tl-item fade-in">
-            <div class="tl-meta">
-              <span class="tl-date">Jun 2024 – Dec 2024</span>
-              <span class="tl-org">Digital Egypt Pioneers Initiative (DEPI), Cairo</span>
-            </div>
+            <div class="tl-marker" aria-hidden="true"></div>
             <h3>Machine Learning Engineer Trainee</h3>
-            <p class="muted">Developed supervised, unsupervised, and reinforcement learning models on real-world datasets. Performed large-scale data preprocessing and feature engineering using Pandas & NumPy. Deployed ML solutions on Microsoft Azure, implemented deep learning architectures with TensorFlow & PyTorch including computer vision and NLP via transfer learning.</p>
+            <div class="tl-meta">
+              <span class="tl-org">Digital Egypt Pioneers Initiative (DEPI), Cairo</span>
+              <span class="tl-date">Jun 2024 – Dec 2024</span>
+            </div>
+            <p class="muted">Developed supervised, unsupervised, and reinforcement learning models on real-world datasets. Deployed ML solutions on Microsoft Azure and implemented deep learning with TensorFlow & PyTorch including computer vision and NLP via transfer learning.</p>
             <div class="chips">
               <span class="chip">TensorFlow</span>
               <span class="chip">PyTorch</span>
@@ -944,56 +264,70 @@
       </div>
     </section>
 
-    <!-- ── ACHIEVEMENTS ───────────────────────────────────────── -->
-    <section id="achievements" class="bg-alt">
+    <!-- ════════════════════════════════════════
+         03 — ACHIEVEMENTS
+    ════════════════════════════════════════ -->
+    <section id="achievements" aria-labelledby="achievements-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Recognition</span><br/>
-          <h2>Achievements</h2>
-          <span class="section-line"></span>
+          <div class="section-eyebrow">
+            <span class="section-label">Recognition & Awards</span>
+            <span class="section-num" aria-hidden="true">03</span>
+          </div>
+          <h2 id="achievements-heading">Achievements</h2>
+          <p class="section-sub">Competing nationally and proving technical excellence under pressure — from healthcare AI to software engineering.</p>
+          <div class="section-line"></div>
         </div>
         <div class="grid cols-3">
-          <div class="achievement-card fade-in">
+          <article class="achievement-card fade-in">
             <div class="ribbon gold">🏆 Best Business Model</div>
-            <img src="images\MIE.png" alt="Made In Egypt Competition" onerror="this.style.display='none'" />
+            <img src="images/MIE.png" alt="Made In Egypt Competition certificate — Best Business Model Award" loading="lazy" onerror="this.parentElement.classList.add('no-img')" />
             <div class="achievement-body">
-              <h3>Made In Egypt (MIE) Competition</h3>
-              <p class="muted">A competition that bridges technical and business approaches, helping graduates convert their projects into startups. Awarded Best Business Model for the Roshtty medical prescription system.</p>
+              <h3>Made In Egypt (MIE)</h3>
+              <p class="muted">Awarded Best Business Model for the Roshtty medical prescription system, bridging technical and business approaches to help graduates convert projects into startups.</p>
             </div>
-          </div>
-          <div class="achievement-card fade-in">
+          </article>
+          <article class="achievement-card fade-in">
             <div class="ribbon bronze">🥉 3rd Place</div>
-            <img src="images\IEEE.png" alt="IEEE Victories 3.0" onerror="this.style.display='none'" />
+            <img src="images/IEEE.png" alt="IEEE Victories 3.0 — Third Place Award" loading="lazy" onerror="this.parentElement.classList.add('no-img')" />
             <div class="achievement-body">
               <h3>IEEE Victories 3.0</h3>
               <p class="muted">A 1-month intensive competition in Software Engineering and AI, combining mentorship, technical challenges, and on-site presentations evaluated by industry experts.</p>
             </div>
-          </div>
-          <div class="achievement-card fade-in">
+          </article>
+          <article class="achievement-card fade-in">
             <div class="ribbon bronze">🥉 3rd Place</div>
-            <img src="images\GDG.png" alt="GDG DevFest Hackathon" onerror="this.style.display='none'" />
+            <img src="images/GDG.png" alt="GDG DevFest Hackathon — Third Place Award" loading="lazy" onerror="this.parentElement.classList.add('no-img')" />
             <div class="achievement-body">
               <h3>GDG DevFest Hackathon</h3>
-              <p class="muted">Google Developer Groups hackathon focused on innovative real-world solutions. Demonstrated technical excellence and creativity in a competitive environment.</p>
+              <p class="muted">Google Developer Groups hackathon focused on innovative real-world solutions. Demonstrated technical creativity and excellence in a high-pressure competitive environment.</p>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ── SKILLS ─────────────────────────────────────────────── -->
-    <section id="skills">
+    <!-- ════════════════════════════════════════
+         04 — SKILLS
+    ════════════════════════════════════════ -->
+    <section id="skills" aria-labelledby="skills-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Toolkit</span><br/>
-          <h2>Technical Skills</h2>
-          <span class="section-line"></span>
+          <div class="section-eyebrow">
+            <span class="section-label">Tools & Technologies</span>
+            <span class="section-num" aria-hidden="true">04</span>
+          </div>
+          <h2 id="skills-heading">Technical Skills</h2>
+          <p class="section-sub">A full-stack data toolkit — from dashboard design and ETL pipelines to machine learning and cloud deployment.</p>
+          <div class="section-line"></div>
         </div>
         <div class="grid cols-3">
-          <div class="card skill-card fade-in">
-            <span class="skill-icon">📊</span>
+          <div class="card skill-card fade-in" data-color="primary">
+            <span class="skill-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+            </span>
             <h3>Data Analytics & BI</h3>
-            <p class="muted">Business intelligence tools for visual storytelling</p>
+            <p class="muted">Business intelligence tools for visual storytelling and KPI reporting</p>
             <div class="chips">
               <span class="chip">Power BI</span>
               <span class="chip">DAX</span>
@@ -1004,20 +338,24 @@
               <span class="chip">Excel</span>
             </div>
           </div>
-          <div class="card skill-card fade-in">
-            <span class="skill-icon">⚡</span>
+          <div class="card skill-card fade-in" data-color="accent">
+            <span class="skill-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
             <h3>Power Platform</h3>
-            <p class="muted">Workflow automation and low-code applications</p>
+            <p class="muted">Workflow automation and low-code enterprise applications</p>
             <div class="chips">
               <span class="chip accent">PowerApps</span>
               <span class="chip accent">Power Automate</span>
               <span class="chip accent">Workflow Design</span>
             </div>
           </div>
-          <div class="card skill-card fade-in">
-            <span class="skill-icon">🤖</span>
+          <div class="card skill-card fade-in" data-color="purple">
+            <span class="skill-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><line x1="12" y1="15" x2="12" y2="17"/><line x1="8" y1="15" x2="8" y2="17"/><line x1="16" y1="15" x2="16" y2="17"/></svg>
+            </span>
             <h3>Machine Learning & AI</h3>
-            <p class="muted">Building and deploying intelligent models</p>
+            <p class="muted">Building, training, and deploying intelligent models at scale</p>
             <div class="chips">
               <span class="chip purple">TensorFlow</span>
               <span class="chip purple">PyTorch</span>
@@ -1026,20 +364,24 @@
               <span class="chip purple">NLP</span>
             </div>
           </div>
-          <div class="card skill-card fade-in">
-            <span class="skill-icon">💻</span>
+          <div class="card skill-card fade-in" data-color="orange">
+            <span class="skill-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </span>
             <h3>Programming</h3>
-            <p class="muted">Core languages for data and application development</p>
+            <p class="muted">Core languages for data pipelines and application development</p>
             <div class="chips">
               <span class="chip orange">Python</span>
               <span class="chip orange">SQL</span>
               <span class="chip orange">C#</span>
             </div>
           </div>
-          <div class="card skill-card fade-in">
-            <span class="skill-icon">☁️</span>
+          <div class="card skill-card fade-in" data-color="primary">
+            <span class="skill-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            </span>
             <h3>Cloud & DevOps</h3>
-            <p class="muted">Cloud deployment and infrastructure tools</p>
+            <p class="muted">Cloud-native deployment and infrastructure as code</p>
             <div class="chips">
               <span class="chip">Microsoft Azure</span>
               <span class="chip">Docker</span>
@@ -1047,10 +389,12 @@
               <span class="chip">REST APIs</span>
             </div>
           </div>
-          <div class="card skill-card fade-in">
-            <span class="skill-icon">🔧</span>
+          <div class="card skill-card fade-in" data-color="accent">
+            <span class="skill-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </span>
             <h3>App Development</h3>
-            <p class="muted">End-to-end application frameworks</p>
+            <p class="muted">End-to-end data applications and scientific computing libraries</p>
             <div class="chips">
               <span class="chip accent">Flask</span>
               <span class="chip accent">Streamlit</span>
@@ -1063,117 +407,127 @@
       </div>
     </section>
 
-    <!-- ── PROJECTS ───────────────────────────────────────────── -->
-    <section id="projects" class="bg-alt">
+    <!-- ════════════════════════════════════════
+         05 — PROJECTS
+    ════════════════════════════════════════ -->
+    <section id="projects" aria-labelledby="projects-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Featured Work</span><br/>
-          <h2>Projects</h2>
-          <span class="section-line"></span>
+          <div class="section-eyebrow">
+            <span class="section-label">Featured Work</span>
+            <span class="section-num" aria-hidden="true">05</span>
+          </div>
+          <h2 id="projects-heading">Projects</h2>
+          <p class="section-sub">Real-world applications spanning OCR, NLP, and business analytics — built from research to production deployment.</p>
+          <div class="section-line"></div>
         </div>
-        <div class="grid cols-2">
-          <div class="card project-card fade-in">
+        <div class="grid cols-3">
+          <article class="card project-card fade-in">
             <div class="card-top">
-              <span class="project-Tableau">📋</span>
-              <div class="chips" style="margin-top:0; justify-content:flex-end;">
-                <span class="chip accent" style="font-size:11px;">Sep 2024 – Jul 2025</span>
-              </div>
+              <span class="project-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </span>
+              <span class="chip accent" style="font-size:11px; margin-top:0;">Sep 2024 – Jul 2025</span>
             </div>
-            <h3>Roshtty — Medical Prescription OCR System</h3>
-            <p class="muted">AI-powered OCR solution that interprets handwritten medical prescriptions. Built with Flask, advanced image preprocessing (deskewing, noise reduction, thresholding), and Google Gemini API. Deployed on Microsoft Azure with structured JSON outputs and confidence scoring.</p>
+            <h3>Roshtty — Medical Prescription OCR</h3>
+            <p class="muted">AI-powered OCR that interprets handwritten medical prescriptions. Built with Flask, advanced image preprocessing (deskewing, noise reduction, thresholding), and Google Gemini API. Deployed on Microsoft Azure with structured JSON outputs and confidence scoring.</p>
             <div class="chips">
-              <span class="chip">Python</span>
-              <span class="chip">Flask</span>
-              <span class="chip accent">Azure</span>
-              <span class="chip accent">Gemini AI</span>
-              <span class="chip purple">OpenCV</span>
-              <span class="chip purple">OCR</span>
+              <span class="chip">Python</span><span class="chip">Flask</span>
+              <span class="chip accent">Azure</span><span class="chip accent">Gemini AI</span>
+              <span class="chip purple">OpenCV</span><span class="chip purple">OCR</span>
             </div>
             <div class="project-links">
-              <a class="btn btn-primary" href="https://read-acgqhjb2b8hyd6fb.canadacentral-01.azurewebsites.net/" target="_blank" style="font-size:13px; padding:9px 18px;">🔗 Live Demo</a>
+              <a class="btn btn-primary" href="https://read-acgqhjb2b8hyd6fb.canadacentral-01.azurewebsites.net/" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Live Demo
+              </a>
             </div>
-          </div>
-          <div class="card project-card fade-in">
+          </article>
+          <article class="card project-card fade-in">
             <div class="card-top">
-              <span class="project-Tableau">💬</span>
-              <div class="chips" style="margin-top:0; justify-content:flex-end;">
-                <span class="chip accent" style="font-size:11px;">Oct 2024</span>
-              </div>
+              <span class="project-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </span>
+              <span class="chip accent" style="font-size:11px; margin-top:0;">Oct 2024</span>
             </div>
             <h3>Linguasense — Multilingual Sentiment Chatbot</h3>
-            <p class="muted">Real-time multilingual NLP solution integrating Whisper ASR, Distilled BERT, and Llama 3.1 in a Streamlit app. Implements Retrieval-Augmented Generation (RAG) using FAISS for scalable review analysis across multiple languages.</p>
+            <p class="muted">Real-time multilingual NLP solution integrating Whisper ASR, Distilled BERT, and Llama 3.1. Implements Retrieval-Augmented Generation (RAG) using FAISS for scalable review analysis across multiple languages.</p>
             <div class="chips">
-              <span class="chip">Python</span>
-              <span class="chip">Streamlit</span>
-              <span class="chip accent">FAISS</span>
-              <span class="chip accent">Llama 3.1</span>
-              <span class="chip purple">RAG</span>
-              <span class="chip purple">Whisper ASR</span>
+              <span class="chip">Python</span><span class="chip">Streamlit</span>
+              <span class="chip accent">FAISS</span><span class="chip accent">Llama 3.1</span>
+              <span class="chip purple">RAG</span><span class="chip purple">Whisper ASR</span>
             </div>
             <div class="project-links">
-              <a class="btn btn-outline" href="https://github.com/Muhammed-Maklad/DEPI-Graduation-Project" target="_blank" style="font-size:13px; padding:9px 18px;">💻 Source Code</a>
+              <a class="btn btn-outline" href="https://github.com/Muhammed-Maklad/DEPI-Graduation-Project" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                Source Code
+              </a>
             </div>
-          </div>
-          <div class="card project-card fade-in">
+          </article>
+          <article class="card project-card fade-in">
             <div class="card-top">
-              <span class="project-Tableau">🛍️</span>
-              <div class="chips" style="margin-top:0; justify-content:flex-end;">
-                <span class="chip accent" style="font-size:11px;">April 2026</span>
-              </div>
+              <span class="project-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+              </span>
+              <span class="chip accent" style="font-size:11px; margin-top:0;">April 2026</span>
             </div>
-            <h3>Maklad Store Analytics Dashboard - Tableau</h3>
-            <p class="muted">A five-page interactive Tableau platform built to replace scattered reports with a single, decision-ready analytics hub. The dashboard covers the full business picture revenue, profitability, customer behavior, and product performance with every view driven by parameters, actions, and real-time filtering.</p>
+            <h3>Maklad Store Analytics — Tableau</h3>
+            <p class="muted">A five-page interactive Tableau platform replacing scattered reports with a decision-ready analytics hub. Covers revenue, profitability, customer behavior, and product performance with real-time filtering and dashboard actions.</p>
             <div class="chips">
-              <span class="chip">Tableau Desktop</span>
-              <span class="chip">Microsoft Excel </span>
-              <span class="chip accent">Dashboard Actions</span>
-              <span class="chip accent">Parameters</span>
+              <span class="chip">Tableau Desktop</span><span class="chip">Microsoft Excel</span>
+              <span class="chip accent">Dashboard Actions</span><span class="chip accent">Parameters</span>
               <span class="chip purple">Tableau Public</span>
             </div>
             <div class="project-links">
-              <a class="btn btn-primary" href="https://public.tableau.com/app/profile/muhammed.gamal5404/viz/MakladTechSolution/ProductDashborad?publish=yes" target="_blank" style="font-size:13px; padding:9px 18px;">🔗 Live Demo</a>
+              <a class="btn btn-primary" href="https://public.tableau.com/app/profile/muhammed.gamal5404/viz/MakladTechSolution/ProductDashborad?publish=yes" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Live Demo
+              </a>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ── PROBLEM SOLVING ────────────────────────────────────── -->
-    <section id="problem-solving">
+    <!-- ════════════════════════════════════════
+         06 — PROBLEM SOLVING
+    ════════════════════════════════════════ -->
+    <section id="problem-solving" aria-labelledby="ps-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Algorithms & DSA</span><br/>
-          <h2>Problem Solving</h2>
-          <span class="section-line"></span>
+          <div class="section-eyebrow">
+            <span class="section-label">Algorithms & DSA</span>
+            <span class="section-num" aria-hidden="true">06</span>
+          </div>
+          <h2 id="ps-heading">Problem Solving</h2>
+          <p class="section-sub">Sharpening algorithmic intuition daily — every solution documented with approach, complexity, and edge cases.</p>
+          <div class="section-line"></div>
         </div>
         <div class="ps-hero">
           <div>
-            <p style="font-size:16px; color:var(--muted); line-height:1.9; margin-bottom:20px;">
-              Actively sharpening algorithmic thinking by solving LeetCode and HackerRank problems across arrays, strings, dynamic programming, SQL, and more. Every solution comes with a detailed README explaining the approach, complexity analysis, and edge cases.
+            <p style="font-size:15.5px; color:var(--muted); line-height:1.9; margin-bottom:24px;">
+              Actively solving LeetCode and Codeforces problems across arrays, strings, dynamic programming, SQL, and more.
+              Every solution in the repository includes a detailed README explaining the approach, time/space complexity, and edge cases.
             </p>
-            <a class="btn btn-primary" href="https://github.com/Muhammed-Maklad/Problem-Solving" target="_blank">
-              View Full Repository
-            </a>
-            &nbsp;
-            <a class="btn btn-outline" href="https://leetcode.com/u/Muhamed_Maklad/" target="_blank" style="margin-top:10px; display:inline-flex;">
-              LeetCode Profile
-            </a>
+            <a class="btn btn-primary" href="https://github.com/Muhammed-Maklad/Problem-Solving" target="_blank" rel="noopener noreferrer">View Repository</a>
+            <a class="btn btn-outline" href="https://leetcode.com/u/Muhamed_Maklad/" target="_blank" rel="noopener noreferrer" style="margin-left:10px;">LeetCode Profile</a>
           </div>
           <div class="ps-stat-grid">
             <div class="ps-stat fade-in">
-              <div class="ps-stat-num">58+</div>
-              <div class="ps-stat-label">Total Solved</div>
+              <div class="ps-stat-num" data-target="58" data-suffix="+">58+</div>
+              <div class="ps-stat-label">LeetCode Solved</div>
             </div>
             <div class="ps-stat fade-in">
-              <div class="ps-stat-num">5</div>
-              <div class="ps-stat-label">Categories</div>
+              <div class="ps-stat-num" data-target="300" data-suffix="+">300+</div>
+              <div class="ps-stat-label">Codeforces</div>
             </div>
           </div>
         </div>
-
         <div class="category-grid">
-          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/SQL" target="_blank">
-            <span class="cat-icon">🗄️</span>
+          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/SQL" target="_blank" rel="noopener noreferrer">
+            <span class="cat-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </span>
             <div class="cat-name">SQL Queries</div>
             <div class="cat-count">41+ problems</div>
             <div class="diff-pills">
@@ -1181,20 +535,24 @@
               <span class="diff-pill medium">Medium</span>
               <span class="diff-pill hard">Hard</span>
             </div>
-            <div class="cat-bar"><div class="cat-fill" style="width:82%; background:linear-gradient(90deg,#60a5fa,#10b981);"></div></div>
+            <div class="cat-bar"><div class="cat-fill" data-width="82" style="width:0; background:linear-gradient(90deg,var(--primary),var(--accent));"></div></div>
           </a>
-          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/String" target="_blank">
-            <span class="cat-icon">🔤</span>
+          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/String" target="_blank" rel="noopener noreferrer">
+            <span class="cat-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+            </span>
             <div class="cat-name">String Manipulation</div>
             <div class="cat-count">9 problems</div>
             <div class="diff-pills">
               <span class="diff-pill easy">Easy</span>
               <span class="diff-pill medium">Medium</span>
             </div>
-            <div class="cat-bar"><div class="cat-fill" style="width:60%; background:linear-gradient(90deg,#a78bfa,#60a5fa);"></div></div>
+            <div class="cat-bar"><div class="cat-fill" data-width="60" style="width:0; background:linear-gradient(90deg,var(--purple),var(--primary));"></div></div>
           </a>
-          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/Array" target="_blank">
-            <span class="cat-icon">📊</span>
+          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/Array" target="_blank" rel="noopener noreferrer">
+            <span class="cat-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+            </span>
             <div class="cat-name">Array Algorithms</div>
             <div class="cat-count">8 problems</div>
             <div class="diff-pills">
@@ -1202,216 +560,126 @@
               <span class="diff-pill medium">Medium</span>
               <span class="diff-pill hard">Hard</span>
             </div>
-            <div class="cat-bar"><div class="cat-fill" style="width:55%; background:linear-gradient(90deg,#fb923c,#a78bfa);"></div></div>
+            <div class="cat-bar"><div class="cat-fill" data-width="55" style="width:0; background:linear-gradient(90deg,var(--orange),var(--purple));"></div></div>
           </a>
-          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/Two%20Pointers" target="_blank">
-            <span class="cat-icon">👆</span>
+          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/Two%20Pointers" target="_blank" rel="noopener noreferrer">
+            <span class="cat-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
             <div class="cat-name">Two Pointers</div>
             <div class="cat-count">1 problem</div>
-            <div class="diff-pills">
-              <span class="diff-pill easy">Easy</span>
-            </div>
-            <div class="cat-bar"><div class="cat-fill" style="width:20%; background:linear-gradient(90deg,#10b981,#60a5fa);"></div></div>
+            <div class="diff-pills"><span class="diff-pill easy">Easy</span></div>
+            <div class="cat-bar"><div class="cat-fill" data-width="20" style="width:0; background:linear-gradient(90deg,var(--accent),var(--primary));"></div></div>
           </a>
-          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/Dynamic%20Programming" target="_blank">
-            <span class="cat-icon">🧠</span>
+          <a class="category-card fade-in" href="https://github.com/Muhammed-Maklad/Problem-Solving/tree/master/Dynamic%20Programming" target="_blank" rel="noopener noreferrer">
+            <span class="cat-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>
+            </span>
             <div class="cat-name">Dynamic Programming</div>
             <div class="cat-count">1 problem</div>
-            <div class="diff-pills">
-              <span class="diff-pill easy">Easy</span>
-            </div>
-            <div class="cat-bar"><div class="cat-fill" style="width:20%; background:linear-gradient(90deg,#fb923c,#10b981);"></div></div>
+            <div class="diff-pills"><span class="diff-pill easy">Easy</span></div>
+            <div class="cat-bar"><div class="cat-fill" data-width="20" style="width:0; background:linear-gradient(90deg,var(--orange),var(--accent));"></div></div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ── CONTACT ────────────────────────────────────────────── -->
-    <section id="contact" class="bg-alt">
+    <!-- ════════════════════════════════════════
+         07 — CONTACT
+    ════════════════════════════════════════ -->
+    <section id="contact" aria-labelledby="contact-heading">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Let's Connect</span><br/>
-          <h2>Get in Touch</h2>
-          <span class="section-line"></span>
+          <div class="section-eyebrow">
+            <span class="section-label">Let's Connect</span>
+            <span class="section-num" aria-hidden="true">07</span>
+          </div>
+          <h2 id="contact-heading">Get in Touch</h2>
+          <p class="section-sub">Open to opportunities in Data Engineering, Business Intelligence, and Machine Learning. Let's build something impactful together.</p>
+          <div class="section-line"></div>
         </div>
-        <div class="card" style="max-width:680px; margin:0 auto; text-align:center;">
-          <p class="muted" style="font-size:17px; line-height:1.8; margin-bottom:8px;">
-            I'm actively seeking roles in <strong style="color:var(--primary);">Data Engineering</strong>, <strong style="color:var(--accent);">Business Intelligence</strong>, 
-            and <strong style="color:var(--purple);">Machine Learning</strong>. Whether you have a project in mind or just want to connect — I'd love to hear from you!
-          </p>
-          <div class="contact-grid">
-            <a class="contact-chip" href="/cdn-cgi/l/email-protection#bdd0d28adcd0d8d9d0dcd6d1dcd9fddad0dcd4d193ded2d0">
-              <img src="https://cdn.jsdelivr.net/npm/@internetarchive/icon-email@1.3.4/email.svg" id="emailIcon2" />
-              <span class="__cf_email__" data-cfemail="dcb1b3ebbdb1b9b8b1bdb7b0bdb89cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</span>
+
+        <div class="contact-layout">
+          <!-- Left: CTA copy -->
+          <div class="contact-cta-side fade-in">
+            <div class="contact-badge">
+              <span class="contact-badge-dot"></span>
+              Available for opportunities
+            </div>
+            <h3 class="contact-headline">Let's build something <span class="contact-hl">remarkable</span> together.</h3>
+            <p class="contact-body">Whether you have a role in mind, a project to discuss, or simply want to connect — I respond promptly and I'd love to hear what you're working on.</p>
+            <a class="btn btn-primary contact-cta-btn" href="mailto:mo7amedmaklad@gmail.com">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Send me an email
             </a>
-            <a class="contact-chip" href="https://linkedin.com/in/muhammed-maklad" target="_blank">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" style="filter:invert(55%) sepia(80%) saturate(800%) hue-rotate(185deg);" />
+          </div>
+
+          <!-- Right: contact chips -->
+          <div class="contact-chips-side">
+            <a class="contact-chip fade-in" href="mailto:mo7amedmaklad@gmail.com" id="emailCard" style="--cc:#60a5fa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Email
+            </a>
+            
+            <a class="contact-chip fade-in" href="https://linkedin.com/in/muhammed-maklad" target="_blank" rel="noopener noreferrer" style="--cc:#60a5fa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
             </a>
-            <a class="contact-chip" href="https://github.com/Muhammed-Maklad" target="_blank">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" id="ghIcon2" />
+            
+            <a class="contact-chip fade-in" href="https://github.com/Muhammed-Maklad" target="_blank" rel="noopener noreferrer" style="--cc:#a78bfa">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
               GitHub
             </a>
-            <a class="contact-chip" href="https://leetcode.com/u/Muhamed_Maklad/" target="_blank">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/leetcode.svg" style="filter:invert(65%) sepia(90%) saturate(500%) hue-rotate(10deg);" />
-              LeetCode
-            </a>
-            <a class="contact-chip" href="https://wa.me/201117717161" target="_blank">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" style="filter:invert(60%) sepia(90%) saturate(400%) hue-rotate(100deg);" />
+            
+            <a class="contact-chip fade-in" href="https://wa.me/201117717161" target="_blank" rel="noopener noreferrer" style="--cc:#10b981">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
               WhatsApp
             </a>
-
-            <a class="contact-chip" href="https://muhammed-maklad.github.io" target="_blank">
-              <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/githubpages.svg" id="ghPagesIcon" />
-              Portfolio Site
+            
+            <a class="contact-chip fade-in" href="https://leetcode.com/u/Muhamed_Maklad/" target="_blank" rel="noopener noreferrer" style="--cc:#fb923c">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>
+              LeetCode
             </a>
+          </div>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-name">Muhammed Gamal Maklad</div>
-      <p>Data Solutions Engineer · Cairo, Egypt</p>
-      <p style="margin-top:8px; font-size:13px; opacity:0.6;">© <span id="year"></span> · Crafted with care using HTML, CSS & JavaScript ✨</p>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-name">Muhammed Gamal Maklad</div>
+          <p class="footer-role">Data Solutions Engineer · Cairo, Egypt</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/muhammed-maklad" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" style="filter:invert(55%) sepia(80%) saturate(800%) hue-rotate(185deg);" alt="" width="17" height="17" />
+          </a>
+          <a href="https://github.com/Muhammed-Maklad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" id="ghIconFooter" alt="" width="17" height="17" />
+          </a>
+          <a href="https://leetcode.com/u/Muhamed_Maklad/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/leetcode.svg" style="filter:invert(65%) sepia(90%) saturate(500%) hue-rotate(10deg);" alt="" width="17" height="17" />
+          </a>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">© <span id="year"></span> Muhammed Gamal Maklad · Crafted with care using HTML, CSS & JavaScript ✨</p>
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── YEAR ─────────────────────────────────────────────────
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <!-- ── BACK TO TOP ────────────────────────────────────────── -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
-    // ── THEME ────────────────────────────────────────────────
-    const html = document.documentElement;
-    const themeBtn = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const themeLabel = document.getElementById('themeLabel');
-
-    function applyTheme(theme) {
-      html.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      const isDark = theme === 'dark';
-      themeIcon.textContent = isDark ? '🌙' : '☀️';
-      themeLabel.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-      // adjust icons that need dark/light switching
-      const darkFilter = 'invert(85%) brightness(2)';
-      const lightFilter = 'invert(15%) brightness(0.4)';
-      const f = isDark ? darkFilter : lightFilter;
-      document.querySelectorAll('#ghIcon, #ghIcon2, #ghPagesIcon').forEach(el => el.style.filter = f);
-      document.querySelectorAll('#emailIcon, #emailIcon2').forEach(el => el.style.filter = f);
-    }
-
-    const stored = localStorage.getItem('theme');
-    const preferred = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    applyTheme(preferred);
-
-    themeBtn.addEventListener('click', () => {
-      applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-
-    // ── SCROLL PROGRESS ──────────────────────────────────────
-    const progressBar = document.getElementById('scrollProgress');
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
-      navbar.classList.toggle('scrolled', scrollTop > 60);
-    }, { passive: true });
-
-    // ── SMOOTH SCROLL ─────────────────────────────────────────
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
-      });
-    });
-
-    // ── MOBILE MENU ───────────────────────────────────────────
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    function toggleMobile() {
-      hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-    }
-    function closeMobile() {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-    }
-
-    // ── ACTIVE NAV ────────────────────────────────────────────
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) current = s.id;
-      });
-      navLinks.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
-      });
-    }, { passive: true });
-
-    // ── FADE IN ON SCROLL ─────────────────────────────────────
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // ── PARTICLES ─────────────────────────────────────────────
-    const pContainer = document.getElementById('particles');
-    const colors = ['rgba(96,165,250,', 'rgba(16,185,129,', 'rgba(167,139,250,'];
-    for (let i = 0; i < 25; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      const s = Math.random() * 3 + 1;
-      const c = colors[Math.floor(Math.random() * colors.length)];
-      p.style.cssText = `
-        width:${s}px; height:${s}px;
-        background:${c}0.8);
-        box-shadow:0 0 ${s*3}px ${c}0.5);
-        left:${Math.random()*100}%;
-        animation-delay:${Math.random()*30}s;
-        animation-duration:${20+Math.random()*20}s;
-      `;
-      pContainer.appendChild(p);
-    }
-
-    // ── ANIMATE CATEGORY BARS ─────────────────────────────────
-    const catObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.cat-fill').forEach(f => {
-            const w = f.style.width;
-            f.style.width = '0';
-            requestAnimationFrame(() => {
-              setTimeout(() => { f.style.width = w; }, 100);
-            });
-          });
-          catObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.category-card').forEach(c => catObserver.observe(c));
-
-    // ── PROFILE PHOTO CLICK ───────────────────────────────────
-    document.querySelector('.profile-photo').addEventListener('click', function() {
-      this.style.transform = 'scale(1.15) rotate(360deg)';
-      this.style.transition = 'transform 0.7s cubic-bezier(0.34,1.56,0.64,1)';
-      setTimeout(() => {
-        this.style.transform = '';
-        this.style.transition = '';
-      }, 700);
-    });
-  </script>
+  <script src="script.js" defer></script>
 </body>
 </html>
