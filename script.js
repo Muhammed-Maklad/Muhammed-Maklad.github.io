@@ -158,7 +158,15 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(s => { if (scrollTop >= s.offsetTop - offset) current = s.id; });
         navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
 
-        if (backToTop)       backToTop.classList.toggle('visible', scrollTop > 500);
+        if (backToTop) {
+            backToTop.classList.toggle('visible', scrollTop > 500);
+            const progressCircle = document.getElementById('progressCircle');
+            if (progressCircle) {
+                const circumference = 131.95;
+                const progress = docH > 0 ? (scrollTop / docH) : 0;
+                progressCircle.style.strokeDashoffset = (circumference - (progress * circumference)).toFixed(2);
+            }
+        }
         if (scrollIndicator) {
             scrollIndicator.style.opacity      = scrollTop > 80 ? '0' : '';
             scrollIndicator.style.pointerEvents = scrollTop > 80 ? 'none' : '';
