@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!reducedMotion) {
         const pCont = document.getElementById('particles');
         if (pCont) {
-            const colors = ['rgba(96,165,250,', 'rgba(16,185,129,', 'rgba(167,139,250,'];
+            const colors = ['rgba(90,135,199,', 'rgba(49,151,149,', 'rgba(167,139,250,'];
             const frag   = document.createDocumentFragment();
             for (let i = 0; i < 22; i++) {
                 const p = document.createElement('div');
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(step);
         });
     }, { threshold: 0.5 });
-    document.querySelectorAll('.stat-num, .ps-stat-num').forEach(el => statObs.observe(el));
+    document.querySelectorAll('.stat-num, .ps-stat-num, .hero-stat-num').forEach(el => statObs.observe(el));
 
     /* ══════════════════════════════════════════════════════════
        CATEGORY BAR ANIMATION (data-width driven)
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const typedEl = document.getElementById('typedRole');
     if (typedEl && !reducedMotion) {
         const roles = [
-            'Data & BI Solutions Engineer',
+            'Data Solutions Engineer',
             'Power BI Dashboard Designer',
             'Machine Learning Engineer',
             'ETL Pipeline Architect',
@@ -362,6 +362,605 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => requestAnimationFrame(typeStep), deleting ? 30 : 58);
         }
         setTimeout(typeStep, 1600);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       PREMIUM SKILLS ANIMATION MODULE
+    ══════════════════════════════════════════════════════════ */
+    (function initSkillsAnimation() {
+        const skillsSection = document.querySelector('.skills-section');
+        if (!skillsSection) return;
+
+        /* ── Canvas Particle Grid ─────────────────────────── */
+        const canvas = document.getElementById('skillsCanvas');
+        if (canvas && !reducedMotion) {
+            const ctx = canvas.getContext('2d');
+            let W, H, dots = [], mouseInSection = false, msx = -999, msy = -999;
+
+            const COLORS = [
+                'rgba(90,135,199,',    // primary blue
+                'rgba(49,151,149,',    // accent green
+                'rgba(167,139,250,'    // purple
+            ];
+
+            function resizeCanvas() {
+                const rect = skillsSection.getBoundingClientRect();
+                W = canvas.width  = rect.width;
+                H = canvas.height = rect.height;
+                buildDots();
+            }
+
+            function buildDots() {
+                dots = [];
+                const count = Math.floor((W * H) / 14000); // density
+                for (let i = 0; i < count; i++) {
+                    const c = COLORS[i % COLORS.length];
+                    dots.push({
+                        x: Math.random() * W,
+                        y: Math.random() * H,
+                        r: Math.random() * 1.8 + 0.6,
+                        vx: (Math.random() - 0.5) * 0.22,
+                        vy: (Math.random() - 0.5) * 0.22,
+                        color: c,
+                        opacity: Math.random() * 0.5 + 0.15,
+                        phase: Math.random() * Math.PI * 2
+                    });
+                }
+            }
+
+            function drawDots(t) {
+                ctx.clearRect(0, 0, W, H);
+                dots.forEach((d, i) => {
+                    // Subtle opacity pulse
+                    const pulse = d.opacity + Math.sin(t * 0.001 + d.phase) * 0.08;
+                    // Mouse repulsion
+                    if (mouseInSection) {
+                        const sRect = skillsSection.getBoundingClientRect();
+                        const lx = msx - sRect.left;
+                        const ly = msy - sRect.top;
+                        const dx = d.x - lx, dy = d.y - ly;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) {
+                            const force = (120 - dist) / 120 * 0.4;
+                            d.vx += (dx / dist) * force;
+                            d.vy += (dy / dist) * force;
+                        }
+                    }
+                    // Dampen velocity
+                    d.vx *= 0.98;
+                    d.vy *= 0.98;
+                    // Clamp speed
+                    const spd = Math.sqrt(d.vx * d.vx + d.vy * d.vy);
+                    if (spd > 0.9) { d.vx = d.vx / spd * 0.9; d.vy = d.vy / spd * 0.9; }
+                    // Move
+                    d.x += d.vx;
+                    d.y += d.vy;
+                    // Wrap
+                    if (d.x < -4) d.x = W + 4;
+                    if (d.x > W + 4) d.x = -4;
+                    if (d.y < -4) d.y = H + 4;
+                    if (d.y > H + 4) d.y = -4;
+                    // Draw glow dot
+                    ctx.beginPath();
+                    ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+                    ctx.fillStyle = d.color + Math.min(1, Math.max(0, pulse)).toFixed(2) + ')';
+                    ctx.fill();
+                    // Draw connections to nearby dots (max 2)
+                    let connCount = 0;
+                    for (let j = i + 1; j < dots.length && connCount < 2; j++) {
+                        const o = dots[j];
+                        const dx = d.x - o.x, dy = d.y - o.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 90) {
+                            const a = (1 - dist / 90) * 0.07;
+                            ctx.beginPath();
+                            ctx.strokeStyle = d.color + a.toFixed(3) + ')';
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(d.x, d.y);
+                            ctx.lineTo(o.x, o.y);
+                            ctx.stroke();
+                            connCount++;
+                        }
+                    }
+                });
+            }
+
+            let rafId = null, lastT = 0;
+            function animate(t) {
+                drawDots(t);
+                rafId = requestAnimationFrame(animate);
+            }
+
+            // Only run canvas when section is in view
+            const canvasObs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        if (!rafId) rafId = requestAnimationFrame(animate);
+                    } else {
+                        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+                    }
+                });
+            }, { threshold: 0.01 });
+            canvasObs.observe(skillsSection);
+
+            // Mouse tracking for repulsion
+            skillsSection.addEventListener('mouseenter', () => mouseInSection = true);
+            skillsSection.addEventListener('mouseleave', () => mouseInSection = false);
+            document.addEventListener('mousemove', e => { msx = e.clientX; msy = e.clientY; }, { passive: true });
+
+            resizeCanvas();
+            const ro = new ResizeObserver(resizeCanvas);
+            ro.observe(skillsSection);
+        }
+
+        /* ── Section Entrance Observer ────────────────────── */
+        const sectionObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                skillsSection.classList.add('skills-visible');
+                sectionObs.unobserve(skillsSection);
+            });
+        }, { threshold: 0.08 });
+        sectionObs.observe(skillsSection);
+
+        /* ── Card Staggered Reveal ────────────────────────── */
+        const premiumCards = skillsSection.querySelectorAll('.skill-card-premium');
+
+        // Override the generic fade-in timing with custom stagger delays
+        premiumCards.forEach(card => {
+            const idx = parseInt(card.dataset.cardIndex ?? 0);
+            const delay = idx * 120;
+            // Set transition delays when visible class added
+            card.style.transitionDelay = delay + 'ms';
+        });
+
+        const cardObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                const card = e.target;
+                const idx = parseInt(card.dataset.cardIndex ?? 0);
+                const delay = idx * 120;
+                // Animate badges in after the card itself lands
+                setTimeout(() => {
+                    card.classList.add('badges-visible');
+                }, delay + 400);
+                cardObs.unobserve(card);
+            });
+        }, { threshold: 0.12 });
+
+        premiumCards.forEach(card => cardObs.observe(card));
+
+        /* ── Mouse Radial Light Per-Card ─────────────────── */
+        if (!reducedMotion && !isTouchDevice) {
+            premiumCards.forEach(card => {
+                const light = card.querySelector('.skill-card-mouse-light');
+                if (!light) return;
+                card.addEventListener('pointermove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1) + '%';
+                    const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+                    card.style.setProperty('--light-x', x);
+                    card.style.setProperty('--light-y', y);
+                    // Refresh the gradient to follow mouse precisely
+                    light.style.background = `radial-gradient(circle 200px at ${x} ${y}, ${getCardGlowColor(card)} 0%, transparent 70%)`;
+                });
+                card.addEventListener('pointerleave', () => {
+                    card.style.removeProperty('--light-x');
+                    card.style.removeProperty('--light-y');
+                });
+            });
+        }
+
+        function getCardGlowColor(card) {
+            const col = card.dataset.color;
+            const map = {
+                primary: 'rgba(90,135,199,0.14)',
+                accent:  'rgba(49,151,149,0.14)',
+                purple:  'rgba(167,139,250,0.14)',
+                orange:  'rgba(251,146,60,0.14)'
+            };
+            return map[col] || map.primary;
+        }
+
+        /* ── Animated Gradient Border Angle ──────────────── */
+        if (!reducedMotion) {
+            let borderAngle = 135;
+            function rotateBorder() {
+                borderAngle = (borderAngle + 0.3) % 360;
+                premiumCards.forEach(card => {
+                    card.style.setProperty('--border-angle', borderAngle + 'deg');
+                });
+                requestAnimationFrame(rotateBorder);
+            }
+            rotateBorder();
+        }
+
+        /* ── Scroll Parallax for Cards ───────────────────── */
+        if (!reducedMotion) {
+            const PARALLAX_STRENGTH = 0.04;
+
+            function applyParallax() {
+                const sRect = skillsSection.getBoundingClientRect();
+                const progress = -sRect.top / (sRect.height + window.innerHeight);
+
+                premiumCards.forEach((card, i) => {
+                    const dir = i % 2 === 0 ? 1 : -1;
+                    const offset = progress * 40 * PARALLAX_STRENGTH * dir;
+                    // Only apply if card is already fully revealed (visible)
+                    if (card.classList.contains('visible')) {
+                        const baseTransform = card.matches(':hover') ? 'perspective(900px) translateY(-8px)' : '';
+                        if (!card.matches(':hover')) {
+                            card.style.setProperty('--parallax-y', offset.toFixed(2) + 'px');
+                        }
+                    }
+                });
+
+                // Background particle reactivity — slightly shift canvas offset
+                if (canvas && !reducedMotion) {
+                    const shift = progress * 15;
+                    canvas.style.transform = `translateY(${shift.toFixed(1)}px)`;
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => { applyParallax(); ticking = false; });
+                    ticking = true;
+                }
+            }, { passive: true });
+        }
+
+    })(); /* end initSkillsAnimation */
+
+    // ── CINEMATIC LOADING EXPERIENCE ──────────────────────────
+    const loader = document.getElementById('loading-screen');
+    const canvas = document.getElementById('loader-canvas');
+    if (loader && canvas) {
+        const ctx = canvas.getContext('2d');
+        let W = canvas.width = window.innerWidth;
+        let H = canvas.height = window.innerHeight;
+        
+        window.addEventListener('resize', () => {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        });
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        // Loader State variables
+        const duration = 3200; // 3.2 seconds display time constraint
+        const startTime = Date.now();
+        let frameId = null;
+
+        // Particle definitions
+        const particleCount = 100;
+        const particles = [];
+        const colors = ['#3B82F6', '#06B6D4', '#8B5CF6']; // Blue, Cyan, Purple
+
+        // Distribute particles into 4 layers for the database cylinder
+        const layerOffsets = [50, 15, -20, -55];
+        const particlesPerLayer = Math.floor(particleCount / 4);
+
+        for (let i = 0; i < particleCount; i++) {
+            const layer = Math.floor(i / particlesPerLayer);
+            const indexInLayer = i % particlesPerLayer;
+            particles.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: (Math.random() - 0.5) * 1.5,
+                randomTargetX: Math.random() * W,
+                randomTargetY: Math.random() * H,
+                layer: layer,
+                indexInLayer: indexInLayer,
+                angle: indexInLayer * (2 * Math.PI / particlesPerLayer),
+                size: Math.random() * 2 + 1,
+                color: colors[i % colors.length],
+                alpha: Math.random() * 0.5 + 0.5,
+                history: []
+            });
+        }
+
+        // Data streams for Phase 4
+        const dataStreams = [];
+        for (let i = 0; i < 6; i++) {
+            dataStreams.push({
+                color: colors[i % colors.length],
+                progress: -Math.random(),
+                speed: Math.random() * 0.02 + 0.015,
+                startX: i % 2 === 0 ? 0 : W,
+                startY: Math.random() * H * 0.4,
+                cp1x: W * (i % 2 === 0 ? 0.3 : 0.7),
+                cp1y: H * 0.2,
+                cp2x: W * 0.5,
+                cp2y: H * 0.1
+            });
+        }
+
+        // Floating tech labels for Phase 5
+        const techLabels = [
+            { text: 'SQL', xOffset: -160, yOffset: -80, tStart: 2000, tEnd: 2500 },
+            { text: 'Power BI', xOffset: 150, yOffset: -50, tStart: 2100, tEnd: 2600 },
+            { text: 'Python', xOffset: -140, yOffset: 30, tStart: 2200, tEnd: 2700 },
+            { text: 'Azure', xOffset: 150, yOffset: 40, tStart: 2300, tEnd: 2800 },
+            { text: 'Machine Learning', xOffset: -170, yOffset: -20, tStart: 2400, tEnd: 2900 },
+            { text: 'ETL', xOffset: 140, yOffset: -100, tStart: 2150, tEnd: 2650 },
+            { text: 'Data Warehouse', xOffset: -150, yOffset: -130, tStart: 2250, tEnd: 2750 },
+            { text: 'Analytics', xOffset: 130, yOffset: 90, tStart: 2350, tEnd: 2850 }
+        ];
+
+        // Draw perspective grid
+        function drawPerspectiveGrid(timeProgress) {
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.04)';
+            ctx.lineWidth = 1;
+            const horizon = H * 0.65;
+            const gridY = H * 0.65;
+
+            // Vertical perspective lines
+            const linesCount = 20;
+            for (let i = 0; i <= linesCount; i++) {
+                const xTop = W * 0.5;
+                const xBottom = W * (i / linesCount - 0.5) * 3 + W * 0.5;
+                ctx.beginPath();
+                ctx.moveTo(xTop, horizon);
+                ctx.lineTo(xBottom, H);
+                ctx.stroke();
+            }
+
+            // Horizontal scrolling grid lines
+            const horizCount = 10;
+            const scrollOffset = (timeProgress * 60) % 50;
+            for (let i = 0; i < horizCount; i++) {
+                const py = gridY + Math.pow(i / horizCount, 2) * (H - gridY) + scrollOffset;
+                if (py < H) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, py);
+                    ctx.lineTo(W, py);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        // Animate frame loop
+        function drawLoaderFrame() {
+            const elapsed = Date.now() - startTime;
+            const t = Math.min(elapsed, duration);
+            const progress = t / duration; // 0.0 to 1.0
+
+            ctx.fillStyle = '#08111F';
+            ctx.fillRect(0, 0, W, H);
+
+            // 3D perspective grid (slow moving)
+            drawPerspectiveGrid(progress);
+
+            // Volumetric glowing backdrop
+            const cx = W / 2;
+            const cy = H / 2 - 40;
+            const radialGlow = ctx.createRadialGradient(cx, cy, 20, cx, cy, 280);
+            radialGlow.addColorStop(0, `rgba(59, 130, 246, ${0.12 * (1 - Math.pow(progress, 3))})`);
+            radialGlow.addColorStop(1, 'rgba(8, 17, 31, 0)');
+            ctx.fillStyle = radialGlow;
+            ctx.beginPath();
+            ctx.arc(cx, cy, 300, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Camera slow zoom
+            const zoom = 1 + progress * 0.08;
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.scale(zoom, zoom);
+            ctx.translate(-cx, -cy);
+
+            // Render particles
+            particles.forEach((p, idx) => {
+                let targetX, targetY;
+
+                const rotSpeed = 0.0007;
+                const rotAngle = p.angle + t * rotSpeed * (p.layer % 2 === 0 ? 1 : -1);
+                const cylinderR = 90;
+                const ellipseAspect = 22; // height aspect of ellipses
+                
+                const cylX = cx + cylinderR * Math.cos(rotAngle);
+                const cylY = cy + layerOffsets[p.layer] + ellipseAspect * Math.sin(rotAngle);
+
+                if (t < 600) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > W) p.vx *= -1;
+                    if (p.y < 0 || p.y > H) p.vy *= -1;
+                    
+                    targetX = p.x;
+                    targetY = p.y;
+                } else if (t < 1300) {
+                    const factor = (t - 600) / 700;
+                    const pullX = cx + (p.x - cx) * 0.98;
+                    const pullY = cy + (p.y - cy) * 0.98;
+                    
+                    targetX = pullX + (cylX - pullX) * 0.15 * factor;
+                    targetY = pullY + (cylY - pullY) * 0.15 * factor;
+                } else if (t < 2200) {
+                    const layerDelay = p.layer * 120;
+                    const startT = 1300 + layerDelay;
+                    const factor = Math.min(Math.max((t - startT) / 500, 0), 1);
+                    
+                    targetX = p.x + (cylX - p.x) * factor;
+                    targetY = p.y + (cylY - p.y) * factor;
+                } else {
+                    targetX = cylX;
+                    targetY = cylY;
+                }
+
+                if (t >= 600) {
+                    p.x += (targetX - p.x) * 0.09;
+                    p.y += (targetY - p.y) * 0.09;
+                }
+
+                if (t < 1300 && !reducedMotion) {
+                    p.history.push({ x: p.x, y: p.y });
+                    if (p.history.length > 5) p.history.shift();
+                } else {
+                    p.history = [];
+                }
+
+                if (p.history.length > 1) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.history[0].x, p.history[0].y);
+                    for (let h = 1; h < p.history.length; h++) {
+                        ctx.lineTo(p.history[h].x, p.history[h].y);
+                    }
+                    ctx.strokeStyle = p.color + '0.15)';
+                    ctx.lineWidth = p.size;
+                    ctx.stroke();
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color + (t >= 2200 ? '0.85)' : p.alpha.toFixed(2) + ')');
+                ctx.fill();
+
+                if (t >= 600 && t < 2200) {
+                    const connMax = idx + 4;
+                    for (let j = idx + 1; j < Math.min(particles.length, connMax); j++) {
+                        const o = particles[j];
+                        const dx = p.x - o.x;
+                        const dy = p.y - o.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 75) {
+                            const alpha = (1 - dist / 75) * 0.12 * Math.min((t - 600) / 400, 1);
+                            ctx.beginPath();
+                            ctx.strokeStyle = p.color + alpha.toFixed(3) + ')';
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(o.x, o.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            });
+
+            if (t >= 1400) {
+                ctx.lineWidth = 1;
+                layerOffsets.forEach((yOff, i) => {
+                    const layerProgress = Math.min(Math.max((t - (1300 + i * 120)) / 500, 0), 1);
+                    ctx.strokeStyle = `rgba(6, 182, 212, ${0.18 * layerProgress})`;
+                    ctx.beginPath();
+                    ctx.ellipse(cx, cy + yOff, 90, 22, 0, 0, Math.PI * 2);
+                    ctx.stroke();
+                });
+            }
+
+            if (t >= 1500 && t < 2800) {
+                const scanY = cy - 65 + ((t * 0.08) % 135);
+                if (scanY < cy + 65) {
+                    ctx.strokeStyle = 'rgba(6, 182, 212, 0.22)';
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(cx - 95, scanY);
+                    ctx.lineTo(cx + 95, scanY);
+                    ctx.stroke();
+                }
+            }
+
+            if (t >= 2000) {
+                dataStreams.forEach(stream => {
+                    stream.progress += stream.speed;
+                    if (stream.progress > 1) {
+                        stream.progress = -Math.random() * 0.5;
+                        stream.startY = Math.random() * H * 0.4;
+                    }
+                    if (stream.progress > 0) {
+                        const factor = stream.progress;
+                        const x0 = stream.startX;
+                        const y0 = stream.startY;
+                        const x1 = stream.cp1x;
+                        const y1 = stream.cp1y;
+                        const x2 = stream.cp2x;
+                        const y2 = stream.cp2y;
+                        const x3 = cx;
+                        const y3 = cy - 55;
+
+                        const mt = 1 - factor;
+                        const tx = mt*mt*mt*x0 + 3*mt*mt*factor*x1 + 3*mt*factor*factor*x2 + factor*factor*factor*x3;
+                        const ty = mt*mt*mt*y0 + 3*mt*mt*factor*y1 + 3*mt*factor*factor*y2 + factor*factor*factor*y3;
+
+                        ctx.beginPath();
+                        ctx.arc(tx, ty, 2.5, 0, Math.PI * 2);
+                        ctx.fillStyle = stream.color + '0.9)';
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = stream.color;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                });
+            }
+
+            if (t >= 2000) {
+                techLabels.forEach(label => {
+                    if (t >= label.tStart && t <= label.tEnd) {
+                        const activeDuration = label.tEnd - label.tStart;
+                        const activeElapsed = t - label.tStart;
+                        let alpha = 0;
+                        if (activeElapsed < activeDuration * 0.2) {
+                            alpha = activeElapsed / (activeDuration * 0.2);
+                        } else if (activeElapsed > activeDuration * 0.8) {
+                            alpha = (label.tEnd - t) / (activeDuration * 0.2);
+                        } else {
+                            alpha = 1.0;
+                        }
+
+                        ctx.font = '600 11px "Outfit", sans-serif';
+                        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.45})`;
+                        ctx.fillText(label.text, cx + label.xOffset, cy + label.yOffset);
+                        
+                        ctx.beginPath();
+                        ctx.arc(cx + label.xOffset - 8, cy + label.yOffset - 3, 1.5, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(6, 182, 212, ${alpha * 0.55})`;
+                        ctx.fill();
+                    }
+                });
+            }
+
+            if (t >= 2650) {
+                const pulseElapsed = t - 2650;
+                const r = pulseElapsed * 0.65;
+                const alpha = Math.max(1 - pulseElapsed / 500, 0);
+                if (alpha > 0) {
+                    ctx.strokeStyle = `rgba(59, 130, 246, ${alpha * 0.65})`;
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.ellipse(cx, cy, r, r * 0.3, 0, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+            }
+
+            ctx.restore();
+
+            if (t >= 2600) {
+                const nameEl = document.getElementById('loader-name');
+                const titleEl = document.getElementById('loader-title');
+                const footerEl = document.getElementById('loader-footer');
+                if (nameEl) nameEl.classList.add('visible');
+                if (titleEl) titleEl.classList.add('visible');
+                if (footerEl) footerEl.classList.add('visible');
+            }
+
+            const barEl = document.getElementById('loader-progress-bar');
+            if (barEl) {
+                const barProgress = Math.min(t / (duration - 150), 1);
+                barEl.style.width = (barProgress * 100).toFixed(1) + '%';
+            }
+
+            if (t < duration) {
+                frameId = requestAnimationFrame(drawLoaderFrame);
+            } else {
+                setTimeout(() => {
+                    loader.classList.add('fade-out');
+                    document.body.classList.remove('loading-active');
+                }, 150);
+            }
+        }
+
+        frameId = requestAnimationFrame(drawLoaderFrame);
     }
 
 });
