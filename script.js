@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pCont) {
             const colors = ['rgba(90,135,199,', 'rgba(49,151,149,', 'rgba(167,139,250,'];
             const frag   = document.createDocumentFragment();
-            for (let i = 0; i < 22; i++) {
+            for (let i = 0; i < 50; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 const s = Math.random() * 3 + 2;
@@ -961,6 +961,151 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         frameId = requestAnimationFrame(drawLoaderFrame);
+    }
+
+    // ── PROFILE BACKGROUND REMOVAL (FLOOD FILL) ──────────────────
+    const profileImg = document.querySelector('.profile-photo');
+    if (profileImg) {
+        function removeWhiteBackground(imgElement) {
+            const img = new Image();
+            img.src = imgElement.src;
+            img.onload = () => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    const W = canvas.width = img.naturalWidth;
+                    const H = canvas.height = img.naturalHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    
+                    const imgData = ctx.getImageData(0, 0, W, H);
+                    const data = imgData.data;
+                    const visited = new Uint8Array(W * H);
+                    const queue = [];
+                    
+                    // Helper to check if pixel is near-white
+                    function isWhite(x, y) {
+                        const idx = (y * W + x) * 4;
+                        // White or extremely light gray (background)
+                        return data[idx] > 230 && data[idx+1] > 230 && data[idx+2] > 230;
+                    }
+                    
+                    // Push border pixels that are white to queue
+                    for (let x = 0; x < W; x++) {
+                        if (isWhite(x, 0)) { queue.push([x, 0]); visited[0 * W + x] = 1; }
+                        if (isWhite(x, H - 1)) { queue.push([x, H - 1]); visited[(H - 1) * W + x] = 1; }
+                    }
+                    for (let y = 1; y < H - 1; y++) {
+                        if (isWhite(0, y)) { queue.push([0, y]); visited[y * W + 0] = 1; }
+                        if (isWhite(W - 1, y)) { queue.push([W - 1, y]); visited[y * W + (W - 1)] = 1; }
+                    }
+                    
+                    // BFS to flood-fill background to transparent
+                    let head = 0;
+                    while (head < queue.length) {
+                        const [cx, cy] = queue[head++];
+                        const idx = (cy * W + cx) * 4;
+                        data[idx + 3] = 0; // Alpha = 0 (transparent)
+                        
+                        const neighbors = [
+                            [cx + 1, cy], [cx - 1, cy],
+                            [cx, cy + 1], [cx, cy - 1]
+                        ];
+                        for (const [nx, ny] of neighbors) {
+                            if (nx >= 0 && nx < W && ny >= 0 && ny < H) {
+                                const nidx = ny * W + nx;
+                                if (!visited[nidx] && isWhite(nx, ny)) {
+                                    visited[nidx] = 1;
+                                    queue.push([nx, ny]);
+                                }
+                            }
+                        }
+                    }
+                    
+                    ctx.putImageData(imgData, 0, 0);
+                    imgElement.src = canvas.toDataURL('image/png');
+                } catch (e) {
+                    console.warn("Failed to process background removal (CORS/security restriction on local file):", e);
+                } finally {
+                    imgElement.classList.add('ready');
+                }
+            };
+            if (img.complete) {
+                img.onload();
+            }
+        }
+        removeWhiteBackground(profileImg);
+    }
+
+    // ── HERO CONNECTION CANVAS LINES & PARTICLES ─────────────────
+    const heroCanvas = document.getElementById('hero-connection-canvas');
+    if (heroCanvas) {
+        const hctx = heroCanvas.getContext('2d');
+        let hW = heroCanvas.width = heroCanvas.offsetWidth;
+        let hH = heroCanvas.height = heroCanvas.offsetHeight;
+        
+        window.addEventListener('resize', () => {
+            hW = heroCanvas.width = heroCanvas.offsetWidth;
+            hH = heroCanvas.height = heroCanvas.offsetHeight;
+        });
+        
+        const cards = document.querySelectorAll('.float-card');
+        const dots = [];
+        
+        function animateConnections() {
+            if (window.innerWidth <= 480) {
+                // Skip rendering canvas on mobile grid stack to save performance
+                requestAnimationFrame(animateConnections);
+                return;
+            }
+            
+            hctx.clearRect(0, 0, hW, hH);
+            
+            const centerX = hW / 2;
+            const centerY = hH / 2;
+            
+            cards.forEach((card, idx) => {
+                const rect = card.getBoundingClientRect();
+                const containerRect = heroCanvas.getBoundingClientRect();
+                const cardX = rect.left - containerRect.left + rect.width / 2;
+                const cardY = rect.top - containerRect.top + rect.height / 2;
+                
+                // Draw connecting line from center to card
+                hctx.beginPath();
+                hctx.moveTo(centerX, centerY);
+                hctx.lineTo(cardX, cardY);
+                hctx.strokeStyle = 'rgba(90, 135, 199, 0.08)';
+                hctx.lineWidth = 1;
+                hctx.stroke();
+                
+                // Animate packet along line
+                if (!dots[idx]) {
+                    dots[idx] = {
+                        t: Math.random(),
+                        speed: Math.random() * 0.003 + 0.002
+                    };
+                }
+                
+                dots[idx].t += dots[idx].speed;
+                if (dots[idx].t > 1) {
+                    dots[idx].t = 0;
+                    dots[idx].speed = Math.random() * 0.003 + 0.002;
+                }
+                
+                const dotX = centerX + (cardX - centerX) * dots[idx].t;
+                const dotY = centerY + (cardY - centerY) * dots[idx].t;
+                
+                hctx.beginPath();
+                hctx.arc(dotX, dotY, 2, 0, Math.PI * 2);
+                hctx.fillStyle = 'rgba(6, 182, 212, 0.6)';
+                hctx.shadowBlur = 4;
+                hctx.shadowColor = '#06B6D4';
+                hctx.fill();
+                hctx.shadowBlur = 0;
+            });
+            
+            requestAnimationFrame(animateConnections);
+        }
+        animateConnections();
     }
 
 });

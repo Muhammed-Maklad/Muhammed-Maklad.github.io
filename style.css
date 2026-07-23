@@ -442,23 +442,24 @@ html[data-theme="light"] .section-num {
    HERO
 ═══════════════════════════════════════════════════════════ */
 .hero {
-  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 130px 24px 100px;
   position: relative;
   overflow: hidden;
 }
 
 .hero-container {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 50px;
-  align-items: center;
-  max-width: 1240px;
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
+  padding-inline: clamp(24px, 4vw, 48px);
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 64px;
   text-align: left;
 }
 
@@ -467,6 +468,9 @@ html[data-theme="light"] .section-num {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 560px;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .availability-badge {
@@ -483,7 +487,7 @@ html[data-theme="light"] .section-num {
 
 h1 {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(38px, 6vw, 68px);
+  font-size: clamp(4rem, 6vw, 5.5rem);
   font-weight: 800; line-height: 1.05; margin-bottom: 16px;
   background: linear-gradient(135deg, var(--text) 30%, var(--primary) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -492,10 +496,13 @@ h1 {
 }
 
 .hero-role {
-  font-family: 'Outfit', sans-serif; font-size: clamp(16px, 2.5vw, 22px); font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-weight: 600;
   text-transform: uppercase; letter-spacing: 2px;
   color: var(--primary); margin-bottom: 20px; min-height: 1.5em;
   animation: fadeUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.38s backwards;
+  white-space: nowrap;
 }
 
 .typed-cursor {
@@ -506,7 +513,8 @@ h1 {
 @keyframes blink { 50% { opacity: 0; } }
 
 .hero-desc {
-  font-size: clamp(14.5px, 1.7vw, 17.5px); color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  color: var(--muted);
   max-width: 620px; margin: 0 0 28px 0; line-height: 1.8;
   animation: fadeUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.46s backwards;
 }
@@ -538,15 +546,20 @@ html[data-theme="light"] .hero-tech-badge {
 }
 
 .cta {
-  display: flex; gap: 12px; justify-content: flex-start; flex-wrap: wrap;
-  animation: fadeUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.54s backwards; margin-bottom: 28px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  animation: fadeUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.54s backwards;
+  margin-bottom: 28px;
 }
 
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 13px 26px; border-radius: 13px;
-  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14.5px;
+  padding: 12px 24px; border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13.5px;
   text-decoration: none; cursor: none; border: none;
   transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
   position: relative; overflow: hidden;
@@ -572,162 +585,144 @@ html[data-theme="light"] .hero-tech-badge {
   margin-bottom: 40px;
 }
 .social-chip {
-  display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px;
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px;
   border-radius: 50px; background: var(--card); border: 1px solid var(--border);
-  color: var(--muted); text-decoration: none; font-size: 13.5px; font-weight: 600;
+  color: var(--muted); text-decoration: none; font-size: 12.5px; font-weight: 600;
   transition: all 0.32s ease; backdrop-filter: blur(14px); cursor: none;
 }
 .social-chip:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 22px var(--shadow); }
-.social-chip img { width: 17px; height: 17px; opacity: 0.75; transition: opacity 0.3s; }
+.social-chip img { width: 15px; height: 15px; opacity: 0.75; transition: opacity 0.3s; }
 .social-chip:hover img { opacity: 1; }
 
-/* Hero Statistics Grid */
-.hero-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  width: 100%;
-  animation: fadeUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.72s backwards;
-}
 
-.hero-stat-card {
-  background: rgba(12, 18, 35, 0.45);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 18px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-}
-
-.hero-stat-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary);
-  box-shadow: 0 10px 24px rgba(90, 135, 199, 0.15);
-}
-
-.hero-stat-num {
-  font-family: 'Outfit', sans-serif;
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 2px;
-}
-
-.hero-stat-label {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-html[data-theme="light"] .hero-stat-card {
-  background: rgba(255, 255, 255, 0.6);
-  border-color: rgba(37, 99, 235, 0.1);
-}
-
-html[data-theme="light"] .hero-stat-card:hover {
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.1);
-}
 
 /* Right Column Visual */
 .hero-visual {
   position: relative;
-  width: 100%;
-  height: 480px;
+  width: 520px;
+  height: 620px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   animation: fadeUp 0.9s cubic-bezier(0.4,0,0.2,1) 0.45s backwards;
 }
 
+.image-container {
+  position: relative;
+  width: 520px;
+  height: 620px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .profile-photo-wrap {
-  position: relative; display: inline-block;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.profile-photo-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 15%;
+  right: 15%;
+  height: 16px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.45) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(2px);
 }
 
 .profile-photo {
-  width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
-  border: 3px solid var(--primary); display: block;
-  box-shadow: 0 0 0 10px rgba(90,135,199,0.05), 0 28px 74px rgba(90,135,199,0.2);
-  transition: all 0.6s cubic-bezier(0.34,1.56,0.64,1); cursor: none;
+  height: 560px;
+  width: auto;
+  max-height: 560px;
+  object-fit: contain;
+  display: block;
+  border: none;
+  box-shadow: none;
+  filter: drop-shadow(0 15px 25px rgba(0,0,0,0.65));
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+  opacity: 0;
   animation: floatProfile 6s ease-in-out infinite alternate;
 }
 
-.profile-photo:hover {
-  transform: scale(1.04) translateY(-4px);
-  box-shadow: 0 0 0 16px rgba(90,135,199,0.1), 0 40px 100px rgba(90,135,199,0.35);
+.profile-photo.ready {
+  opacity: 1;
 }
-
-.ring {
-  position: absolute; inset: -15px; border-radius: 50%;
-  border: 1px solid transparent;
-  border-top-color: var(--primary); border-right-color: var(--accent);
-  animation: spin 16s linear infinite, floatProfile 6s ease-in-out infinite alternate; pointer-events: none; opacity: 0.5;
-}
-
-.ring-2 {
-  inset: -26px;
-  border-top-color: transparent; border-right-color: transparent;
-  border-bottom-color: var(--purple); border-left-color: var(--accent);
-  animation: spin 24s linear infinite reverse, floatProfile 6s ease-in-out infinite alternate; opacity: 0.3;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
 
 @keyframes floatProfile {
   0% { transform: translateY(0); }
   100% { transform: translateY(-10px); }
 }
 
+.float-cards-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
 /* Floating Technology Cards */
 .float-card {
   position: absolute;
-  background: rgba(12, 18, 35, 0.65);
+  background: rgba(12, 18, 35, 0.7);
   border: 1px solid var(--card-border);
-  border-radius: 12px;
-  padding: 10px 16px;
+  border-radius: 18px;
+  width: 170px;
+  height: 56px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 700;
+  justify-content: flex-start;
+  gap: 12px;
   color: var(--text);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  z-index: 10;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  animation: floatCardAnim 6s ease-in-out infinite alternate;
+  pointer-events: auto;
+  scale: 1;
+  transition: scale 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.float-card span {
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .float-card:hover {
+  scale: 1.05;
   border-color: var(--primary);
-  transform: translateY(-5px) scale(1.05) !important;
-  box-shadow: 0 12px 25px rgba(90, 135, 199, 0.3);
+  box-shadow: 0 0 20px rgba(90, 135, 199, 0.4);
+  animation-play-state: paused;
   cursor: default;
 }
 
 .tech-card-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   color: var(--primary);
   flex-shrink: 0;
 }
 
-/* Layout offsets for absolute positioning */
-.card-sql { top: 12%; left: -4%; animation-duration: 5.2s; animation-delay: 0s; }
-.card-powerbi { top: 16%; right: -4%; animation-duration: 6.2s; animation-delay: -1.5s; }
-.card-excel { bottom: 20%; left: -6%; animation-duration: 4.8s; animation-delay: -0.8s; }
-.card-tableau { bottom: 12%; right: -6%; animation-duration: 5.6s; animation-delay: -2.3s; }
-.card-etl { top: 44%; left: -14%; animation-duration: 6.8s; animation-delay: -1.2s; }
-.card-ml { top: 48%; right: -14%; animation-duration: 5.4s; animation-delay: -0.4s; }
-.card-azure { bottom: 0%; left: 16%; animation-duration: 6.4s; animation-delay: -3.2s; }
-.card-python { top: -6%; left: 34%; animation-duration: 5s; animation-delay: -1.8s; }
+/* Symmetrical layout positioning around the profile photo */
+/* Symmetrical layout positioning around the profile photo */
+.card-python  { top: 0; left: 50%; transform: translateX(-50%); animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 4.2s; }
+.card-sql     { top: 80px; left: 0; animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 0s; }
+.card-powerbi { top: 80px; right: 0; animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 0.6s; }
+.card-etl     { top: 250px; left: -20px; animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 2.4s; }
+.card-ml      { top: 250px; right: -20px; animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 3s; }
+.card-excel   { bottom: 90px; left: 20px; animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 1.2s; }
+.card-tableau { bottom: 90px; right: 20px; animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 1.8s; }
+.card-azure   { bottom: 0; left: 50%; transform: translateX(-50%); animation: floatCard 5s ease-in-out infinite alternate; animation-delay: 3.6s; }
 
-@keyframes floatCardAnim {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-12px); }
+@keyframes floatCard {
+  0% { translate: 0 0; }
+  100% { translate: 0 8px; }
 }
 
 html[data-theme="light"] .float-card {
@@ -761,59 +756,172 @@ html[data-theme="light"] .float-card:hover {
 }
 
 /* Responsive Overrides */
-@media (max-width: 960px) {
+@media (max-width: 1439px) {
+  .profile-photo {
+    height: 520px;
+    max-height: 520px;
+  }
+  .hero-visual, .image-container {
+    width: 460px;
+    height: 560px;
+  }
+  .card-python  { top: 0; left: 50%; transform: translateX(-50%); }
+  .card-sql     { top: 70px; left: 0; }
+  .card-powerbi { top: 70px; right: 0; }
+  .card-etl     { top: 220px; left: -10px; }
+  .card-ml      { top: 220px; right: -10px; }
+  .card-excel   { bottom: 80px; left: 10px; }
+  .card-tableau { bottom: 80px; right: 10px; }
+  .card-azure   { bottom: 0; left: 50%; transform: translateX(-50%); }
+}
+
+@media (max-width: 1023px) {
+  .hero-content, .hero-visual, .image-container {
+    display: contents;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 60px;
+    gap: 32px;
+    min-height: auto;
+    padding-inline: clamp(20px, 4vw, 48px);
   }
-  .hero-content {
-    align-items: center;
+
+  /* Grid order arrangement */
+  .availability-badge { order: 1; justify-self: center; }
+  h1 { order: 2; justify-self: center; }
+  .hero-role { order: 3; justify-self: center; }
+  .hero-desc { order: 4; justify-self: center; margin: 0 auto 16px; }
+  .profile-photo-wrap { order: 5; justify-self: center; margin: 0 auto; position: relative; display: flex; justify-content: center; }
+  .float-cards-wrapper { order: 6; justify-self: center; }
+  .cta { order: 7; justify-self: center; }
+  .social-strip { order: 8; justify-self: center; }
+
+  .hero-connection-canvas {
+    display: none;
   }
-  .hero-desc {
-    margin: 0 auto 28px;
-  }
-  .cta {
-    justify-content: center;
-  }
-  .social-strip {
-    justify-content: center;
-  }
-  .hero-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  .hero-visual {
+
+  .profile-photo {
     height: 380px;
-    max-width: 440px;
-    margin: 0 auto;
+    max-height: 400px;
+    width: auto;
   }
+
+  .float-cards-wrapper {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 380px;
+    margin: 16px auto;
+    pointer-events: auto;
+  }
+
   .float-card {
-    font-size: 11.5px;
-    padding: 8px 12px;
+    position: static;
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    animation: floatMobileGrid 4s ease-in-out infinite alternate;
   }
-  .card-sql { left: 4%; }
-  .card-powerbi { right: 4%; }
-  .card-excel { left: 2%; }
-  .card-tableau { right: 2%; }
-  .card-etl { left: -2%; }
-  .card-ml { right: -2%; }
-  .card-azure { left: 20%; }
-  .card-python { top: -2%; left: 34%; }
+
+  .float-card span {
+    font-size: 13px;
+  }
+
+  .tech-card-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .card-sql     { animation-delay: 0s; }
+  .card-powerbi { animation-delay: 0.5s; }
+  .card-excel   { animation-delay: 1s; }
+  .card-tableau { animation-delay: 1.5s; }
+  .card-etl     { animation-delay: 2s; }
+  .card-ml      { animation-delay: 2.5s; }
+  .card-azure   { animation-delay: 3s; }
+  .card-python  { animation-delay: 3.5s; }
+
+  .cta {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 270px;
+    justify-content: center;
+  }
+
+  .social-strip {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .hero {
-    padding-top: 110px;
+    padding-top: 100px;
   }
-  .hero-stats-grid {
-    grid-template-columns: 1fr;
+
+  .hero-container {
+    gap: 24px;
+    padding-inline: 16px;
+  }
+
+  .profile-photo-wrap::after {
+    display: none;
+  }
+
+  .profile-photo {
+    width: 85%;
+    height: auto;
+    max-width: 280px;
+  }
+
+  .float-cards-wrapper {
+    max-width: 320px;
+    gap: 12px;
+  }
+
+  .float-card {
+    height: 44px;
+  }
+
+  .float-card span {
+    font-size: 12px;
+  }
+
+  .tech-card-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .social-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
     width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
   }
-  .hero-visual {
-    display: none; /* Hide visual column on mobile to keep focus on header and stats */
+
+  .social-chip {
+    justify-content: center;
   }
+}
+
+@keyframes floatMobileGrid {
+  0% { translate: 0 0; }
+  100% { translate: 0 -6px; }
 }
 
 /* ═══════════════════════════════════════════════════════════

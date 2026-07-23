@@ -1,384 +1,457 @@
-# Completely Redesign the Hero Section
+# Hero Section Final Refinement (Production Ready)
 
-Redesign the Hero section using the attached layout as inspiration, but do **not** copy it. Create a unique, premium design tailored for a **Data Solutions Engineer** portfolio.
+## Objective
 
-## Layout
+The Hero section is almost finished.
 
-Create a modern two-column layout.
+Do NOT redesign the Hero.
 
-### Left Side (55%)
+Do NOT change the visual style.
 
-Display:
+Keep the current:
 
-- Open to New Opportunities badge
-- Large heading:
-  Mohamed Maklad
-- Subtitle:
-  Data Solutions Engineer
-- A concise professional summary
-- Two CTA buttons:
-  - Download CV
-  - View Projects
-- Technology badges:
-  Power BI • SQL • Python • Azure • Machine Learning
+- Colors
+- Typography
+- Animations
+- Background
+- Components
+- Branding
 
-Below the buttons, display animated statistics:
-
-- 16+ Dashboards
-- 12+ Projects
-- 5+ AI Applications
-- 100% Remote Ready
+The goal is only to improve layout, spacing, alignment, responsiveness, and visual balance.
 
 ---
 
-### Right Side (45%)
+# Keep Existing Structure
 
-Move the profile image to the right.
+Reuse the current Hero component.
 
-The profile image should include:
+Do NOT rebuild it from scratch.
 
-- Floating animation
-- Soft blue glow
-- Glass morphism frame or subtle circular outline
-- Animated data particles
-- Database-inspired rings
-- Network connection lines
-- Smooth hover effects
+Keep:
 
-Instead of generic labels, place floating technology cards around the image such as:
+- Navigation
+- Hero Content
+- Profile Image
+- Floating Skill Cards
+- Buttons
+- Social Links
 
-- SQL Database
-- Power BI
-- Excel
-- Tableau
-- ETL Pipelines
-- Machine Learning
-- Azure
-- Python
-
-Each card should gently float and animate independently.
+Only improve positioning and responsiveness.
 
 ---
 
-## Background
+# Hero Container
 
-Create a premium dark background with:
+The Hero should be centered inside a fixed container.
 
-- Navy gradient
-- Data grid
-- Network nodes
-- Analytics lines
-- Floating particles
-- Subtle animated glow
+```css
+max-width: 1400px;
+width: 100%;
+margin: 0 auto;
+padding-inline: clamp(24px,4vw,48px);
+min-height: calc(100vh - 80px);
 
-Keep the background elegant and low-contrast so the content remains the focal point.
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 64px;
+```
 
----
+Never stretch the Hero across the full viewport.
 
-## Style
-
-The overall design should feel similar in quality to the landing pages of:
-
-- Vercel
-- Stripe
-- Linear
-- Framer
-
-Avoid overly decorative elements. Focus on a clean, premium, modern experience that communicates professionalism in Data Engineering, Analytics, and AI.
-
-Do **not** replicate the reference design directly—use it only as inspiration for layout and visual hierarchy.
-
-
-
-# let code problem is 162 
-SQL 60
-
-String 20
-
-Array 15
-
-Dynamic Programming 2
-
-Binary Search 4
-
-* Two Pointers 4
-
-
-# Create a Cinematic Data Solution Engineer Loading Screen
-
-Replace the default loading spinner with a premium, cinematic loading experience inspired by AI, Data Engineering, Cloud Computing, and futuristic operating systems.
-
-The loading animation should feel like a sophisticated data platform initializing rather than a traditional website loader.
+Avoid large empty spaces.
 
 ---
 
-# Overall Theme
+# Layout
 
-- Futuristic
-- Minimal but Complex
-- Premium
-- Dark Technology
-- AI + Data Engineering
-- High-end SaaS quality
-- Similar quality to Apple, Vercel, Linear, Stripe, and IBM Watson
+The Hero should NOT feel like two disconnected columns.
 
----
+Instead it should feel like one connected composition.
 
-# Animation Story
+The profile image should sit naturally beside the content.
 
-The loading screen should tell a short visual story.
-
-## Phase 1 — Data Awakens
-
-The screen starts almost empty.
-
-Tiny glowing particles begin appearing randomly across the screen.
-
-The particles slowly move toward the center as if they are being attracted by a magnetic force.
-
-Each particle leaves behind a glowing trail.
-
-The camera slowly zooms toward the center.
+Reduce the empty space between both sections by approximately **180px**.
 
 ---
 
-## Phase 2 — Network Formation
+# Left Section
 
-The particles begin connecting together.
+Width:
 
-Thin glowing lines appear.
+```css
+max-width:560px;
+flex-shrink:0;
+```
 
-Nodes light up.
+Keep:
 
-The entire animation starts resembling
+- Name
+- Title
+- Description
+- Buttons
+- Social Links
 
-- Distributed Database
-- Knowledge Graph
-- Neural Network
-- Cloud Infrastructure
+Do NOT change the order.
 
-The network keeps expanding.
-
-Connections animate continuously.
-
-Some packets travel across the lines.
-
----
-
-## Phase 3 — Database Construction
-
-The connected particles begin organizing themselves.
-
-The lower database layer appears first.
-
-Then another layer.
-
-Then another.
-
-Then another.
-
-The database cylinder should literally build itself from millions of tiny glowing particles.
-
-Each layer rotates slowly while assembling.
-
-Small glowing rings orbit around it.
-
-Soft holographic scan lines move vertically.
-
-No static icon should be used.
-
-The database should feel alive.
+Everything remains left aligned.
 
 ---
 
-## Phase 4 — Data Flow
+# Typography
 
-Streams of light begin flowing into the database.
+Responsive typography.
 
-Different colors represent different data sources.
+```css
+Name:
+font-size:clamp(4rem,6vw,5.5rem);
 
-Blue
+Title:
+font-size:clamp(1.5rem,2vw,2rem);
 
-Cyan
+Description:
+font-size:clamp(1rem,1.25vw,1.15rem);
+```
 
-Purple
-
-The database glows brighter as more data enters.
-
-Small packets continuously move through the network.
-
----
-
-## Phase 5 — Intelligence Activation
-
-The completed database emits a pulse.
-
-The surrounding network lights up.
-
-Several floating technology labels appear briefly.
-
-Examples:
-
-SQL
-
-Power BI
-
-Python
-
-Azure
-
-Machine Learning
-
-ETL
-
-Data Warehouse
-
-Analytics
-
-The labels fade in and out elegantly.
+Never clip or wrap the title.
 
 ---
 
-## Phase 6 — Identity Reveal
+# Buttons
 
-The animation slows.
+Desktop:
 
-The network fades slightly.
+Buttons stay side-by-side.
 
-Display
+```css
+display:flex;
+gap:16px;
+flex-wrap:nowrap;
+```
 
-Mohamed Maklad
+Tablet & Mobile:
 
-Large.
+Stack vertically.
 
-Elegant.
-
-Bold.
-
-Below it display
-
-Data Solutions Engineer
-
-Letter spacing increases gradually.
-
-A subtle glow appears behind the text.
+Buttons become full width.
 
 ---
 
-## Phase 7 — Final Transition
+# Social Links
 
-A horizontal progress indicator fills smoothly.
+Desktop
 
-Text below
+One row if possible.
 
-Building intelligent data experiences...
+Tablet
 
-When loading completes
+Wrap naturally.
 
-Everything softly dissolves.
+Mobile
 
-The camera zooms forward.
+Responsive grid.
 
-Transition directly into the Hero section.
+---
 
-No abrupt cut.
+# Right Section
+
+The right section currently feels too large and too far away.
+
+Reduce its visual width.
+
+Target width:
+
+```css
+520px
+```
+
+Move it closer to the left section.
+
+Everything inside should move together.
+
+---
+
+# Image Container
+
+Wrap the image and floating cards inside one container.
+
+```css
+.image-container{
+position:relative;
+width:520px;
+height:620px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+```
+
+The image container should be centered.
+
+---
+
+# Profile Image
+
+Target:
+
+```css
+height:560px;
+width:auto;
+max-width:100%;
+object-fit:contain;
+```
+
+Requirements:
+
+- Full body visible
+- No clipping
+- No rounded frame
+- No square container
+- Natural shadow beneath image
+- Blend naturally into the background
+
+---
+
+# Floating Skill Cards
+
+IMPORTANT
+
+Every floating card MUST be positioned relative to
+
+.image-container
+
+Never relative to the Hero.
+
+Use
+
+```css
+position:absolute;
+```
+
+for every card.
+
+---
+
+# Floating Card Positions
+
+Arrange them around the image.
+
+```
+              Python
+
+SQL Database        Power BI
+
+ETL Pipelines    Machine Learning
+
+        Profile Image
+
+Excel               Tableau
+
+             Azure
+```
+
+Rules:
+
+- Minimum 40px from the body.
+- Never overlap the image.
+- Never cover the face.
+- Equal spacing.
+- Move together with the image container.
+
+---
+
+# Card Design
+
+Every card:
+
+```css
+width:170px;
+height:56px;
+
+padding:14px 20px;
+
+border-radius:18px;
+
+display:flex;
+align-items:center;
+gap:12px;
+```
+
+Icons
+
+```css
+18px;
+```
+
+Text
+
+```css
+15px;
+font-weight:600;
+```
+
+---
+
+# Floating Animation
+
+Keep the current animation.
+
+Requirements:
+
+- translateY(8px)
+- duration 5s
+- ease-in-out
+- infinite
+- different delay
+
+Hover
+
+- scale(1.05)
+- subtle glow
+- pause floating animation
 
 ---
 
 # Background
 
-Create an animated futuristic background.
+Keep the current background.
 
-Include
+Only enhance with:
 
-- Infinite perspective grid
-- Binary rain (very subtle)
-- Floating particles
-- Network connections
-- Digital dust
-- Data streams
-- Animated gradients
-- Fog glow
-- Volumetric lighting
-- Soft lens bloom
+- subtle stars
+- radial glow
+- tiny particles
 
-Everything should move slowly.
-
-Nothing should feel distracting.
+No heavy effects.
 
 ---
 
-# Motion
+# Responsive Design
 
-Use cinematic motion.
+## Large Desktop (≥1440px)
 
-- Ease In Out
-- Spring animations
-- Floating motion
-- Camera zoom
-- Glow pulse
-- Opacity transitions
-- Scale transitions
-- Particle simulation
-
-Target 60 FPS.
+- Hero centered.
+- Compact layout.
+- Left and right sections close together.
+- No excessive whitespace.
 
 ---
 
-# Color Palette
+## Laptop (1024px–1439px)
 
-Background
-
-#08111F
-
-Primary
-
-#3B82F6
-
-Secondary
-
-#06B6D4
-
-Accent
-
-#8B5CF6
-
-Highlight
-
-#FFFFFF
-
-Glow
-
-rgba(59,130,246,.35)
+- Reduce image to 520px.
+- Reduce spacing between cards.
+- Maintain side-by-side layout.
 
 ---
 
-# Duration
+## Tablet (768px–1023px)
 
-2.5–3.5 seconds
+Layout:
 
-If the page loads faster
+```
+Text
 
-Keep the animation until the minimum duration completes.
+↓
+
+Image
+
+↓
+
+Skill Cards (2-column grid)
+
+↓
+
+Buttons
+
+↓
+
+Social Links
+```
+
+Remove absolute positioning.
+
+Cards become:
+
+```css
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+```
 
 ---
 
-# Technical Requirements
+## Mobile (<768px)
 
-- React
-- Tailwind CSS
-- Framer Motion
-- Canvas or Three.js for particles
-- Responsive
-- High Performance
-- Accessible
+Layout:
+
+```
+Name
+
+↓
+
+Title
+
+↓
+
+Description
+
+↓
+
+Image
+
+↓
+
+Skill Cards
+
+↓
+
+Buttons
+
+↓
+
+Social Links
+```
+
+Requirements:
+
+- No horizontal scrolling.
+- No clipping.
+- Image width 80–90%.
+- Buttons full width.
+- Social links wrap.
+- Skill cards become responsive grid.
+- Use clamp() for all typography.
+- Proper touch spacing.
 
 ---
 
-# Important
+# Performance
 
-Do NOT create a simple spinner.
+- No layout shift.
+- No overflow.
+- No clipping.
+- Lazy-load images.
+- Smooth animations.
+- High Lighthouse performance.
 
-Do NOT use a static database icon.
+---
 
-Instead, create a cinematic animation where a distributed data network assembles itself into a glowing 3D database while data streams continuously flow through the system before revealing the portfolio.
+# Final Goal
+
+The Hero should look like a premium portfolio landing page.
+
+Requirements:
+
+- Keep the current design language.
+- Bring the left and right sections closer together.
+- Remove unnecessary empty space.
+- Keep the profile image slightly smaller than it is now.
+- Keep floating cards attached to the image.
+- Perfect spacing and alignment.
+- Fully responsive on Desktop, Laptop, Tablet, and Mobile.
+- Production-ready layout.
+
+IMPORTANT:
+Do not simply scale elements down. Fix the layout by improving the container width, spacing, alignment, and proportions while preserving the current visual design.
