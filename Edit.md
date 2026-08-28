@@ -1,455 +1,465 @@
-# DARK MODE FIX — CRITICAL
+# FINAL POLISH — ABOUT ME / GET IN TOUCH / LOADING SCREEN
 
-The current Dark Mode implementation is visually incorrect.
+## IMPORTANT
 
-The problem is NOT the overall color palette.
+This is a focused refinement pass.
 
-The problem is the CONTRAST and SURFACE SYSTEM.
+DO NOT redesign the portfolio.
 
-The current Dark Mode looks like a Light Mode interface placed on a dark background.
+DO NOT change the existing visual identity.
 
-This must be fixed.
+DO NOT change:
 
----
+- Hero
+- Navbar
+- Experience
+- Achievements
+- Projects
+- Technical Skills
+- Problem Solving
+- Footer
+- Global typography
+- Existing layout system
 
-# 01 — DARK MODE MUST BE A TRUE DARK THEME
+Only modify:
 
-Do NOT simply change the page background to dark.
-
-Every UI layer must have an appropriate dark-mode value.
-
-The hierarchy should be:
-
-PAGE BACKGROUND
-↓
-CARD SURFACE
-↓
-ELEVATED SURFACE
-↓
-BORDER
-↓
-PRIMARY TEXT
-↓
-SECONDARY TEXT
-↓
-ACCENT
+1. About Me left column
+2. Get In Touch decorative icon
+3. Loading screen colors
 
 ---
 
-# 02 — DARK BACKGROUND
+# 01 — ABOUT ME
 
-Use:
+## CURRENT PROBLEM
 
+The left About Me card is still visually shorter and less substantial than the four statistic cards on the right.
+
+Do NOT solve this by adding empty space.
+
+Do NOT stretch the card artificially.
+
+Instead, add useful professional information that actually explains:
+
+- What I build
+- What I work with
+- How I approach data problems
+
+The content should make the About section more informative without becoming a biography.
+
+---
+
+# KEEP THE CURRENT INTRO
+
+Keep:
+
+### DATA. TECHNOLOGY. PROBLEM SOLVING.
+
+Keep the current first paragraph:
+
+> I’m a Data Solutions Engineer and Computer Science graduate from Mansoura University, focused on turning complex data into practical business solutions.
+
+Keep the current second paragraph:
+
+> Currently training at ITI Mansoura in Data & BI, with hands-on experience across Power BI, ETL, Machine Learning, and Azure.
+
+Do NOT make these paragraphs longer.
+
+---
+
+# ADD A USEFUL PROFESSIONAL SECTION
+
+After the two paragraphs, add a compact section titled:
+
+### WHAT I BUILD
+
+Use 3 concise rows/cards.
+
+---
+
+## ROW 01 — BUSINESS INTELLIGENCE
+
+### Business Intelligence
+Build interactive Power BI dashboards and reporting solutions that turn operational data into clear KPIs and actionable insights.
+
+---
+
+## ROW 02 — DATA ENGINEERING
+
+### Data & ETL
+Design SQL-based data workflows, ETL pipelines, and structured data models that make reporting reliable, scalable, and easier to maintain.
+
+---
+
+## ROW 03 — ANALYTICS & AI
+
+### Analytics & AI
+Apply analytical thinking and machine learning to explore patterns, solve practical problems, and support data-driven decisions.
+
+---
+
+# IMPORTANT CONTENT RULE
+
+The above content must remain concise.
+
+Do NOT turn each item into a large paragraph.
+
+Each item should be approximately:
+
+Title
++
+1 short sentence
+
+The goal is useful information, not filler.
+
+---
+
+# WHAT I BUILD — VISUAL DESIGN
+
+Do NOT create three huge cards.
+
+Use a compact editorial/list layout.
+
+Example:
+
+WHAT I BUILD
+
+01  BUSINESS INTELLIGENCE
+    Build interactive Power BI dashboards...
+
+02  DATA & ETL
+    Design SQL-based data workflows...
+
+03  ANALYTICS & AI
+    Apply analytical thinking...
+
+Possible visual treatment:
+
+small numbered indicator
++
+title
++
+short description
+
+Use the existing orange accent for the number/indicator.
+
+Use subtle borders or separators.
+
+Keep the design consistent with the current portfolio.
+
+---
+
+# ABOUT ME FINAL STRUCTURE
+
+The left card should now contain:
+
+DATA. TECHNOLOGY. PROBLEM SOLVING.
+
+↓
+
+Intro paragraph
+
+↓
+
+ITI / technical paragraph
+
+↓
+
+WHAT I BUILD
+
+01 Business Intelligence
+02 Data & ETL
+03 Analytics & AI
+
+↓
+
+CS Graduate · Mansoura Univ
+Data & BI Trainee · ITI
+
+This should create enough meaningful content to visually balance the four statistics on the right.
+
+---
+
+# ABOUT CARD HEIGHT
+
+The left card should visually align with the right statistics column.
+
+But DO NOT use fake spacing.
+
+Do NOT use:
+
+- min-height solely to create space
+- fixed height solely to create space
+- justify-content: space-between
+- huge margins
+- huge padding
+
+The additional height must come from the new useful content.
+
+---
+
+# ABOUT SPACING
+
+Use a compact but comfortable rhythm.
+
+Suggested:
+
+Card padding:
+36–40px
+
+Headline → first paragraph:
+24px
+
+Paragraph → second paragraph:
+18–22px
+
+Second paragraph → WHAT I BUILD:
+28–32px
+
+Rows:
+14–18px between rows
+
+Rows → identity tags:
+24–28px
+
+Do not create excessive whitespace.
+
+---
+
+# ABOUT TEXT HIERARCHY
+
+Main headline:
+Strongest
+
+First paragraph:
+Primary body
+
+Second paragraph:
+Secondary body
+
+WHAT I BUILD:
+Small section label
+
+Item titles:
+Medium emphasis
+
+Descriptions:
+Secondary text
+
+Identity tags:
+Small supporting information
+
+---
+
+# ABOUT MOBILE
+
+On mobile:
+
+Stack the three "WHAT I BUILD" rows vertically.
+
+Do not create horizontal overflow.
+
+Keep descriptions readable.
+
+Do not make the About section excessively tall.
+
+---
+
+# 02 — GET IN TOUCH
+
+## REMOVE DECORATIVE ICON
+
+Remove the decorative icon currently positioned above the "Get in Touch" heading.
+
+Specifically remove the floating orange outlined chat/message icon above the section heading.
+
+It is unnecessary and makes the section feel more decorative than purposeful.
+
+---
+
+# IMPORTANT
+
+Remove ONLY this decorative icon.
+
+Do NOT remove:
+
+- Let's Connect section label
+- Get in Touch heading
+- Contact form
+- Email
+- Social links
+- Available for opportunities badge
+
+Everything else stays unchanged.
+
+---
+
+# GET IN TOUCH SPACING
+
+After removing the icon:
+
+Do not leave empty space where the icon was.
+
+Move the section content upward naturally.
+
+The section should begin cleanly with:
+
+LET'S CONNECT
+
+Get in Touch
+
+description
+
+---
+
+# 03 — LOADING SCREEN
+
+## CURRENT PROBLEM
+
+The Loading Page colors still feel disconnected from the new portfolio theme.
+
+The loading screen must use the SAME visual identity as the portfolio.
+
+---
+
+# NEW LOADING COLOR SYSTEM
+
+Use the existing Dark Mode palette:
+
+Background:
 #0D1117
 
-This is the primary page background.
-
-Do NOT use pure black #000000.
-
-The background should feel like:
-
-deep ink / deep navy
-
-not pure black.
-
----
-
-# 03 — CARD BACKGROUND
-
-Use:
-
+Primary Surface:
 #151C26
 
-All major cards should use this surface.
-
-Examples:
-
-- Skill cards
-- Project cards
-- Experience cards
-- Problem-solving cards
-- Content containers
-- Interactive panels
-
-Cards must be visibly distinguishable from the page background.
-
----
-
-# 04 — ELEVATED SURFACE
-
-For elements that need additional hierarchy:
-
-#1B2430
-
-Use for:
-
-- Hover states
-- Expanded content
-- Interactive elements
-- Important panels
-- Dropdowns
-- Modal-like elements
-
----
-
-# 05 — PRIMARY TEXT
-
-THIS IS CRITICAL.
-
-In Dark Mode:
-
-Primary text MUST NOT be black.
-
-Use:
-
-#F4F0E8
-
-for:
-
-- Main headings
-- Project titles
-- Navigation
-- Important numbers
-- Button text
-- Primary labels
-
-NEVER use:
-
-#171717
-
-or any other dark text on dark-mode surfaces.
-
----
-
-# 06 — SECONDARY TEXT
-
-Use:
-
-#A9A49C
-
-for:
-
-- Paragraphs
-- Descriptions
-- Metadata
-- Supporting information
-
-Secondary text must remain clearly readable.
-
-Do not make body text too dim.
-
----
-
-# 07 — BORDER
-
-Use:
-
+Border:
 #293544
 
-for subtle borders.
+Primary Text:
+#F4F0E8
 
-Borders should be visible enough to separate surfaces but should NOT look bright.
+Secondary Text:
+#A9A49C
 
----
-
-# 08 — PRIMARY ACCENT
-
-Use:
-
+Primary Accent:
 #FF6B35
 
-This is the primary brand accent in Dark Mode.
-
-Use it for:
-
-- CTA buttons
-- Active navigation
-- Important numbers
-- Section labels
-- Links
-- Hover states
-- Small highlights
-- Indicators
-
-Orange should remain the strongest accent.
-
----
-
-# 09 — SECONDARY ACCENT
-
-Use:
-
+Secondary Accent:
 #32B5A6
 
-for:
-
-- Analytics-related elements
-- Secondary interactions
-- Supporting data visualization
-- Secondary highlights
-
-Use it sparingly.
-
----
-
-# 10 — TECHNICAL ACCENT
-
-Use:
-
+Supporting Blue:
 #6EA8D8
 
-for:
-
-- Technical elements
-- Code-related UI
-- Data engineering
-- Supporting visualization
-
-Do not overuse it.
-
 ---
 
-# 11 — ABSOLUTELY NO BLACK TEXT IN DARK MODE
+# LOADING SCREEN DESIGN
 
-This is a hard rule.
-
-In Dark Mode:
-
-DO NOT use:
-
-#000000
-
-#111111
-
-#171717
-
-#1A1A1A
-
-or any dark gray as primary text.
-
-Dark text on dark surfaces is unacceptable.
-
----
-
-# 12 — NAVIGATION DARK MODE
-
-Navbar:
-
-Background:
-#0D1117
-
-or a slightly elevated version:
-
-#151C26
-
-Navigation text:
-
-#F4F0E8
-
-Inactive navigation:
-
-#A9A49C
-
-Hover:
-
-#FF6B35
-
-Active:
-
-#FF6B35
-
-The navbar must remain readable.
-
----
-
-# 13 — BUTTONS DARK MODE
-
-Primary button:
-
-Background:
-#FF6B35
-
-Text:
-#FFFFFF
-
-Hover:
-#FF8557
-
-Secondary button:
-
-Background:
-transparent
-
-Border:
-#293544
-
-Text:
-#F4F0E8
-
-Hover:
-
-#1B2430
-
-Do not use dark text on orange buttons if contrast is insufficient.
-
----
-
-# 14 — CARDS DARK MODE
-
-Cards should look like actual dark UI surfaces.
-
-Correct:
-
-Page:
-#0D1117
-
-Card:
-#151C26
-
-Elevated:
-#1B2430
-
-Text:
-#F4F0E8
-
-Border:
-#293544
-
-Incorrect:
-
-Page:
-#0D1117
-
-Card:
-#555555
-
-Text:
-#111111
-
-NEVER create gray cards with black text.
-
----
-
-# 15 — PROJECTS DARK MODE
-
-Project cards must remain dark.
+The loading screen should feel like the portfolio from the first second.
 
 Use:
 
-Background:
-#151C26
+Dark Navy / Near Black background
 
-Project title:
-#F4F0E8
++
+Orange primary progress/accent
 
-Description:
-#A9A49C
-
-Tags:
-#1B2430
-
-Tag text:
-#A9A49C
-
-Accent:
-#FF6B35
-
-Real project screenshots should remain authentic.
-
-Do not apply dark filters that destroy the screenshots.
++
+Teal secondary detail
 
 ---
 
-# 16 — TECHNICAL SKILLS DARK MODE
+# LOADING LOGO / INITIALS
 
-The skill system should NOT become a collection of gray cards.
+If the loading screen displays:
+
+MM
+
+keep the existing branding.
 
 Use:
-
-Background:
-#0D1117
-
-Skill surface:
-#151C26
 
 Primary text:
 #F4F0E8
 
-Secondary:
-#A9A49C
-
 Accent:
 #FF6B35
 
-Supporting:
-#32B5A6
-#6EA8D8
-
-Keep the visual hierarchy subtle.
+Do not introduce a different logo color.
 
 ---
 
-# 17 — PROBLEM SOLVING DARK MODE
+# LOADING PROGRESS
 
-The LeetCode and Codeforces panels should use dark surfaces.
+If there is a progress bar:
 
-LEETCODE:
+Track:
+#1B2430
 
-Surface:
-#151C26
-
-Accent:
+Progress:
 #FF6B35
 
-Code background:
-#0D1117
-
-Text:
-#F4F0E8
-
-CODEFORCES:
-
-Surface:
-#151C26
-
-Accent:
+Optional subtle secondary highlight:
 #32B5A6
 
-Code background:
-#0D1117
+Keep the progress bar clean.
 
-Text:
-#F4F0E8
+Do NOT use purple.
 
-The code background should be subtle.
+Do NOT use rainbow gradients.
 
-The large number must be the visual focus.
+Do NOT use neon blue.
 
 ---
 
-# 18 — CODE BACKGROUND
+# LOADING BACKGROUND
 
-For the LeetCode / Codeforces background:
+If the loading screen has background effects:
 
-Use actual code-like visual texture.
+Keep them extremely subtle.
 
-It should be:
+Use the same atmosphere as the main Dark Mode:
 
-- Low opacity
-- Dark
-- Slightly blurred
-- Subtle
-- Non-distracting
+Dark navy/black base
++
+very subtle teal atmospheric glow
++
+very subtle orange atmospheric glow
 
-The code should never interfere with the statistic.
+Avoid:
+
+- Purple
+- Pink
+- Bright blue
+- Multi-color gradients
+
+The loading screen should feel like the same website, not a separate application.
 
 ---
 
-# 19 — LIGHT MODE MUST REMAIN
+# LOADING ANIMATION
 
-Do NOT break the Light Mode while fixing Dark Mode.
+Keep the animation:
 
-Light Mode:
+Smooth
+Minimal
+Premium
+
+Possible:
+
+- Progress line
+- Orange dot
+- Small teal data node
+- Subtle fade
+
+Do NOT add excessive particles.
+
+Do NOT add complicated 3D animation.
+
+---
+
+# LOADING LIGHT MODE
+
+If the loading screen supports Light Mode, use the same Light Mode identity:
 
 Background:
 #F7F3EC
@@ -457,164 +467,149 @@ Background:
 Surface:
 #EEE8DE
 
-Primary Text:
+Primary text:
 #171717
 
-Secondary Text:
+Secondary:
 #625E58
 
-Border:
-#D8D0C5
-
-Primary Accent:
+Orange:
 #E85D2A
 
-Analytics:
+Teal:
 #167C78
 
-Technical:
-#19324A
+Do not create a completely different Light Mode loading screen.
 
 ---
 
-# 20 — LIGHT AND DARK MUST FEEL LIKE ONE BRAND
+# 04 — COLOR CONSISTENCY
 
-Light Mode:
+The entire portfolio should now consistently use:
 
-WARM
-EDITORIAL
-CLEAN
+## DARK MODE
 
-Dark Mode:
-
-DEEP
-TECHNICAL
-PREMIUM
-
-But both must clearly belong to the same portfolio.
-
-The brand color remains ORANGE in both themes.
-
----
-
-# 21 — NO PURPLE
-
-Remove purple completely.
-
-No:
-
-- Purple
-- Violet
-- Magenta
-- Lavender
-- Purple gradients
-- Purple glow
-
-The previous purple-heavy UI is rejected.
-
----
-
-# 22 — NO RANDOM COLORS
-
-Do not introduce arbitrary colors.
-
-Every UI color should come from the design system.
-
-Exception:
-
-Actual colors inside real project screenshots / external brand assets.
-
-Do not recolor those assets.
-
----
-
-# 23 — CONTRAST REQUIREMENT
-
-Before considering Dark Mode complete, inspect every section.
-
-Check:
-
-- Navbar
-- Hero
-- Buttons
-- Cards
-- Project cards
-- Skill elements
-- Tags
-- Experience
-- Awards
-- Problem Solving
-- Contact
-- Footer
-
-Primary text must be highly readable.
-
-Secondary text must remain readable.
-
-Borders must provide enough separation.
-
-Interactive states must be obvious.
-
----
-
-# 24 — VISUAL TEST
-
-Dark Mode should look approximately like:
-
-BACKGROUND
-████████
 #0D1117
-
-CARD
-████████
 #151C26
-
-ELEVATED
-████████
 #1B2430
-
-TEXT
-████████
+#293544
 #F4F0E8
-
-SECONDARY
-████████
 #A9A49C
-
-ORANGE
-████████
 #FF6B35
-
-TEAL
-████████
 #32B5A6
-
-BLUE
-████████
 #6EA8D8
 
+## LIGHT MODE
+
+#F7F3EC
+#EEE8DE
+#171717
+#625E58
+#D8D0C5
+#E85D2A
+#167C78
+#19324A
+
+Do NOT introduce new accent colors.
+
+Especially:
+
+NO PURPLE.
+
 ---
 
-# FINAL RULE
+# 05 — FINAL CHECKLIST
 
-Do not redesign the website.
+## ABOUT
 
-Do not change the layout.
+[ ] Existing intro remains
 
-Do not change the sections.
+[ ] Existing ITI paragraph remains
 
-Do not change the content.
+[ ] WHAT I BUILD section added
 
-Do not change the overall visual identity.
+[ ] Business Intelligence row added
 
-ONLY fix the Light/Dark color implementation.
+[ ] Data & ETL row added
 
-The Dark Mode must look like a professionally designed dark interface, NOT a light interface with a dark background.
+[ ] Analytics & AI row added
 
-Most importantly:
+[ ] Content is factual and useful
 
-# DARK BACKGROUND + DARK SURFACE + LIGHT TEXT
+[ ] No generic motivational filler
 
-NOT:
+[ ] No giant paragraphs
 
-# DARK BACKGROUND + GRAY CARD + BLACK TEXT
+[ ] No excessive empty space
+
+[ ] No artificial fixed height
+
+[ ] Left column visually balances the four statistics
+
+---
+
+## GET IN TOUCH
+
+[ ] Decorative icon above heading removed
+
+[ ] No empty gap remains after removing it
+
+[ ] Get in Touch content moves upward naturally
+
+[ ] Contact form unchanged
+
+[ ] Email unchanged
+
+[ ] Social links unchanged
+
+---
+
+## LOADING
+
+[ ] Loading background matches Dark Mode
+
+[ ] Orange is the primary loading accent
+
+[ ] Teal is the secondary accent
+
+[ ] No purple
+
+[ ] No rainbow gradients
+
+[ ] No unrelated colors
+
+[ ] Loading feels visually connected to the portfolio
+
+[ ] Light Mode loading also matches the Light Mode theme
+
+---
+
+# FINAL OBJECTIVE
+
+ABOUT ME:
+
+More informative
++
+more balanced
++
+still concise
+
+GET IN TOUCH:
+
+Cleaner
++
+less decorative
++
+more professional
+
+LOADING:
+
+Same brand
++
+same colors
++
+same visual language
+
+Do NOT make any other changes.
+
+This is a focused final polish pass.

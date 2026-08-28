@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
 
         if (backToTop) {
-            backToTop.classList.toggle('visible', scrollTop > 500);
+            backToTop.classList.toggle('visible', scrollTop > 400);
             const progressCircle = document.getElementById('progressCircle');
             if (progressCircle) {
                 const circumference = 131.95;
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(step);
         });
     }, { threshold: 0.5 });
-    document.querySelectorAll('.stat-num, .ps-stat-num, .hero-stat-num').forEach(el => statObs.observe(el));
+    document.querySelectorAll('[data-target], .stat-num, .ps-stat-num, .hero-stat-num').forEach(el => statObs.observe(el));
 
     /* ══════════════════════════════════════════════════════════
        CATEGORY BAR ANIMATION (data-width driven)
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Particle definitions
         const particleCount = 100;
         const particles = [];
-        const colors = ['#3B82F6', '#06B6D4', '#8B5CF6']; // Blue, Cyan, Purple
+        const colors = ['rgba(255, 107, 53, ', 'rgba(50, 181, 166, ', 'rgba(110, 168, 216, ']; // Orange, Teal, Supporting Blue
 
         // Distribute particles into 4 layers for the database cylinder
         const layerOffsets = [50, 15, -20, -55];
@@ -531,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Draw perspective grid
         function drawPerspectiveGrid(timeProgress) {
-            ctx.strokeStyle = 'rgba(6, 182, 212, 0.04)';
+            ctx.strokeStyle = 'rgba(50, 181, 166, 0.04)';
             ctx.lineWidth = 1;
             const horizon = H * 0.65;
             const gridY = H * 0.65;
@@ -567,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const t = Math.min(elapsed, duration);
             const progress = t / duration; // 0.0 to 1.0
 
-            ctx.fillStyle = '#08111F';
+            ctx.fillStyle = '#0D1117';
             ctx.fillRect(0, 0, W, H);
 
             // 3D perspective grid (slow moving)
@@ -577,8 +577,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const cx = W / 2;
             const cy = H / 2 - 40;
             const radialGlow = ctx.createRadialGradient(cx, cy, 20, cx, cy, 280);
-            radialGlow.addColorStop(0, `rgba(59, 130, 246, ${0.12 * (1 - Math.pow(progress, 3))})`);
-            radialGlow.addColorStop(1, 'rgba(8, 17, 31, 0)');
+            radialGlow.addColorStop(0, `rgba(255, 107, 53, ${0.12 * (1 - Math.pow(progress, 3))})`);
+            radialGlow.addColorStop(1, 'rgba(13, 17, 23, 0)');
             ctx.fillStyle = radialGlow;
             ctx.beginPath();
             ctx.arc(cx, cy, 300, 0, Math.PI * 2);
@@ -682,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.lineWidth = 1;
                 layerOffsets.forEach((yOff, i) => {
                     const layerProgress = Math.min(Math.max((t - (1300 + i * 120)) / 500, 0), 1);
-                    ctx.strokeStyle = `rgba(6, 182, 212, ${0.18 * layerProgress})`;
+                    ctx.strokeStyle = `rgba(50, 181, 166, ${0.18 * layerProgress})`;
                     ctx.beginPath();
                     ctx.ellipse(cx, cy + yOff, 90, 22, 0, 0, Math.PI * 2);
                     ctx.stroke();
@@ -692,7 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (t >= 1500 && t < 2800) {
                 const scanY = cy - 65 + ((t * 0.08) % 135);
                 if (scanY < cy + 65) {
-                    ctx.strokeStyle = 'rgba(6, 182, 212, 0.22)';
+                    ctx.strokeStyle = 'rgba(50, 181, 166, 0.22)';
                     ctx.lineWidth = 1.5;
                     ctx.beginPath();
                     ctx.moveTo(cx - 95, scanY);
@@ -749,12 +749,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         ctx.font = '600 11px "Outfit", sans-serif';
-                        ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.45})`;
+                        ctx.fillStyle = `rgba(244, 240, 232, ${alpha * 0.45})`;
                         ctx.fillText(label.text, cx + label.xOffset, cy + label.yOffset);
                         
                         ctx.beginPath();
                         ctx.arc(cx + label.xOffset - 8, cy + label.yOffset - 3, 1.5, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(6, 182, 212, ${alpha * 0.55})`;
+                        ctx.fillStyle = `rgba(50, 181, 166, ${alpha * 0.55})`;
                         ctx.fill();
                     }
                 });
@@ -946,6 +946,104 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animateConnections);
         }
         animateConnections();
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       CONTACT FORM INTERACTION & VALIDATION
+    ══════════════════════════════════════════════════════════ */
+    const contactForm = document.getElementById('portfolioContactForm');
+    const toast = document.getElementById('formStatusToast');
+    const submitBtn = document.getElementById('contactSubmitBtn');
+
+    if (contactForm) {
+        const nameInput = document.getElementById('contactName');
+        const emailInput = document.getElementById('contactEmail');
+        const subjectInput = document.getElementById('contactSubject');
+        const messageInput = document.getElementById('contactMessage');
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
+            if (toast) {
+                toast.className = 'form-status-toast';
+                toast.style.display = 'none';
+            }
+        }
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            clearErrors();
+
+            let isValid = true;
+            const name = nameInput?.value.trim() ?? '';
+            const email = emailInput?.value.trim() ?? '';
+            const subject = subjectInput?.value.trim() ?? 'Portfolio Contact / Opportunity Discussion';
+            const message = messageInput?.value.trim() ?? '';
+
+            if (!name) {
+                nameInput?.closest('.form-group')?.classList.add('has-error');
+                isValid = false;
+            }
+
+            if (!email || !validateEmail(email)) {
+                emailInput?.closest('.form-group')?.classList.add('has-error');
+                isValid = false;
+            }
+
+            if (!message) {
+                messageInput?.closest('.form-group')?.classList.add('has-error');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Show submitting feedback
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Preparing Message...</span>';
+            }
+
+            setTimeout(() => {
+                // Open mailto fallback client with pre-filled content
+                const recipient = 'mo7amedmaklad@gmail.com';
+                const bodyText = `Hi Mohamed,\n\nMy name is ${name} (${email}).\n\n${message}\n\nBest regards,\n${name}`;
+                const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+                
+                window.location.href = mailtoUrl;
+
+                if (toast) {
+                    toast.textContent = '✓ Message draft prepared in your email client. Thank you for connecting!';
+                    toast.className = 'form-status-toast success';
+                    toast.style.display = 'block';
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Message Prepared ✓</span>';
+                    setTimeout(() => {
+                        submitBtn.innerHTML = '<span>Send Message</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+                    }, 3500);
+                }
+
+                contactForm.reset();
+            }, 600);
+        });
+
+        // Realtime clear errors on input
+        [nameInput, emailInput, messageInput].forEach(input => {
+            input?.addEventListener('input', () => {
+                input.closest('.form-group')?.classList.remove('has-error');
+            });
+        });
+    }
+
+    // Auto-update footer year
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
 
 });
