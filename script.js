@@ -316,6 +316,142 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ══════════════════════════════════════════════════════════
+       INTERACTIVE HANGING PORTRAIT CARD (Physics & Dynamic SVG Cable)
+    ══════════════════════════════════════════════════════════ */
+    const heroCard = document.querySelector('.hero-id-card');
+    const badgeCablePath = document.getElementById('badgeCablePath');
+    const badgeMetalClip = document.querySelector('.badge-metal-clip');
+
+    if (heroCard) {
+        let isDragging = false;
+        let startX = 0, startY = 0;
+        let currentX = 0, currentY = 0, currentRot = 0;
+        let vx = 0, vy = 0, vRot = 0;
+        let animFrameId = null;
+
+        function getLimits() {
+            const isMobile = window.innerWidth < 768;
+            return {
+                maxX: isMobile ? 20 : 35,
+                maxY: isMobile ? 30 : 45,
+                maxRot: isMobile ? 3 : 5
+            };
+        }
+
+        function updateTransforms(x, y, rot, velX = 0) {
+            heroCard.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg)`;
+            
+            if (badgeMetalClip) {
+                badgeMetalClip.style.transform = `translate3d(${x}px, ${y * 0.18}px, 0) rotate(${rot * 0.65}deg)`;
+            }
+
+            // Dynamically calculate Bézier curve for cable with subtle physical lag
+            if (badgeCablePath) {
+                const topX = 50;
+                const topY = 0;
+                const bottomX = 50 + x;
+                const bottomY = 32 + (y * 0.18);
+                // Control point blends halfway with dynamic momentum lag
+                const ctrlX = 50 + (x * 0.42) + (velX * 1.8);
+                const ctrlY = 16 + (y * 0.08);
+
+                badgeCablePath.setAttribute('d', `M ${topX} ${topY} Q ${ctrlX.toFixed(2)} ${ctrlY.toFixed(2)} ${bottomX.toFixed(2)} ${bottomY.toFixed(2)}`);
+            }
+        }
+
+        function springAnimate() {
+            if (isDragging) return;
+
+            const k = 0.13;   // Spring stiffness
+            const d = 0.81;   // Damping
+
+            const fx = -k * currentX;
+            const fy = -k * currentY;
+            const fRot = -k * currentRot;
+
+            vx = (vx + fx) * d;
+            vy = (vy + fy) * d;
+            vRot = (vRot + fRot) * d;
+
+            currentX += vx;
+            currentY += vy;
+            currentRot += vRot;
+
+            updateTransforms(currentX, currentY, currentRot, vx);
+
+            if (Math.abs(currentX) > 0.04 || Math.abs(currentY) > 0.04 || Math.abs(vx) > 0.04 || Math.abs(vy) > 0.04) {
+                animFrameId = requestAnimationFrame(springAnimate);
+            } else {
+                currentX = 0;
+                currentY = 0;
+                currentRot = 0;
+                vx = 0;
+                vy = 0;
+                vRot = 0;
+                updateTransforms(0, 0, 0, 0);
+                animFrameId = null;
+            }
+        }
+
+        heroCard.addEventListener('pointerdown', (e) => {
+            if (e.button !== 0 && e.pointerType === 'mouse') return;
+            isDragging = true;
+            startX = e.clientX - currentX;
+            startY = e.clientY - currentY;
+            heroCard.classList.add('dragging');
+            heroCard.setPointerCapture(e.pointerId);
+
+            if (animFrameId) {
+                cancelAnimationFrame(animFrameId);
+                animFrameId = null;
+            }
+        });
+
+        heroCard.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+
+            const limits = getLimits();
+            const rawX = e.clientX - startX;
+            const rawY = e.clientY - startY;
+
+            const prevX = currentX;
+            // Clamping with soft physical resistance
+            currentX = Math.max(-limits.maxX, Math.min(limits.maxX, rawX));
+            currentY = Math.max(-limits.maxY * 0.4, Math.min(limits.maxY, rawY));
+            currentRot = (currentX / limits.maxX) * limits.maxRot;
+            const dragVelX = currentX - prevX;
+
+            updateTransforms(currentX, currentY, currentRot, dragVelX);
+        });
+
+        function endDrag(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            heroCard.classList.remove('dragging');
+            try {
+                heroCard.releasePointerCapture(e.pointerId);
+            } catch (_) {}
+
+            animFrameId = requestAnimationFrame(springAnimate);
+        }
+
+        heroCard.addEventListener('pointerup', endDrag);
+        heroCard.addEventListener('pointercancel', endDrag);
+
+        // Initial subtle discovery micro-hint
+        if (!reducedMotion) {
+            setTimeout(() => {
+                if (!isDragging && currentX === 0 && currentY === 0) {
+                    vx = 2.0;
+                    vy = 1.2;
+                    vRot = 0.7;
+                    animFrameId = requestAnimationFrame(springAnimate);
+                }
+            }, 1400);
+        }
+    }
+
+    /* ══════════════════════════════════════════════════════════
        STAT COUNTER (data-target driven)
     ══════════════════════════════════════════════════════════ */
     const statObs = new IntersectionObserver(entries => {
