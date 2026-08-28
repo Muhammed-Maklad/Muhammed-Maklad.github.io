@@ -1,589 +1,227 @@
-# HERO — PROFESSIONAL COPY + TYPOGRAPHY + REALISTIC HANGING CARD PHYSICS
+# HERO — UPDATE POSITIONING STATEMENT
 
 Update ONLY the Hero section.
 
-Do not redesign the rest of the website.
+Do NOT redesign the Hero.
+Do NOT change the existing layout, portrait, hanging-card interaction, skills ticker, CTA buttons, colors, or typing animation.
 
-The Hero should communicate:
-- technical capability
-- business impact
-- analytical thinking
-- professionalism
-
-Keep the design minimal and premium.
+Only replace and refine the Hero positioning statement.
 
 ---
 
-## 01 — REPLACE THE HERO DESCRIPTION
+## 01 — REPLACE THE CURRENT STATEMENT
 
-Remove the current sentence:
+Remove the current Hero statement completely.
 
-"Turning data into decisions that move businesses forward."
+Use EXACTLY:
 
-Replace it with EXACTLY:
-
-"Building data solutions that turn complex information into measurable business value."
-
-This is the final copy.
+"I build with data, engineer with purpose, and solve for impact."
 
 Do not add another sentence underneath it.
 
-Do not add marketing buzzwords.
-
-Do not use words such as:
-- innovative
-- cutting-edge
-- next-generation
-- revolutionary
-- AI-powered
-
-The tone should feel confident, technical, and business-focused.
+Do not add extra descriptive text.
 
 ---
 
-# 02 — TYPOGRAPHY
+## 02 — TYPOGRAPHY
 
-The sentence should look like a strong professional statement, NOT a normal paragraph.
+Make the statement feel like an important part of the Hero hierarchy, not a normal paragraph.
 
 Desktop:
 
-font-size: 23px
-font-weight: 500
-line-height: 1.55
-letter-spacing: -0.01em
-max-width: 650px
+font-size:
+22–24px
+
+font-weight:
+500–600
+
+line-height:
+1.5
+
+letter-spacing:
+-0.015em
+
+max-width:
+620px
 
 Mobile:
 
-font-size: 17px
-line-height: 1.55
-max-width: 350px
+font-size:
+17–18px
 
-Use the same primary font already used by the portfolio.
+line-height:
+1.55
 
-Do not introduce a new font family.
+max-width:
+350px
+
+Use the existing portfolio font.
+
+Do NOT introduce a new font family.
 
 ---
 
-# 03 — TEXT COLOR HIERARCHY
+## 03 — COLOR TREATMENT
 
-Do NOT make the whole sentence orange.
+Use a two-tone hierarchy.
 
-Use:
+The first part:
 
-"Building data solutions that turn complex information into"
+"I build with data, engineer with purpose,"
 
-→ warm off-white:
+should use the primary text color:
+
 #F5F1E8
 
-Highlight:
+The final phrase:
 
-"measurable business value."
+"and solve for impact."
 
-→ primary orange:
-#FF6B35
-
-The orange highlight should feel intentional and premium.
-
-Do NOT highlight every keyword.
-
----
-
-# 04 — BETTER LINE BREAK
-
-Desktop should visually read approximately:
-
-Building data solutions that turn complex information into
-measurable business value.
-
-Avoid awkward line wrapping.
-
-Use max-width rather than manually inserting <br> tags unless absolutely necessary.
-
-On mobile allow natural wrapping.
-
----
-
-# 05 — HANGING ID CARD INTERACTION
-
-Keep the professional portrait inside the hanging ID-card frame.
-
-The user should be able to physically grab the card using:
-
-- mouse
-- trackpad
-- touch
-
-and drag it slightly.
-
-The interaction should feel like a real hanging card.
-
-Do NOT make it behave like a draggable UI window.
-
-It should feel physical.
-
----
-
-# 06 — DRAG RANGE
-
-Desktop:
-
-X movement:
-maximum ±35px
-
-Y movement:
-maximum ±45px
-
-Rotation:
-maximum ±5deg
-
-Mobile:
-
-X:
-maximum ±20px
-
-Y:
-maximum ±30px
-
-Rotation:
-maximum ±3deg
-
-Keep the movement constrained.
-
-The card must never leave the Hero composition.
-
----
-
-# 07 — CARD SPRING PHYSICS
-
-Use spring physics instead of simple CSS transitions.
-
-When the user drags:
-
-the card follows the pointer naturally.
-
-When the user releases:
-
-the card should smoothly return toward its resting position.
-
-Use:
-
-- spring damping
-- slight inertia
-- smooth interpolation
-- subtle overshoot
-
-The return motion should feel like a real lightweight card hanging from a cable.
-
-Avoid:
-
-linear movement
-instant snapping
-excessive bouncing
-
-The animation should be smooth and premium.
-
----
-
-# 08 — IMPORTANT: THE CABLE MUST MOVE
-
-The cable is a major part of the interaction.
-
-Do NOT simply animate the card while keeping the cable static.
-
-The cable must dynamically react to the card position.
-
-Structure:
-
-TOP ANCHOR
-     │
-     │
-     │
-   CARD
-
-When the card moves right:
-
-TOP ANCHOR
-     \
-      \
-       CARD
-
-When the card moves left:
-
-TOP ANCHOR
-     /
-    /
-   CARD
-
-The cable should continuously point toward the card's current attachment point.
-
----
-
-# 09 — REALISTIC CABLE PHYSICS
-
-The cable should behave like a flexible hanging wire/string.
-
-Do NOT use a rigid straight line.
-
-Use one of these approaches:
-
-Preferred:
-
-SVG path controlled by the card position.
-
-OR:
-
-a dynamically calculated curved path using Bézier curves.
-
-The cable should have:
-
-- subtle curvature
-- smooth interpolation
-- slight elastic movement
-- smooth return after release
-
-The cable should lag behind the card by a very small amount.
-
-This creates a believable physical effect.
-
----
-
-# 10 — CABLE MOVEMENT
-
-During drag:
-
-card moves first
-↓
-cable follows with slight delay
-↓
-cable bends naturally
-↓
-card rotation responds to movement
-
-On release:
-
-card returns using spring physics
-↓
-cable follows naturally
-↓
-both settle at the same time
-
-Do NOT animate the cable independently.
-
-The cable position must be derived from the card's actual position.
-
----
-
-# 11 — CABLE DETAILS
-
-Keep the cable thin and premium.
-
-Recommended:
-
-width:
-2px
-
-Color:
-rgba(170,180,195,0.65)
-
-Add a very subtle highlight.
-
-Do not use bright orange for the entire cable.
-
-Orange should only appear in the small connector/metal accent.
-
----
-
-# 12 — TOP HANGER
-
-Keep the small top-mounted hanger.
-
-Refine it so it looks like a real mounting point.
-
-Structure:
-
-small metallic anchor
-↓
-short cable
-↓
-small connector
-↓
-ID card
-
-Use subtle shadows and highlights.
-
-The connector can use the orange accent:
+should use the primary orange:
 
 #FF6B35
 
-But keep it restrained.
+Do NOT make the entire sentence orange.
+
+Do NOT use gradients inside the text.
+
+Do NOT highlight every word.
+
+The orange phrase should act as the visual emphasis.
 
 ---
 
-# 13 — CARD ROTATION
+## 04 — LINE BREAK
 
-Rotation must be derived from drag velocity/direction.
+On desktop, aim for this visual composition:
 
-Example:
+I build with data, engineer with purpose,
+and solve for impact.
 
-drag right:
+The second line should contain the orange emphasis.
 
-rotate slightly clockwise
+Do NOT force awkward line breaks.
 
-drag left:
+Prefer natural wrapping with a controlled max-width.
 
-rotate slightly counter-clockwise
+If necessary, use a controlled line break only on desktop.
 
-Fast drag:
-
-slightly stronger rotation
-
-Slow drag:
-
-minimal rotation
-
-Clamp rotation to:
-
-±5deg desktop
-±3deg mobile
+On mobile, allow natural wrapping.
 
 ---
 
-# 14 — CARD RESTING POSITION
+## 05 — POSITION
 
-The card should always have a clear default position.
+Place the statement directly below the animated professional title.
 
-When the page loads:
-
-card is centered in its Hero visual area.
-
-Cable is perfectly aligned.
-
-No unnecessary movement.
-
-After interaction:
-
-card always returns to the same resting position.
-
----
-
-# 15 — HOVER STATE
-
-Before dragging:
-
-cursor:
-grab
-
-On drag:
-
-cursor:
-grabbing
-
-Add only a subtle elevation change.
-
-Example:
-
-slightly stronger shadow
-slightly higher visual depth
-
-Do NOT add:
-
-large glow
-scale animation
-neon effect
-
----
-
-# 16 — TOUCH SUPPORT
-
-Use Pointer Events rather than separate mouse/touch implementations.
-
-Support:
-
-pointerdown
-pointermove
-pointerup
-pointercancel
-
-Prevent unwanted horizontal page scrolling ONLY while actively dragging the card.
-
-Do not disable normal page scrolling.
-
----
-
-# 17 — ACCESSIBILITY
-
-The interaction must not be required to understand the portfolio.
-
-If dragging is unavailable:
-
-the card should still look completely normal.
-
-Respect:
-
-prefers-reduced-motion
-
-When reduced motion is enabled:
-
-disable spring/swing animation
-disable decorative movement
-keep the card static.
-
----
-
-# 18 — CARD VISUAL DESIGN
-
-Keep the current ID-card concept but improve its visual quality.
-
-Background:
-
-#141C27
-
-Border:
-
-rgba(120,135,155,0.25)
-
-Border radius:
-
-24px
-
-Subtle shadow.
-
-Very subtle internal gradient.
-
-Very subtle technical pattern.
-
-Avoid excessive grid lines.
-
-The portrait remains the visual focus.
-
----
-
-# 19 — PORTRAIT
-
-Keep the existing portrait.
-
-Do not modify the person's appearance.
-
-Keep the image naturally centered.
-
-Avoid:
-
-cropping the face
-excessive empty space
-unnatural scaling
-floating appearance
-
-The bottom of the portrait can subtly fade into the card background.
-
----
-
-# 20 — HERO BALANCE
-
-The final Hero composition should be:
-
-LEFT:
-
-Open to New Opportunities
+Hierarchy:
 
 Mohamed
 Maklad
 
-[Animated professional title]
+[Animated Professional Title]
 
-Building data solutions that turn complex information into
-measurable business value.
+I build with data, engineer with purpose,
+and solve for impact.
 
 [Download CV] [View Projects]
 
 [LinkedIn] [GitHub] [LeetCode] [Email] [WhatsApp]
 
+Keep the current spacing system.
 
-RIGHT:
+Recommended:
 
-Professional hanging ID card
+Typing title → statement:
+20–26px
 
-        |
-        |
-      ┌───────┐
-      │       │
-      │PHOTO  │
-      │       │
-      └───────┘
+Statement → CTA:
+28–34px
 
-Bottom:
-
-Animated Skills Ticker
-
-Python · SQL · Power BI · Tableau · Excel · Azure ·
-Power Query · DAX · SSIS · ETL · PyTorch · TensorFlow · ...
+Do not create excessive empty space.
 
 ---
 
-# 21 — DO NOT CHANGE
+## 06 — VISUAL WEIGHT
 
-Do NOT bring back floating skill cards.
+The hierarchy should be:
 
-Do NOT add unnecessary decorative elements.
+1. Mohamed Maklad
+2. Animated professional title
+3. Positioning statement
+4. CTA buttons
+5. Social links
 
-Do NOT add another paragraph.
+The statement should be clearly visible but should NOT compete with the name.
 
-Do NOT change the existing navigation.
+---
 
-Do NOT change the CTA structure.
+## 07 — DARK MODE
 
-Do NOT change the overall dark theme.
+Use:
 
-Do NOT introduce purple.
-
-Keep:
-
-Orange:
-#FF6B35
-
-Teal:
-#27B3A6
-
-Background:
-#0B1017
-
-Surface:
-#141C27
-
-Text:
+Primary text:
 #F5F1E8
 
-Muted:
-#A7A9AD
+Highlighted phrase:
+#FF6B35
+
+Do not use purple.
+
+Do not introduce another accent color.
 
 ---
 
-# 22 — FINAL QUALITY TARGET
+## 08 — LIGHT MODE
 
-The Hero should feel like:
+Use:
 
-A premium Data / BI / Engineering portfolio.
+Primary text:
+#171717
 
-The card interaction should feel:
+Highlighted phrase:
+#E85D2A
 
-physical
-subtle
-responsive
-realistic
+Maintain the same visual hierarchy.
 
-The cable should feel physically connected to the card.
+---
 
-The text should feel:
+## 09 — DO NOT CHANGE
 
-professional
-confident
-clear
-business-oriented
+Do NOT change:
 
-Avoid making the Hero look like a flashy gaming website.
+- Name
+- Typing animation
+- Professional titles
+- Portrait
+- Hanging card
+- Rope/cable physics
+- Skills ticker
+- CTA buttons
+- Social links
+- Hero background
+- Navbar
+- Other sections
 
-The result should communicate:
+This is ONLY a copy + typography + color refinement.
 
-"I build reliable data solutions that create real business value."
+---
 
-without literally using that sentence.
+# FINAL HERO STATEMENT
+
+Use exactly:
+
+"I build with data, engineer with purpose, and solve for impact."
+
+Visual emphasis:
+
+I build with data, engineer with purpose,
+and solve for impact.
+
+First line:
+Primary text
+
+Second line:
+Orange accent
+
+Keep it clean, confident, and premium.

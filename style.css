@@ -554,19 +554,23 @@ h1 {
 }
 
 .hero-statement {
-  font-size: clamp(20px, 1.6vw, 23px);
-  color: #F5F1E8;
-  max-width: 650px;
+  font-size: clamp(22px, 1.7vw, 24px);
+  color: var(--primary);
+  max-width: 620px;
   margin: 0 0 28px 0;
-  line-height: 1.55;
-  letter-spacing: -0.01em;
-  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  font-weight: 600;
   animation: fadeUp 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.46s backwards;
 }
 
 .hero-statement .accent-word {
   color: var(--accent);
   font-weight: 600;
+}
+
+.hero-statement-br {
+  display: inline;
 }
 
 .cta {
@@ -770,7 +774,7 @@ h1 {
   height: 510px;
   border-radius: 26px;
   background: #141C27;
-  border: 1px solid rgba(100, 120, 140, 0.25);
+  border: 1px solid rgba(160, 170, 185, 0.22);
   box-shadow: 0 24px 50px -10px var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.03);
   overflow: hidden;
   display: flex;
@@ -790,7 +794,7 @@ h1 {
 
 .hero-id-card.dragging {
   cursor: grabbing !important;
-  box-shadow: 0 32px 65px -10px var(--shadow), 0 0 30px rgba(var(--accent-rgb), 0.18);
+  box-shadow: 0 34px 70px -10px var(--shadow), 0 0 32px rgba(var(--accent-rgb), 0.18);
   transition: border-color 0.2s ease;
 }
 
@@ -1130,12 +1134,16 @@ h1 {
 
   /* 04: Statement -> CTA (26px) */
   .hero-statement {
-    font-size: clamp(16px, 4.3vw, 18px);
+    font-size: clamp(17px, 4.3vw, 18px);
     line-height: 1.55;
-    max-width: 340px;
+    max-width: 350px;
     margin: 0 auto 26px;
     text-align: center;
     color: var(--primary);
+  }
+
+  .hero-statement-br {
+    display: none;
   }
 
   /* 05: Vertically Stacked CTA Buttons -> Social (22px) */

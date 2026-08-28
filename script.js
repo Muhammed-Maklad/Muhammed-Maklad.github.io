@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ══════════════════════════════════════════════════════════
-       INTERACTIVE HANGING PORTRAIT CARD (Physics & Dynamic SVG Cable)
+       INTERACTIVE HANGING PORTRAIT CARD (Physics & Dynamic SVG Cord)
     ══════════════════════════════════════════════════════════ */
     const heroCard = document.querySelector('.hero-id-card');
     const badgeCablePath = document.getElementById('badgeCablePath');
@@ -328,31 +328,32 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentX = 0, currentY = 0, currentRot = 0;
         let vx = 0, vy = 0, vRot = 0;
         let animFrameId = null;
+        let idleFrameId = null;
+        let isSpringing = false;
 
         function getLimits() {
             const isMobile = window.innerWidth < 768;
             return {
-                maxX: isMobile ? 20 : 35,
-                maxY: isMobile ? 30 : 45,
-                maxRot: isMobile ? 3 : 5
+                maxX: isMobile ? 20 : 70,
+                maxY: isMobile ? 25 : 50,
+                maxRot: isMobile ? 3 : 7
             };
         }
 
         function updateTransforms(x, y, rot, velX = 0) {
-            heroCard.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rot}deg)`;
+            heroCard.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${rot.toFixed(2)}deg)`;
             
             if (badgeMetalClip) {
-                badgeMetalClip.style.transform = `translate3d(${x}px, ${y * 0.18}px, 0) rotate(${rot * 0.65}deg)`;
+                badgeMetalClip.style.transform = `translate3d(${x.toFixed(2)}px, ${(y * 0.18).toFixed(2)}px, 0) rotate(${(rot * 0.65).toFixed(2)}deg)`;
             }
 
-            // Dynamically calculate Bézier curve for cable with subtle physical lag
+            // Dynamically calculate Bézier curve for cord with physical lag
             if (badgeCablePath) {
                 const topX = 50;
                 const topY = 0;
                 const bottomX = 50 + x;
                 const bottomY = 32 + (y * 0.18);
-                // Control point blends halfway with dynamic momentum lag
-                const ctrlX = 50 + (x * 0.42) + (velX * 1.8);
+                const ctrlX = 50 + (x * 0.42) + (velX * 1.5);
                 const ctrlY = 16 + (y * 0.08);
 
                 badgeCablePath.setAttribute('d', `M ${topX} ${topY} Q ${ctrlX.toFixed(2)} ${ctrlY.toFixed(2)} ${bottomX.toFixed(2)} ${bottomY.toFixed(2)}`);
@@ -362,8 +363,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function springAnimate() {
             if (isDragging) return;
 
-            const k = 0.13;   // Spring stiffness
-            const d = 0.81;   // Damping
+            const k = 0.11;   // Spring stiffness (low for elastic rope feel)
+            const d = 0.82;   // Moderate damping
 
             const fx = -k * currentX;
             const fy = -k * currentY;
@@ -389,13 +390,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 vy = 0;
                 vRot = 0;
                 updateTransforms(0, 0, 0, 0);
+                isSpringing = false;
                 animFrameId = null;
+                startIdleMotion();
+            }
+        }
+
+        function idleLoop(timestamp) {
+            if (isDragging || isSpringing || reducedMotion) return;
+
+            // Very subtle organic pendulum & breathing movement
+            const idleX = Math.sin(timestamp * 0.0012) * 1.4;
+            const idleY = Math.cos(timestamp * 0.0018) * 0.7;
+            const idleRot = Math.sin(timestamp * 0.0012) * 0.35;
+
+            updateTransforms(idleX, idleY, idleRot, 0);
+            idleFrameId = requestAnimationFrame(idleLoop);
+        }
+
+        function startIdleMotion() {
+            if (!reducedMotion && !idleFrameId && !isDragging && !isSpringing) {
+                idleFrameId = requestAnimationFrame(idleLoop);
+            }
+        }
+
+        function stopIdleMotion() {
+            if (idleFrameId) {
+                cancelAnimationFrame(idleFrameId);
+                idleFrameId = null;
             }
         }
 
         heroCard.addEventListener('pointerdown', (e) => {
             if (e.button !== 0 && e.pointerType === 'mouse') return;
+            stopIdleMotion();
             isDragging = true;
+            isSpringing = false;
             startX = e.clientX - currentX;
             startY = e.clientY - currentY;
             heroCard.classList.add('dragging');
@@ -415,9 +445,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const rawY = e.clientY - startY;
 
             const prevX = currentX;
-            // Clamping with soft physical resistance
+            // Clamping with soft elastic resistance
             currentX = Math.max(-limits.maxX, Math.min(limits.maxX, rawX));
-            currentY = Math.max(-limits.maxY * 0.4, Math.min(limits.maxY, rawY));
+            currentY = Math.max(-limits.maxY * 0.5, Math.min(limits.maxY, rawY));
             currentRot = (currentX / limits.maxX) * limits.maxRot;
             const dragVelX = currentX - prevX;
 
@@ -427,6 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function endDrag(e) {
             if (!isDragging) return;
             isDragging = false;
+            isSpringing = true;
             heroCard.classList.remove('dragging');
             try {
                 heroCard.releasePointerCapture(e.pointerId);
@@ -438,16 +469,9 @@ document.addEventListener('DOMContentLoaded', () => {
         heroCard.addEventListener('pointerup', endDrag);
         heroCard.addEventListener('pointercancel', endDrag);
 
-        // Initial subtle discovery micro-hint
+        // Start idle animation on load
         if (!reducedMotion) {
-            setTimeout(() => {
-                if (!isDragging && currentX === 0 && currentY === 0) {
-                    vx = 2.0;
-                    vy = 1.2;
-                    vRot = 0.7;
-                    animFrameId = requestAnimationFrame(springAnimate);
-                }
-            }, 1400);
+            startIdleMotion();
         }
     }
 
