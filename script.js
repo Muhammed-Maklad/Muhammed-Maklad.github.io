@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lerpCursor();
 
         // Cursor state on hover of interactive elements
-        const hoverTargets = 'a, button, .card, .social-chip, .category-card, .contact-chip, .achievement-card, .profile-photo, [role="button"]';
+        const hoverTargets = 'a, button, .card, .hero-id-card, .social-chip, .category-card, .contact-chip, .achievement-card, .profile-photo, [role="button"]';
         document.querySelectorAll(hoverTargets).forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -260,6 +260,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 frag.appendChild(p);
             }
             pCont.appendChild(frag);
+        }
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HERO ROLE TYPING ANIMATION
+    ══════════════════════════════════════════════════════════ */
+    const heroTypedEl = document.getElementById('heroTypedText');
+    if (heroTypedEl) {
+        const roles = [
+            'DATA ANALYTICS SPECIALIST',
+            'DATA SOLUTIONS ENGINEER',
+            'BUSINESS INTELLIGENCE ANALYST',
+            'DATA ENGINEER',
+            'MACHINE LEARNING ENGINEER'
+        ];
+        
+        if (reducedMotion) {
+            heroTypedEl.textContent = roles[0];
+        } else {
+            let roleIdx = 0;
+            let charIdx = roles[0].length;
+            heroTypedEl.textContent = roles[0];
+            let isDeleting = true;
+            let typingTimeout;
+
+            function typeRole() {
+                const currentRole = roles[roleIdx];
+                
+                if (isDeleting) {
+                    charIdx--;
+                    heroTypedEl.textContent = currentRole.substring(0, charIdx);
+                } else {
+                    charIdx++;
+                    heroTypedEl.textContent = currentRole.substring(0, charIdx);
+                }
+
+                let speed = isDeleting ? 48 : 80;
+
+                if (!isDeleting && charIdx === currentRole.length) {
+                    speed = 1600;
+                    isDeleting = true;
+                } else if (isDeleting && charIdx === 0) {
+                    isDeleting = false;
+                    roleIdx = (roleIdx + 1) % roles.length;
+                    speed = 380;
+                }
+
+                typingTimeout = setTimeout(typeRole, speed);
+            }
+
+            // Initial pause before deleting first text
+            setTimeout(typeRole, 1800);
         }
     }
 
@@ -876,77 +928,6 @@ document.addEventListener('DOMContentLoaded', () => {
         removeWhiteBackground(profileImg);
     }
 
-    // ── HERO CONNECTION CANVAS LINES & PARTICLES ─────────────────
-    const heroCanvas = document.getElementById('hero-connection-canvas');
-    if (heroCanvas) {
-        const hctx = heroCanvas.getContext('2d');
-        let hW = heroCanvas.width = heroCanvas.offsetWidth;
-        let hH = heroCanvas.height = heroCanvas.offsetHeight;
-        
-        window.addEventListener('resize', () => {
-            hW = heroCanvas.width = heroCanvas.offsetWidth;
-            hH = heroCanvas.height = heroCanvas.offsetHeight;
-        });
-        
-        const cards = document.querySelectorAll('.float-card');
-        const dots = [];
-        
-        function animateConnections() {
-            if (window.innerWidth <= 480) {
-                // Skip rendering canvas on mobile grid stack to save performance
-                requestAnimationFrame(animateConnections);
-                return;
-            }
-            
-            hctx.clearRect(0, 0, hW, hH);
-            
-            const centerX = hW / 2;
-            const centerY = hH / 2;
-            
-            cards.forEach((card, idx) => {
-                const rect = card.getBoundingClientRect();
-                const containerRect = heroCanvas.getBoundingClientRect();
-                const cardX = rect.left - containerRect.left + rect.width / 2;
-                const cardY = rect.top - containerRect.top + rect.height / 2;
-                
-                // Draw connecting line from center to card
-                hctx.beginPath();
-                hctx.moveTo(centerX, centerY);
-                hctx.lineTo(cardX, cardY);
-                hctx.strokeStyle = 'rgba(90, 135, 199, 0.08)';
-                hctx.lineWidth = 1;
-                hctx.stroke();
-                
-                // Animate packet along line
-                if (!dots[idx]) {
-                    dots[idx] = {
-                        t: Math.random(),
-                        speed: Math.random() * 0.003 + 0.002
-                    };
-                }
-                
-                dots[idx].t += dots[idx].speed;
-                if (dots[idx].t > 1) {
-                    dots[idx].t = 0;
-                    dots[idx].speed = Math.random() * 0.003 + 0.002;
-                }
-                
-                const dotX = centerX + (cardX - centerX) * dots[idx].t;
-                const dotY = centerY + (cardY - centerY) * dots[idx].t;
-                
-                hctx.beginPath();
-                hctx.arc(dotX, dotY, 2, 0, Math.PI * 2);
-                hctx.fillStyle = 'rgba(6, 182, 212, 0.6)';
-                hctx.shadowBlur = 4;
-                hctx.shadowColor = '#06B6D4';
-                hctx.fill();
-                hctx.shadowBlur = 0;
-            });
-            
-            requestAnimationFrame(animateConnections);
-        }
-        animateConnections();
-    }
 
     /* ══════════════════════════════════════════════════════════
        CONTACT FORM INTERACTION & VALIDATION
