@@ -130,7 +130,7 @@
             <span>Open to New Opportunities</span>
           </div>
 
-          <h1 id="hero-heading">Mohamed<br />Maklad</h1>
+          <h1 id="hero-heading">Mohamed Maklad</h1>
 
           <div class="hero-role-block">
             <div class="hero-typed-title" aria-live="polite" aria-atomic="true">
@@ -984,309 +984,84 @@
     </section>
 
     <!-- ════════════════════════════════════════
-         05 — PROJECTS (Curated Showcase)
+         05 — PROJECTS (Interactive Card Deck)
     ════════════════════════════════════════ -->
     <section id="projects" class="projects-section" aria-labelledby="projects-heading">
       <div class="container">
         <!-- Section Header -->
-        <div class="section-header">
-          <div class="section-eyebrow">
-            <span class="section-label">Featured Work</span>
-            <span class="section-num" aria-hidden="true">05</span>
+        <div class="section-header projects-deck-header">
+          <div class="header-left">
+            <div class="section-eyebrow">
+              <span class="section-label">Featured Work</span>
+              <span class="section-num" aria-hidden="true">05</span>
+            </div>
+            <h2 id="projects-heading">Selected Projects</h2>
+            <p class="projects-subtitle">Selected work across analytics, data engineering, and intelligent systems.</p>
           </div>
-          <h2 id="projects-heading">Selected Projects</h2>
-          <div class="section-line"></div>
+          <div class="projects-counter-badge" aria-label="Project counter" id="projectsCounter">
+            <span class="curr-num" id="currentProjectIndex">01</span>
+            <span class="counter-sep">/</span>
+            <span class="total-num" id="totalProjectCount">06</span>
+          </div>
         </div>
 
-        <!-- ── FLAGSHIP PROJECT 01: SILA ──────────────────────── -->
-        <article class="project-flagship card fade-in" id="project-sila">
-          <div class="flagship-media-wrapper">
-            <img class="flagship-image" src="images/Projects/Customer Service Analytics (SILA).png"
-              alt="Customer Service Analytics (SILA) — Enterprise BI platform and data warehouse" loading="lazy" />
-            <div class="flagship-badge-overlay">
-              <span class="flagship-star">★</span>
-              <span>FLAGSHIP BI PLATFORM</span>
-            </div>
+        <!-- Filter Bar -->
+        <div class="project-filters-wrap" role="tablist" aria-label="Filter projects by technology">
+          <div class="project-filters-scroll">
+            <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
+              <span>All Stacks</span>
+            </button>
+            <button class="filter-pill" data-filter="Power BI" role="tab" aria-selected="false">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#f2c811;"><rect x="3" y="13" width="4" height="8" rx="1"/><rect x="10" y="8" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
+              <span>Power BI</span>
+            </button>
+            <button class="filter-pill" data-filter="SQL" role="tab" aria-selected="false">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+              <span>SQL &amp; SSIS</span>
+            </button>
+            <button class="filter-pill" data-filter="Python" role="tab" aria-selected="false">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"></path></svg>
+              <span>Python</span>
+            </button>
+            <button class="filter-pill" data-filter="Azure" role="tab" aria-selected="false">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              <span>Azure</span>
+            </button>
+            <button class="filter-pill" data-filter="AI" role="tab" aria-selected="false">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span>Machine Learning</span>
+            </button>
+            <button class="filter-pill" data-filter="Tableau" role="tab" aria-selected="false">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="7" x2="8" y2="12"></line><line x1="12" y1="7" x2="16" y2="12"></line></svg>
+              <span>Tableau</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Card Deck Showcase Area -->
+        <div class="project-deck-container" id="projectDeckContainer" aria-live="polite">
+          <!-- Card Deck Target -->
+          <div class="project-card-deck" id="projectCardDeck">
+            <!-- Dynamic cards injected by script.js -->
           </div>
 
-          <div class="flagship-content">
-            <div class="project-meta-top">
-              <span class="project-number-tag">01</span>
-              <span class="project-category-badge">CUSTOMER INTELLIGENCE PLATFORM</span>
-              <span class="project-date-chip">Jun 2026</span>
+          <!-- Deck Navigation Controls -->
+          <div class="deck-controls">
+            <button class="deck-nav-btn prev-btn" id="deckPrevBtn" aria-label="Previous project">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              <span>Previous</span>
+            </button>
+
+            <div class="deck-dots-indicator" id="deckDotsIndicator" role="tablist" aria-label="Project navigation dots">
+              <!-- Dots rendered by script.js -->
             </div>
 
-            <h3 class="flagship-title">Customer Service Analytics (SILA)</h3>
-
-            <p class="flagship-desc">
-              A comprehensive, enterprise-grade relational database and end-to-end BI system designed for telecom
-              customer operations. Integrates a dimensional data warehouse, SSIS ETL pipelines, 16+ Power BI dashboards,
-              7+ Tableau dashboards, 7+ Excel reporting workbooks, SSRS suites, and an AI churn prediction module with a
-              web UI.
-            </p>
-
-            <div class="flagship-highlights">
-              <div class="highlight-item">
-                <span class="hl-num">16+</span>
-                <span class="hl-txt">Power BI Dashboards</span>
-              </div>
-              <div class="highlight-item">
-                <span class="hl-num">7+</span>
-                <span class="hl-txt">Tableau Views</span>
-              </div>
-              <div class="highlight-item">
-                <span class="hl-num">SSIS</span>
-                <span class="hl-txt">ETL Warehouse</span>
-              </div>
-              <div class="highlight-item">
-                <span class="hl-num">AI</span>
-                <span class="hl-txt">Churn Predictor</span>
-              </div>
-            </div>
-
-            <div class="chips flagship-chips">
-              <span class="chip"><svg class="chip-tech-icon" width="12" height="12" viewBox="0 0 24 24"
-                  fill="currentColor" style="color:#f2c811;">
-                  <path d="M9.5 0h5v24h-5zm6.5 8h5v16h-5zM3 16h5v8H3z" />
-                </svg>Power BI</span>
-              <span class="chip"><svg class="chip-tech-icon" width="12" height="12" viewBox="0 0 24 24"
-                  fill="currentColor" style="color:#e03e2c;">
-                  <path
-                    d="M12.87 9.87h5.17v1.26h-5.17v5.17h-1.26v-5.17H5.45v-1.26h5.17V4.7h1.25v5.17zm-6.73 7.82h3.41v.83H6.14v3.42H5.3v-3.42H1.9v-.83H5.3v-3.42h.84v3.42zm14.3-12.72h2.52v.62h-2.52v2.52h-.63V5.59h-2.52v-.62h2.52V2.45h.63v2.52z" />
-                </svg>Tableau</span>
-              <span class="chip">SQL Server</span>
-              <span class="chip accent">Data Warehouse</span>
-              <span class="chip accent">SSIS / ETL</span>
-              <span class="chip purple">AI Churn Prediction</span>
-            </div>
-
-            <div class="project-actions">
-              <a class="btn btn-primary" href="https://github.com/Muhammed-Maklad/Customer-Service-Analytics-Platform"
-                target="_blank" rel="noopener noreferrer">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                </svg>
-                <span>View Flagship Repository</span>
-              </a>
-            </div>
+            <button class="deck-nav-btn next-btn" id="deckNextBtn" aria-label="Next project">
+              <span>Next</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
           </div>
-        </article>
-
-        <!-- ── FEATURED PROJECTS 02 & 03: ASYMMETRIC ALTERNATING ── -->
-        <div class="projects-featured-pair">
-
-          <!-- Project 02: Tourism & Hospitality BI -->
-          <article class="project-split-card card fade-in" id="project-tourism">
-            <div class="split-media">
-              <img class="split-image" src="images/Projects/Tourism & Hospitality BI Dashboard.png"
-                alt="Tourism & Hospitality BI Dashboard" loading="lazy" />
-            </div>
-            <div class="split-content">
-              <div class="project-meta-top">
-                <span class="project-number-tag">02</span>
-                <span class="project-category-badge">BUSINESS INTELLIGENCE</span>
-                <span class="project-date-chip">Jun 2026</span>
-              </div>
-              <h3 class="split-title">Tourism &amp; Hospitality BI Dashboard</h3>
-              <p class="split-desc">
-                A multi-page business intelligence dashboard transforming raw hospitality operations data into strategic
-                insights. Enables hotel executives to monitor revenue drivers, optimize occupancy benchmarks, and
-                analyze guest sentiment trends.
-              </p>
-              <div class="chips">
-                <span class="chip"><svg class="chip-tech-icon" width="12" height="12" viewBox="0 0 24 24"
-                    fill="currentColor" style="color:#f2c811;">
-                    <path d="M9.5 0h5v24h-5zm6.5 8h5v16h-5zM3 16h5v8H3z" />
-                  </svg>Power BI</span>
-                <span class="chip">DAX</span>
-                <span class="chip accent">Data Analytics</span>
-                <span class="chip accent">KPI Benchmarking</span>
-                <span class="chip purple">Sentiment Analysis</span>
-              </div>
-              <div class="project-actions">
-                <a class="btn btn-outline" href="https://github.com/Muhammed-Maklad/Tourism-Intelligence---PowerBi"
-                  target="_blank" rel="noopener noreferrer">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  <span>GitHub Repository</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 03: Restaurant Analytics Dashboard -->
-          <article class="project-split-card card split-reverse fade-in" id="project-restaurant">
-            <div class="split-media">
-              <img class="split-image" src="images/Projects/Restaurant Analytics Dashboard — Power BI.png"
-                alt="Restaurant Analytics Dashboard — Power BI" loading="lazy" />
-            </div>
-            <div class="split-content">
-              <div class="project-meta-top">
-                <span class="project-number-tag">03</span>
-                <span class="project-category-badge">DATA ANALYTICS</span>
-                <span class="project-date-chip">May 2026</span>
-              </div>
-              <h3 class="split-title">Restaurant Analytics Dashboard</h3>
-              <p class="split-desc">
-                An end-to-end Power BI analytics platform for a restaurant chain, featuring five dashboards for
-                executive sales, operations, customer segmentation, and financial health with advanced DAX metrics and
-                Row-Level Security (RLS).
-              </p>
-              <div class="chips">
-                <span class="chip"><svg class="chip-tech-icon" width="12" height="12" viewBox="0 0 24 24"
-                    fill="currentColor" style="color:#f2c811;">
-                    <path d="M9.5 0h5v24h-5zm6.5 8h5v16h-5zM3 16h5v8H3z" />
-                  </svg>Power BI</span>
-                <span class="chip">DAX</span>
-                <span class="chip accent">Data Modeling</span>
-                <span class="chip accent">RLS Security</span>
-                <span class="chip purple">Business Intelligence</span>
-              </div>
-              <div class="project-actions">
-                <a class="btn btn-outline"
-                  href="https://github.com/Muhammed-Maklad/Restaurant-Analytics-Dashboard---Power-Bi" target="_blank"
-                  rel="noopener noreferrer">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path
-                      d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  <span>GitHub Repository</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-        </div><!-- /projects-featured-pair -->
-
-        <!-- ── MORE WORK ARCHIVE ──────────────────────────────── -->
-        <div class="more-work-section">
-          <div class="more-work-header">
-            <h3 class="more-work-title">More Selected Projects</h3>
-            <p class="more-work-sub">Additional applications in computer vision, natural language processing, and
-              Tableau analytics</p>
-          </div>
-
-          <div class="grid cols-3 more-work-grid">
-
-            <!-- More Project 1: Roshtty OCR -->
-            <article class="card more-project-card fade-in">
-              <div class="more-image-wrapper">
-                <img class="more-image" src="images/Projects/Roshtty — Medical Prescription OCR.png"
-                  alt="Roshtty — Medical Prescription OCR" loading="lazy" />
-                <span class="more-card-tag">AI &amp; VISION</span>
-              </div>
-              <div class="more-card-body">
-                <div class="more-card-meta">
-                  <span class="project-date-chip">Sep 2024 – Jul 2025</span>
-                </div>
-                <h4 class="more-title">Roshtty — Medical Prescription OCR</h4>
-                <p class="more-desc">AI-powered OCR that interprets handwritten medical prescriptions via image
-                  preprocessing and Google Gemini API, deployed on Microsoft Azure.</p>
-                <div class="chips">
-                  <span class="chip">Python</span>
-                  <span class="chip">Flask</span>
-                  <span class="chip accent">Azure</span>
-                  <span class="chip accent">Gemini AI</span>
-                  <span class="chip purple">OpenCV</span>
-                </div>
-                <div class="more-actions">
-                  <a class="btn btn-primary" href="https://read-acgqhjb2b8hyd6fb.canadacentral-01.azurewebsites.net/"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                    <span>Live Demo</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- More Project 2: Linguasense Chatbot -->
-            <article class="card more-project-card fade-in">
-              <div class="more-image-wrapper">
-                <img class="more-image" src="images/Projects/Linguasense — Multilingual Sentiment Chatbot.png"
-                  alt="Linguasense — Multilingual Sentiment Chatbot" loading="lazy" />
-                <span class="more-card-tag">NLP &amp; RAG</span>
-              </div>
-              <div class="more-card-body">
-                <div class="more-card-meta">
-                  <span class="project-date-chip">Oct 2024</span>
-                </div>
-                <h4 class="more-title">Linguasense — Multilingual Chatbot</h4>
-                <p class="more-desc">Real-time multilingual NLP customer intelligence combining Whisper ASR, DistilBERT
-                  sentiment, and Llama 3.1 RAG via FAISS vector search.</p>
-                <div class="chips">
-                  <span class="chip">Python</span>
-                  <span class="chip">Streamlit</span>
-                  <span class="chip accent">FAISS / RAG</span>
-                  <span class="chip accent">Llama 3.1</span>
-                  <span class="chip purple">Whisper ASR</span>
-                </div>
-                <div class="more-actions">
-                  <a class="btn btn-outline" href="https://github.com/Muhammed-Maklad/DEPI-Graduation-Project"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="16 18 22 12 16 6" />
-                      <polyline points="8 6 2 12 8 18" />
-                    </svg>
-                    <span>Source Code</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- More Project 3: Maklad Store Analytics -->
-            <article class="card more-project-card fade-in">
-              <div class="more-image-wrapper">
-                <img class="more-image" src="images/Projects/Maklad Store Analytics — Tableau.png"
-                  alt="Maklad Store Analytics — Tableau" loading="lazy" />
-                <span class="more-card-tag">TABLEAU BI</span>
-              </div>
-              <div class="more-card-body">
-                <div class="more-card-meta">
-                  <span class="project-date-chip">Apr 2026</span>
-                </div>
-                <h4 class="more-title">Maklad Store Analytics — Tableau</h4>
-                <p class="more-desc">Five-page interactive Tableau platform replacing static reports with real-time
-                  revenue, regional profitability, and customer behavior insights.</p>
-                <div class="chips">
-                  <span class="chip"><svg class="chip-tech-icon" width="12" height="12" viewBox="0 0 24 24"
-                      fill="currentColor" style="color:#e03e2c;">
-                      <path
-                        d="M12.87 9.87h5.17v1.26h-5.17v5.17h-1.26v-5.17H5.45v-1.26h5.17V4.7h1.25v5.17zm-6.73 7.82h3.41v.83H6.14v3.42H5.3v-3.42H1.9v-.83H5.3v-3.42h.84v3.42zm14.3-12.72h2.52v.62h-2.52v2.52h-.63V5.59h-2.52v-.62h2.52V2.45h.63v2.52z" />
-                    </svg>Tableau</span>
-                  <span class="chip">Excel</span>
-                  <span class="chip accent">Dashboard Actions</span>
-                  <span class="chip purple">Tableau Public</span>
-                </div>
-                <div class="more-actions">
-                  <a class="btn btn-primary"
-                    href="https://public.tableau.com/app/profile/muhammed.gamal5404/viz/MakladTechSolution/ProductDashborad?publish=yes"
-                    target="_blank" rel="noopener noreferrer">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" y1="14" x2="21" y2="3" />
-                    </svg>
-                    <span>Live Demo</span>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-          </div><!-- /more-work-grid -->
-        </div><!-- /more-work-section -->
+        </div>
 
       </div>
     </section>

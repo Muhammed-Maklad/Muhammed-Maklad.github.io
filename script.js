@@ -1187,4 +1187,372 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    /* ══════════════════════════════════════════════════════════
+       05 — PROJECTS: INTERACTIVE CARD DECK & STACK FILTERS
+    ══════════════════════════════════════════════════════════ */
+    const PORTFOLIO_PROJECTS = [
+        {
+            id: 'sila',
+            title: 'Customer Service Analytics (SILA)',
+            category: 'Customer Intelligence Platform',
+            year: 'Jun 2026',
+            badge: 'Flagship BI Platform',
+            description: 'Enterprise-grade relational database and end-to-end BI system for telecom operations. Integrates a dimensional data warehouse, SSIS ETL pipelines, 16+ Power BI dashboards, 7+ Tableau views, and AI churn prediction module.',
+            image: 'images/Projects/Customer Service Analytics (SILA).png',
+            technologies: ['Power BI', 'Tableau', 'SQL Server', 'Data Warehouse', 'SSIS / ETL', 'AI Churn Prediction'],
+            filterTags: ['all', 'Power BI', 'SQL', 'Tableau', 'AI'],
+            actionUrl: 'https://github.com/Muhammed-Maklad/Customer-Service-Analytics-Platform',
+            actionLabel: 'View Flagship Repository',
+            isGithub: true
+        },
+        {
+            id: 'tourism',
+            title: 'Tourism & Hospitality BI Dashboard',
+            category: 'Business Intelligence',
+            year: 'Jun 2026',
+            badge: 'Executive BI Suite',
+            description: 'Multi-page business intelligence dashboard transforming raw hospitality operations data into strategic insights on revenue drivers, occupancy benchmarks, and guest sentiment trends.',
+            image: 'images/Projects/Tourism & Hospitality BI Dashboard.png',
+            technologies: ['Power BI', 'DAX', 'Data Analytics', 'KPI Benchmarking', 'Sentiment Analysis'],
+            filterTags: ['all', 'Power BI', 'SQL'],
+            actionUrl: 'https://github.com/Muhammed-Maklad/Tourism-Intelligence---PowerBi',
+            actionLabel: 'GitHub Repository',
+            isGithub: true
+        },
+        {
+            id: 'restaurant',
+            title: 'Restaurant Analytics Dashboard',
+            category: 'Data Analytics',
+            year: 'May 2026',
+            badge: 'Enterprise Analytics',
+            description: 'End-to-end Power BI analytics platform for a restaurant chain, featuring five dashboards for executive sales, operations, customer segmentation, and financial health with advanced DAX and RLS.',
+            image: 'images/Projects/Restaurant Analytics Dashboard — Power BI.png',
+            technologies: ['Power BI', 'DAX', 'Data Modeling', 'RLS Security', 'Business Intelligence'],
+            filterTags: ['all', 'Power BI', 'SQL'],
+            actionUrl: 'https://github.com/Muhammed-Maklad/Restaurant-Analytics-Dashboard---Power-Bi',
+            actionLabel: 'GitHub Repository',
+            isGithub: true
+        },
+        {
+            id: 'roshtty',
+            title: 'Roshtty — Medical Prescription OCR',
+            category: 'AI & Vision',
+            year: 'Sep 2024 – Jul 2025',
+            badge: 'AI Cloud Solution',
+            description: 'AI-powered OCR that interprets handwritten medical prescriptions via image preprocessing and Google Gemini API, deployed as a scalable web service on Microsoft Azure.',
+            image: 'images/Projects/Roshtty — Medical Prescription OCR.png',
+            technologies: ['Python', 'Flask', 'Azure', 'Gemini AI', 'OpenCV'],
+            filterTags: ['all', 'Python', 'Azure', 'AI'],
+            actionUrl: 'https://read-acgqhjb2b8hyd6fb.canadacentral-01.azurewebsites.net/',
+            actionLabel: 'Live Cloud Demo',
+            isGithub: false
+        },
+        {
+            id: 'linguasense',
+            title: 'Linguasense — Multilingual Chatbot',
+            category: 'NLP & RAG',
+            year: 'Oct 2024',
+            badge: 'Generative AI & RAG',
+            description: 'Real-time multilingual NLP customer intelligence combining Whisper ASR speech-to-text, DistilBERT sentiment classification, and Llama 3.1 RAG via FAISS vector search.',
+            image: 'images/Projects/Linguasense — Multilingual Sentiment Chatbot.png',
+            technologies: ['Python', 'Streamlit', 'FAISS / RAG', 'Llama 3.1', 'Whisper ASR'],
+            filterTags: ['all', 'Python', 'AI'],
+            actionUrl: 'https://github.com/Muhammed-Maklad/DEPI-Graduation-Project',
+            actionLabel: 'Source Code',
+            isGithub: true
+        },
+        {
+            id: 'maklad-store',
+            title: 'Maklad Store Analytics — Tableau',
+            category: 'Tableau BI',
+            year: 'Apr 2026',
+            badge: 'Executive BI Platform',
+            description: 'Five-page interactive Tableau platform replacing static reports with real-time revenue, regional profitability, and customer behavior insights hosted on Tableau Public.',
+            image: 'images/Projects/Maklad Store Analytics — Tableau.png',
+            technologies: ['Tableau', 'Excel', 'Dashboard Actions', 'Tableau Public'],
+            filterTags: ['all', 'Tableau'],
+            actionUrl: 'https://public.tableau.com/app/profile/muhammed.gamal5404/viz/MakladTechSolution/ProductDashborad?publish=yes',
+            actionLabel: 'Live Dashboard',
+            isGithub: false
+        }
+    ];
+
+    const projectCardDeck = document.getElementById('projectCardDeck');
+    const filterButtons = document.querySelectorAll('.project-filters-wrap .filter-pill');
+    const currentNumEl = document.getElementById('currentProjectIndex');
+    const totalNumEl = document.getElementById('totalProjectCount');
+    const prevBtn = document.getElementById('deckPrevBtn');
+    const nextBtn = document.getElementById('deckNextBtn');
+    const dotsContainer = document.getElementById('deckDotsIndicator');
+
+    if (projectCardDeck) {
+        let activeFilter = 'all';
+        let filteredProjects = [...PORTFOLIO_PROJECTS];
+        let currentIndex = 0;
+
+        function getFilteredList(filter) {
+            if (filter === 'all') return [...PORTFOLIO_PROJECTS];
+            return PORTFOLIO_PROJECTS.filter(p => p.filterTags.includes(filter));
+        }
+
+        function createCardHtml(project, index) {
+            const chipsHtml = project.technologies.slice(0, 4).map(tech => `
+                <span class="deck-chip">${tech}</span>
+            `).join('');
+
+            const actionIcon = project.isGithub ? `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+            ` : `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+            `;
+
+            return `
+                <article class="deck-card" data-index="${index}" id="deck-card-${index}">
+                    <div class="deck-card-media">
+                        <img class="deck-card-img" src="${project.image}" alt="${project.title}" loading="lazy" />
+                        <span class="deck-card-badge">${project.badge}</span>
+                        <span class="deck-card-date">${project.year}</span>
+                    </div>
+                    <div class="deck-card-info">
+                        <h3 class="deck-card-title">${project.title}</h3>
+                        <p class="deck-card-desc">${project.description}</p>
+                    </div>
+                    <div class="deck-card-footer">
+                        <div class="deck-card-chips">
+                            ${chipsHtml}
+                        </div>
+                        <a class="deck-action-btn" href="${project.actionUrl}" target="_blank" rel="noopener noreferrer">
+                            ${actionIcon}
+                            <span>${project.actionLabel}</span>
+                        </a>
+                    </div>
+                </article>
+            `;
+        }
+
+        function renderDeck() {
+            if (filteredProjects.length === 0) {
+                projectCardDeck.innerHTML = `
+                    <div class="deck-empty-state">
+                        <p>No projects in this stack yet.</p>
+                    </div>
+                `;
+                if (currentNumEl) currentNumEl.textContent = '00';
+                if (totalNumEl) totalNumEl.textContent = '00';
+                if (dotsContainer) dotsContainer.innerHTML = '';
+                return;
+            }
+
+            // Adjust index if out of bounds
+            if (currentIndex >= filteredProjects.length) {
+                currentIndex = 0;
+            }
+
+            projectCardDeck.innerHTML = filteredProjects.map((p, i) => createCardHtml(p, i)).join('');
+
+            // Render Dots
+            if (dotsContainer) {
+                dotsContainer.innerHTML = filteredProjects.map((_, i) => `
+                    <button class="deck-dot ${i === currentIndex ? 'active' : ''}" data-index="${i}" aria-label="Go to project ${i + 1}" role="tab" aria-selected="${i === currentIndex}"></button>
+                `).join('');
+
+                dotsContainer.querySelectorAll('.deck-dot').forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const targetIdx = parseInt(dot.getAttribute('data-index'), 10);
+                        if (!isNaN(targetIdx)) {
+                            goToProject(targetIdx);
+                        }
+                    });
+                });
+            }
+
+            updateDeckStack();
+            bindDragEvents();
+        }
+
+        function updateDeckStack() {
+            const cards = projectCardDeck.querySelectorAll('.deck-card');
+            const total = filteredProjects.length;
+
+            if (currentNumEl) {
+                currentNumEl.textContent = String(currentIndex + 1).padStart(2, '0');
+            }
+            if (totalNumEl) {
+                totalNumEl.textContent = String(total).padStart(2, '0');
+            }
+
+            cards.forEach((card, i) => {
+                card.className = 'deck-card';
+                const relativePos = (i - currentIndex + total) % total;
+
+                if (relativePos === 0) {
+                    card.classList.add('is-active');
+                } else if (relativePos === 1) {
+                    card.classList.add('is-behind-1');
+                } else if (relativePos === 2) {
+                    card.classList.add('is-behind-2');
+                } else if (relativePos === 3) {
+                    card.classList.add('is-behind-3');
+                } else {
+                    card.classList.add('is-hidden');
+                }
+            });
+
+            // Update dots
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.deck-dot');
+                dots.forEach((dot, i) => {
+                    const isActive = i === currentIndex;
+                    dot.classList.toggle('active', isActive);
+                    dot.setAttribute('aria-selected', isActive);
+                });
+            }
+        }
+
+        function goToProject(index) {
+            if (filteredProjects.length === 0) return;
+            currentIndex = (index + filteredProjects.length) % filteredProjects.length;
+            updateDeckStack();
+        }
+
+        function nextProject() {
+            goToProject(currentIndex + 1);
+        }
+
+        function prevProject() {
+            goToProject(currentIndex - 1);
+        }
+
+        if (nextBtn) nextBtn.addEventListener('click', nextProject);
+        if (prevBtn) prevBtn.addEventListener('click', prevProject);
+
+        // Filter Click Events
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+
+                activeFilter = btn.getAttribute('data-filter');
+                filteredProjects = getFilteredList(activeFilter);
+                currentIndex = 0;
+
+                // Subtle transition
+                projectCardDeck.style.opacity = '0.3';
+                projectCardDeck.style.transform = 'scale(0.97)';
+                projectCardDeck.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+
+                setTimeout(() => {
+                    renderDeck();
+                    projectCardDeck.style.opacity = '1';
+                    projectCardDeck.style.transform = 'scale(1)';
+                }, 220);
+            });
+        });
+
+        // Interactive Drag & Touch Swipe on Active Card
+        function bindDragEvents() {
+            const activeCard = projectCardDeck.querySelector('.deck-card.is-active');
+            if (!activeCard || reducedMotion) return;
+
+            let isDragging = false;
+            let startX = 0, startY = 0;
+            let dragX = 0, dragY = 0;
+
+            function onPointerDown(e) {
+                // Don't drag if clicking buttons or links
+                if (e.target.closest('a') || e.target.closest('button')) return;
+                if (e.button !== 0 && e.pointerType === 'mouse') return;
+
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                dragX = 0;
+                dragY = 0;
+
+                activeCard.classList.add('dragging');
+                activeCard.setPointerCapture(e.pointerId);
+            }
+
+            function onPointerMove(e) {
+                if (!isDragging) return;
+
+                dragX = e.clientX - startX;
+                dragY = (e.clientY - startY) * 0.4;
+                const rot = dragX * 0.08;
+
+                activeCard.style.transform = `translate3d(${dragX}px, ${dragY}px, 0) rotate(${rot}deg)`;
+            }
+
+            function onPointerUp(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                activeCard.classList.remove('dragging');
+
+                try {
+                    activeCard.releasePointerCapture(e.pointerId);
+                } catch (_) {}
+
+                const threshold = 55;
+
+                if (dragX < -threshold) {
+                    // Swiped Left -> Next Project
+                    activeCard.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 1, 1), opacity 0.3s ease';
+                    activeCard.style.transform = `translate3d(-120px, 0, -40px) rotate(-12deg)`;
+                    activeCard.style.opacity = '0.4';
+                    setTimeout(() => {
+                        nextProject();
+                    }, 200);
+                } else if (dragX > threshold) {
+                    // Swiped Right -> Previous Project
+                    activeCard.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 1, 1), opacity 0.3s ease';
+                    activeCard.style.transform = `translate3d(120px, 0, -40px) rotate(12deg)`;
+                    activeCard.style.opacity = '0.4';
+                    setTimeout(() => {
+                        prevProject();
+                    }, 200);
+                } else {
+                    // Spring Back
+                    activeCard.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    activeCard.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
+                }
+            }
+
+            activeCard.addEventListener('pointerdown', onPointerDown);
+            activeCard.addEventListener('pointermove', onPointerMove);
+            activeCard.addEventListener('pointerup', onPointerUp);
+            activeCard.addEventListener('pointercancel', onPointerUp);
+        }
+
+        // Keyboard Navigation Support
+        document.addEventListener('keydown', (e) => {
+            const projectsSec = document.getElementById('projects');
+            if (!projectsSec) return;
+
+            const rect = projectsSec.getBoundingClientRect();
+            const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (isInView) {
+                if (e.key === 'ArrowRight') {
+                    nextProject();
+                } else if (e.key === 'ArrowLeft') {
+                    prevProject();
+                }
+            }
+        });
+
+        // Initialize Card Deck
+        renderDeck();
+    }
+
 });
+
