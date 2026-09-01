@@ -1,429 +1,494 @@
-# HERO — FINAL LAYOUT / VIEWPORT REFINEMENT
+# THEME TOGGLE — PREMIUM DARK/LIGHT TRANSITION
 
-Update ONLY the Hero section.
+Improve the existing Dark / Light mode toggle.
 
-The goal is to make the entire Hero composition visible within the first viewport on desktop, while keeping the current premium design.
+Do NOT redesign the website or change the existing layout.
+Keep the current visual identity, typography, spacing, components, and content.
 
-Do NOT redesign the Hero from scratch.
-
----
-
-## 01 — PUT THE FULL NAME ON ONE LINE
-
-Currently:
-
-Mohamed
-Maklad
-
-Change it to:
-
-Mohamed Maklad
-
-Keep the name on ONE SINGLE LINE on desktop.
-
-Do NOT use a <br> between Mohamed and Maklad.
-
-Desktop:
-
-font-size:
-clamp(64px, 6vw, 96px)
-
-font-weight:
-800–900
-
-letter-spacing:
--0.04em
-
-white-space:
-nowrap
-
-Make sure the name fits comfortably within the left Hero column.
-
-Do NOT make it so large that it collides with the right portrait/card.
-
-The name remains the strongest visual element in the Hero.
+The goal is to make switching between Dark Mode and Light Mode feel smooth, premium, and intentional.
 
 ---
 
-## 02 — RESPONSIVE NAME BEHAVIOR
+## 01 — SMOOTH THEME TRANSITION
 
-Desktop / large screens:
+When the user clicks the Light/Dark toggle:
 
-Mohamed Maklad
-→ one line
+Do NOT instantly switch colors.
 
-Tablet:
+Animate the entire theme transition smoothly.
 
-Allow one line if the available width allows it.
+Transition:
 
-Mobile:
+Dark Mode
+→ smooth animated transition
+→ Light Mode
 
-The name may wrap into two lines if necessary.
+and:
 
-Do NOT force horizontal scrolling.
-
-Do NOT shrink the desktop typography excessively just to keep one line on very small screens.
-
----
-
-# 03 — MOVE THE SKILLS TICKER UP
-
-The skills ticker currently sits too low.
-
-Move it upward so that it is visible inside the initial Hero viewport.
-
-The user should NOT need to scroll to discover the skills ticker.
-
-Target structure:
-
-NAVBAR
-↓
-HERO CONTENT
-↓
-SKILLS TICKER
-
-The ticker should sit immediately after the Hero content with a controlled amount of spacing.
-
----
-
-## 04 — SKILLS TICKER POSITION
-
-Desktop:
-
-The bottom of the ticker should remain inside the first viewport.
+Light Mode
+→ smooth animated transition
+→ Dark Mode
 
 Use approximately:
 
-margin-top:
-20–28px
+duration: 450–650ms
 
-The ticker should NOT create a large empty gap between the Hero content and the ticker.
+easing:
 
-The Hero should feel like one complete composition.
+cubic-bezier(0.4, 0, 0.2, 1)
+
+Animate the important theme properties:
+
+- background
+- surface/card backgrounds
+- text colors
+- muted text
+- borders
+- accent colors
+- navbar
+- buttons
+- inputs
+- cards
+- skill ticker
+- Hero card
+- section backgrounds
+
+Avoid a cheap/simple fade.
+
+The transition should feel like the entire interface is changing theme.
 
 ---
 
-## 05 — REDUCE HERO HEIGHT
+# 02 — ADD A PREMIUM COLOR TRANSITION EFFECT
 
-Do NOT use an unnecessarily tall:
+When switching themes, add a subtle expanding transition originating from the theme-toggle button.
 
-min-height: 100vh
+Concept:
 
-if it causes the skills ticker to fall below the fold.
+User clicks Light
 
-Instead, calculate the Hero height around:
+        ●
+      ↗ ↑ ↖
+   expanding
+   color wave
+        ↓
+  entire interface
+  transitions theme
 
-navbar
+The effect should be subtle and professional.
+
+Use a circular/radial reveal or expanding overlay.
+
+Dark → Light:
+
+A soft warm/off-white light expands from the toggle.
+
+Light → Dark:
+
+A deep navy/charcoal tone expands from the toggle.
+
+Do NOT use a bright white flash.
+
+Do NOT use a flashy animation.
+
+Do NOT make the effect distract from the content.
+
+---
+
+# 03 — THEME COLORS
+
+## DARK MODE
+
+Keep the current dark visual identity:
+
+Background:
+#0B1017
+
+Secondary background:
+#111923
+
+Cards:
+#141D28
+
+Borders:
+#263445
+
+Primary text:
+#F5F1E8
+
+Secondary text:
+#A7ADB5
+
+Accent orange:
+#FF6B35
+
+Secondary teal:
+#20B8A8
+
+The existing orange/teal identity must remain recognizable.
+
+---
+
+## LIGHT MODE
+
+Create a premium light theme.
+
+Do NOT simply use pure white everywhere.
+
+Use warm/neutral surfaces:
+
+Main background:
+#F5F3EE
+
+Secondary background:
+#ECEAE4
+
+Cards:
+#FFFFFF
+
+Borders:
+#D9D6CE
+
+Primary text:
+#151922
+
+Secondary text:
+#626873
+
+Accent orange:
+#E85D2A
+
+Secondary teal:
+#159B8F
+
+The Light Mode should feel like the same portfolio,
+not like a completely different website.
+
+---
+
+# 04 — PRESERVE BRAND IDENTITY
+
+Dark Mode and Light Mode should share:
+
+- same orange accent
+- same teal accent
+- same typography
+- same spacing
+- same component shapes
+- same border radius
+- same animations
+- same layout
+
+Only the visual theme should change.
+
+The website must still clearly feel like the same Mohamed Maklad portfolio.
+
+---
+
+# 05 — NAVBAR TRANSITION
+
+The navbar should transition smoothly.
+
+Dark:
+
+dark transparent/navy background.
+
+Light:
+
+warm/light background.
+
+The logo:
+
+MM
+
+must remain visually strong in both modes.
+
+Theme toggle itself should also animate.
+
+---
+
+# 06 — THEME TOGGLE ANIMATION
+
+Animate the icon inside the toggle.
+
+Dark Mode:
+
+show Sun icon
+
+Light Mode:
+
+show Moon icon
+
+When clicked:
+
+Sun
+→ rotate + scale slightly
+→ Moon
+
+or:
+
+Moon
+→ rotate + scale slightly
+→ Sun
+
+Use:
+
+transform + opacity
+
+Duration:
+
+350–500ms
+
+Keep the button compact and premium.
+
+---
+
+# 07 — BACKGROUND TRANSITION
+
+The portfolio currently uses subtle gradients/glows.
+
+Do NOT remove them.
+
+Instead, create light-mode equivalents.
+
+Dark Mode:
+
+deep navy/charcoal
 +
-hero content
+subtle teal glow
 +
-skills ticker
+subtle orange glow
 
-The complete composition should fit comfortably within the first desktop viewport.
+Light Mode:
 
-Target:
+warm gray/cream
++
+very subtle teal tint
++
+very subtle orange tint
 
-100vh
-minus navbar height
+Keep these effects low-contrast.
 
-with the ticker included inside the visible composition.
-
-Avoid vertical scrolling immediately after page load.
-
----
-
-# 06 — DESKTOP COMPOSITION
-
-The intended visual hierarchy:
-
-┌─────────────────────────────────────────────────────────────┐
-│ NAVBAR                                                      │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Open to New Opportunities        ┌──────────────────────┐   │
-│                                   │                      │   │
-│  Mohamed Maklad                   │    HANGING CARD      │   │
-│                                   │       PORTRAIT       │   │
-│  DATA ANALYTICS SPECIALIST        │                      │   │
-│                                   └──────────────────────┘   │
-│  I build with data, engineer...                              │
-│                                                             │
-│  [Download CV] [View Projects]                              │
-│                                                             │
-│  [LinkedIn] [GitHub] [LeetCode] [Email] [WhatsApp]         │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│  ● Python · ● SQL · ● Power BI · ● Tableau · ● Excel ...  │
-└─────────────────────────────────────────────────────────────┘
-
-Everything above the ticker should feel compact and balanced.
+They should enhance the design without reducing readability.
 
 ---
 
-# 07 — LEFT COLUMN
+# 08 — CARDS
 
-Because the name is now one line, rebalance the left column.
+All cards must transition smoothly.
 
-Do NOT simply shrink everything.
+For example:
 
-Use the extra horizontal space to create better visual balance.
+Dark card:
+#141D28
 
-Recommended:
+↓
 
-Hero left width:
-52–55%
+Light card:
+#FFFFFF
 
-Hero right width:
-45–48%
+Borders should also transition smoothly.
 
-Keep sufficient spacing between the text and hanging card.
+Do NOT allow cards to suddenly disappear or flash.
+
+Maintain:
+
+border-radius
+padding
+shadows
+spacing
+layout
 
 ---
 
-# 08 — RIGHT HANGING CARD
+# 09 — HERO HANGING ID CARD
 
-Keep the existing hanging ID-card design.
+The hanging portrait card must also transition with the theme.
 
-Do NOT remove:
+Dark:
+
+dark premium ID-card appearance.
+
+Light:
+
+light premium ID-card appearance.
+
+Keep:
 
 - rope
 - hanger
-- card
 - portrait
-- subtle interaction
+- card interaction
 - spring physics
+- drag interaction
 
-However, slightly reduce its overall size if necessary to ensure the complete Hero + ticker fits within the viewport.
+Do NOT remove the hanging-card animation.
 
-Desktop card target:
-
-width:
-360–420px
-
-height:
-520–600px
-
-Keep it visually dominant.
-
-Do NOT make it tiny.
-
----
-
-# 09 — VERTICAL ALIGNMENT
-
-Align the Hero content vertically around the visual center of the available Hero area.
-
-Do NOT push the content too far downward.
-
-The availability badge, name, title, statement, CTA, and social links should form a compact vertical rhythm.
-
-Recommended approximate spacing:
-
-Badge → Name:
-28–34px
-
-Name → Title:
-24–30px
-
-Title → Statement:
-18–24px
-
-Statement → CTA:
-26–30px
-
-CTA → Social:
-18–22px
-
-Social → Skills ticker:
-22–28px
-
-Avoid huge vertical gaps.
+Only adapt its colors and surface to the active theme.
 
 ---
 
 # 10 — SKILLS TICKER
 
-Keep the existing animated ticker.
+The animated skills ticker must transition too.
 
-Keep:
+Dark:
 
-- icons
-- skill names
-- separators
-- infinite movement
-- seamless loop
+dark navy surface
++
+orange icons
++
+cream text
 
-Skills should include:
+Light:
 
-Python
-SQL
-Power BI
-Tableau
-Excel
-Azure
-Power Query
-DAX
-SSIS
-ETL
-PyTorch
-TensorFlow
-Scikit-Learn
-Data Modeling
+light neutral surface
++
+orange icons
++
+dark text
 
-The ticker should be clearly visible in the initial viewport.
+The ticker animation itself must NOT restart when the theme changes.
+
+It should continue moving seamlessly.
 
 ---
 
-# 11 — TICKER VISUAL SIZE
+# 11 — BUTTONS
 
-Do not make the ticker too thin.
+Primary CTA:
 
-Keep it visually noticeable.
+Dark:
+orange background
+cream/white text
 
-Recommended:
+Light:
+orange background
+white text
 
-height:
-64–76px
+Secondary CTA:
 
-icons:
-20–22px
+Dark:
+dark card
+light text
 
-skill text:
-16–18px
+Light:
+white card
+dark text
 
-font-weight:
-600–700
-
-The ticker should feel like a deliberate part of the Hero rather than a footer-like strip.
-
----
-
-# 12 — TICKER COLORS
-
-Background:
-
-#141C27
-
-Text:
-
-#F5F1E8
-
-Icons:
-
-#FF6B35
-
-Separators:
-
-rgba(255,107,53,0.45)
-
-Keep the existing dark/orange/teal visual identity.
+Add a subtle transition to hover states as well.
 
 ---
 
-# 13 — IMPORTANT VIEWPORT REQUIREMENT
+# 12 — INPUTS / CONTACT FORM
 
-At common desktop resolutions such as:
+The Get in Touch form must also transition.
 
-1366 × 768
-1440 × 900
-1536 × 864
+Dark:
 
-the user should immediately see:
+dark inputs
+light text
+subtle dark borders
 
-✓ Navbar
-✓ Full "Mohamed Maklad" name
-✓ Professional title
-✓ Hero statement
-✓ CTA buttons
-✓ Social links
-✓ Hanging portrait card
-✓ Skills ticker
+Light:
 
-WITHOUT scrolling.
+white inputs
+dark text
+light borders
 
-This is the primary requirement.
+Placeholders should remain readable in both themes.
 
 ---
 
-# 14 — MOBILE
+# 13 — AVOID THIS
 
-Do NOT try to force the desktop composition into mobile.
+Do NOT:
 
-Mobile should remain vertically stacked.
+- flash the entire screen white
+- use a simple instant color swap
+- make the animation slower than ~700ms
+- use excessive blur
+- use strong neon effects
+- change layout during theme switching
+- change font sizes
+- change spacing
+- move elements
+- reload the page
+- reset scroll position
+- restart unrelated animations
 
-Recommended:
-
-Availability badge
-↓
-Mohamed Maklad
-↓
-Animated title
-↓
-Hero statement
-↓
-CTA
-↓
-Social links
-↓
-Hanging card
-↓
-Skills ticker
-
-The ticker can appear after the card on mobile if necessary.
-
-The main requirement to keep the ticker above the fold applies primarily to desktop/tablet.
+The theme switch should feel like a visual transformation,
+not a page reload.
 
 ---
 
-# 15 — DO NOT CHANGE
+# 14 — ACCESSIBILITY / PERFORMANCE
 
-Do NOT change:
+Respect:
 
-- Hero copy
-- "I build with data, engineer with purpose, and solve for impact."
-- Animated title
-- Portrait
-- Hanging-card interaction
-- Rope physics
-- CTA buttons
-- Social links
-- Navbar
-- Overall color palette
-- Skills data
+prefers-reduced-motion
 
-Only improve:
+If the user has reduced motion enabled:
 
-- name layout
-- vertical spacing
-- Hero height
-- ticker position
-- viewport composition
-- responsive sizing
+Use a very short/simple color transition
+without the expanding reveal.
+
+Do not use heavy JavaScript animation if CSS transitions are sufficient.
+
+Prefer:
+
+CSS variables
++
+transition
++
+a lightweight theme-reveal effect
+
+The theme switch must remain fast and responsive.
 
 ---
 
-# FINAL RESULT
+# 15 — PERSIST THE SELECTED THEME
 
-The Hero should feel significantly more compact and intentional.
+Keep the existing theme persistence behavior.
 
-The user's first impression should be:
+If the user selects Light Mode and refreshes the page:
 
-Mohamed Maklad
-↓
-Data / Engineering identity
-↓
-Clear positioning statement
-↓
-Professional portrait
-↓
-Actions
-↓
-Skills
+Light Mode should remain active.
 
-Everything important should be visible immediately without requiring the user to scroll.
+If the user selects Dark Mode and refreshes:
 
-Most importantly:
+Dark Mode should remain active.
 
-"MOHAMED MAKLAD" MUST BE ON ONE LINE ON DESKTOP.
+Avoid any visible flash of the wrong theme during page load.
 
-The SKILLS TICKER MUST BE VISIBLE AT THE BOTTOM OF THE FIRST VIEWPORT.
+---
+
+# FINAL UX
+
+The desired feeling:
+
+User sees:
+
+[ ☀ Light ]
+
+Clicks it.
+
+The toggle icon smoothly transforms.
+
+A subtle light-colored circular wave expands from the button.
+
+The dark navy interface smoothly transforms into the warm light theme.
+
+Cards, text, borders, Hero, ticker, forms, and backgrounds transition together.
+
+The result should feel:
+
+Premium
+Smooth
+Modern
+Technical
+Minimal
+Professional
+
+Think of it as a polished portfolio-level theme transition,
+not a basic CSS dark-mode toggle.
