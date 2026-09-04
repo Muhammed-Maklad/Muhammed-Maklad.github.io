@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lerpCursor();
 
         // Cursor state on hover of interactive elements
-        const hoverTargets = 'a, button, .card, .hero-id-card, .social-chip, .category-card, .contact-chip, .achievement-card, .profile-photo, [role="button"]';
+        const hoverTargets = 'a, button, .card, .hero-id-card, .social-chip, .category-card, .contact-chip, .achievement-card, .cert-spotlight-card, .cert-badge-frame, .profile-photo, [role="button"]';
         document.querySelectorAll(hoverTargets).forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));

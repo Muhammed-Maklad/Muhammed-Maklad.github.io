@@ -1,494 +1,348 @@
-# THEME TOGGLE — PREMIUM DARK/LIGHT TRANSITION
+## ADD — MICROSOFT PL-300 CERTIFICATION
 
-Improve the existing Dark / Light mode toggle.
+Add my newly earned Microsoft certification to the portfolio in a creative, premium way.
 
-Do NOT redesign the website or change the existing layout.
-Keep the current visual identity, typography, spacing, components, and content.
+Certification:
 
-The goal is to make switching between Dark Mode and Light Mode feel smooth, premium, and intentional.
+Microsoft Certified: Power BI Data Analyst Associate
+Exam: PL-300
+Product: Microsoft Power BI
+Role: Data Analyst
 
----
-
-## 01 — SMOOTH THEME TRANSITION
-
-When the user clicks the Light/Dark toggle:
-
-Do NOT instantly switch colors.
-
-Animate the entire theme transition smoothly.
-
-Transition:
-
-Dark Mode
-→ smooth animated transition
-→ Light Mode
-
-and:
-
-Light Mode
-→ smooth animated transition
-→ Dark Mode
-
-Use approximately:
-
-duration: 450–650ms
-
-easing:
-
-cubic-bezier(0.4, 0, 0.2, 1)
-
-Animate the important theme properties:
-
-- background
-- surface/card backgrounds
-- text colors
-- muted text
-- borders
-- accent colors
-- navbar
-- buttons
-- inputs
-- cards
-- skill ticker
-- Hero card
-- section backgrounds
-
-Avoid a cheap/simple fade.
-
-The transition should feel like the entire interface is changing theme.
+Official credential:
+https://learn.microsoft.com/api/credentials/share/en-us/mgmakald/AAC88A6010B473C6?sharingId=857C71B000D63769
 
 ---
 
-# 02 — ADD A PREMIUM COLOR TRANSITION EFFECT
+# 01 — DESIGN CONCEPT
 
-When switching themes, add a subtle expanding transition originating from the theme-toggle button.
+Do NOT display the certification as a normal boring card.
 
-Concept:
+Create a premium "Certification Spotlight" component that fits naturally into the existing portfolio design.
 
-User clicks Light
+The component should feel like:
 
-        ●
-      ↗ ↑ ↖
-   expanding
-   color wave
-        ↓
-  entire interface
-  transitions theme
+Professional certification
++
+Achievement
++
+Data / Power BI identity
 
-The effect should be subtle and professional.
+It should visually match the existing dark portfolio theme:
 
-Use a circular/radial reveal or expanding overlay.
+- Dark navy / charcoal surfaces
+- Cream typography
+- Orange primary accent
+- Subtle teal secondary accent
+- Thin elegant borders
+- Soft depth
+- Minimal glow
+- Premium spacing
 
-Dark → Light:
-
-A soft warm/off-white light expands from the toggle.
-
-Light → Dark:
-
-A deep navy/charcoal tone expands from the toggle.
-
-Do NOT use a bright white flash.
-
-Do NOT use a flashy animation.
-
-Do NOT make the effect distract from the content.
+Do NOT introduce a completely different visual style.
 
 ---
 
-# 03 — THEME COLORS
+# 02 — CERTIFICATION SPOTLIGHT
 
-## DARK MODE
+Create a dedicated section/card:
 
-Keep the current dark visual identity:
+CERTIFICATION
 
-Background:
-#0B1017
+Microsoft Certified:
+Power BI Data Analyst Associate
 
-Secondary background:
-#111923
+PL-300
 
-Cards:
-#141D28
+Add a small status label:
 
-Borders:
-#263445
+VERIFIED CREDENTIAL
 
-Primary text:
-#F5F1E8
+and a CTA:
 
-Secondary text:
-#A7ADB5
+View Credential →
 
-Accent orange:
-#FF6B35
+The official Microsoft credential link must be used:
 
-Secondary teal:
-#20B8A8
+https://learn.microsoft.com/api/credentials/share/en-us/mgmakald/AAC88A6010B473C6?sharingId=857C71B000D63769
 
-The existing orange/teal identity must remain recognizable.
+Clicking the badge or "View Credential" should open the official Microsoft credential page in a new tab.
 
 ---
 
-## LIGHT MODE
+# 03 — BADGE
 
-Create a premium light theme.
+Use the official Microsoft certification badge if it is available from the credential/profile.
 
-Do NOT simply use pure white everywhere.
+Do NOT recreate the Microsoft badge manually.
 
-Use warm/neutral surfaces:
+Do NOT use a fake/custom Microsoft logo as a replacement.
 
-Main background:
-#F5F3EE
+The official badge should be the visual focal point of the component.
 
-Secondary background:
-#ECEAE4
+Place it inside a refined badge frame.
 
-Cards:
-#FFFFFF
+Suggested composition:
 
-Borders:
-#D9D6CE
+┌─────────────────────────────────────────────┐
+│                                             │
+│   [ OFFICIAL MICROSOFT BADGE ]             │
+│                                             │
+│   MICROSOFT CERTIFIED                      │
+│   Power BI Data Analyst Associate          │
+│                                             │
+│   PL-300                    VERIFIED        │
+│                                             │
+│                    View Credential →       │
+│                                             │
+└─────────────────────────────────────────────┘
 
-Primary text:
-#151922
-
-Secondary text:
-#626873
-
-Accent orange:
-#E85D2A
-
-Secondary teal:
-#159B8F
-
-The Light Mode should feel like the same portfolio,
-not like a completely different website.
+Keep the layout clean and spacious.
 
 ---
 
-# 04 — PRESERVE BRAND IDENTITY
+# 04 — CREATIVE INTERACTION
 
-Dark Mode and Light Mode should share:
+Add a subtle hover interaction.
 
-- same orange accent
-- same teal accent
-- same typography
-- same spacing
-- same component shapes
-- same border radius
-- same animations
-- same layout
+When hovering over the certification:
 
-Only the visual theme should change.
+- badge slightly scales up
+- frame moves upward by a few pixels
+- border accent becomes slightly brighter
+- subtle orange/teal highlight appears
+- "View Credential →" becomes more prominent
 
-The website must still clearly feel like the same Mohamed Maklad portfolio.
+Animation should be approximately:
 
----
+300–450ms
 
-# 05 — NAVBAR TRANSITION
+Use a smooth easing curve.
 
-The navbar should transition smoothly.
-
-Dark:
-
-dark transparent/navy background.
-
-Light:
-
-warm/light background.
-
-The logo:
-
-MM
-
-must remain visually strong in both modes.
-
-Theme toggle itself should also animate.
+Do NOT over-animate the certification.
 
 ---
 
-# 06 — THEME TOGGLE ANIMATION
+# 05 — BADGE FRAME
 
-Animate the icon inside the toggle.
-
-Dark Mode:
-
-show Sun icon
-
-Light Mode:
-
-show Moon icon
-
-When clicked:
-
-Sun
-→ rotate + scale slightly
-→ Moon
-
-or:
-
-Moon
-→ rotate + scale slightly
-→ Sun
+Make the badge look like a premium physical credential.
 
 Use:
 
-transform + opacity
+- rounded corners
+- thin border
+- subtle inner highlight
+- very subtle shadow
+- small corner details
+- restrained orange accent
 
-Duration:
+Optional creative detail:
 
-350–500ms
+Add a tiny animated verification indicator:
 
-Keep the button compact and premium.
+● VERIFIED
 
----
+with a subtle pulse.
 
-# 07 — BACKGROUND TRANSITION
-
-The portfolio currently uses subtle gradients/glows.
-
-Do NOT remove them.
-
-Instead, create light-mode equivalents.
-
-Dark Mode:
-
-deep navy/charcoal
-+
-subtle teal glow
-+
-subtle orange glow
-
-Light Mode:
-
-warm gray/cream
-+
-very subtle teal tint
-+
-very subtle orange tint
-
-Keep these effects low-contrast.
-
-They should enhance the design without reducing readability.
+Keep the pulse slow and barely noticeable.
 
 ---
 
-# 08 — CARDS
+# 06 — MICROSOFT / POWER BI VISUAL LANGUAGE
 
-All cards must transition smoothly.
+Use Power BI-inspired visual details without copying Microsoft's website.
 
 For example:
 
-Dark card:
-#141D28
+- small data points
+- tiny chart/grid patterns
+- subtle geometric lines
+- minimal data visualization elements
 
+These elements should remain in the background.
+
+The badge and certification title must remain the primary focus.
+
+---
+
+# 07 — CERTIFICATION INFORMATION
+
+Show only useful information.
+
+Certification:
+
+Microsoft Certified: Power BI Data Analyst Associate
+
+Exam:
+
+PL-300
+
+Area:
+
+Data Analytics · Power BI
+
+Credential status:
+
+Verified
+
+Do NOT add unnecessary paragraphs.
+
+Keep the information scannable.
+
+---
+
+# 08 — SHORT DESCRIPTION
+
+Use this description:
+
+"Validated expertise in preparing, modeling, visualizing, and analyzing data with Microsoft Power BI."
+
+Keep this text secondary and smaller than the certification title.
+
+---
+
+# 09 — PLACEMENT
+
+Place the certification naturally within the existing portfolio.
+
+Preferred location:
+
+Awards / Achievements section
+
+OR
+
+immediately after Achievements as a dedicated Certification Spotlight.
+
+It should feel like an important professional achievement, not another random project.
+
+Do NOT make the section excessively tall.
+
+---
+
+# 10 — RESPONSIVE DESIGN
+
+Desktop:
+
+Use a horizontal premium composition.
+
+Badge on one side.
+
+Certification information on the other side.
+
+Mobile:
+
+Stack vertically:
+
+Badge
 ↓
+Certification title
+↓
+PL-300
+↓
+Verified status
+↓
+View Credential
 
-Light card:
-#FFFFFF
+Keep everything centered and balanced.
 
-Borders should also transition smoothly.
-
-Do NOT allow cards to suddenly disappear or flash.
-
-Maintain:
-
-border-radius
-padding
-shadows
-spacing
-layout
+Do not create horizontal scrolling.
 
 ---
 
-# 09 — HERO HANGING ID CARD
+# 11 — DARK / LIGHT MODE
 
-The hanging portrait card must also transition with the theme.
+The certification component must support the existing theme switch.
 
-Dark:
+Dark mode:
 
-dark premium ID-card appearance.
+Dark navy card
+Cream text
+Orange accent
+Teal verification accent
 
-Light:
+Light mode:
 
-light premium ID-card appearance.
+Warm white card
+Dark text
+Orange accent
+Teal verification accent
 
-Keep:
+The transition between themes must use the existing smooth theme animation.
 
-- rope
-- hanger
-- portrait
-- card interaction
-- spring physics
-- drag interaction
-
-Do NOT remove the hanging-card animation.
-
-Only adapt its colors and surface to the active theme.
+Do NOT create a separate theme system.
 
 ---
 
-# 10 — SKILLS TICKER
+# 12 — PREMIUM MICRO-ANIMATION
 
-The animated skills ticker must transition too.
+When the certification enters the viewport:
 
-Dark:
+Use a subtle reveal animation:
 
-dark navy surface
-+
-orange icons
-+
-cream text
+opacity:
+0 → 1
 
-Light:
+translateY:
+20px → 0
 
-light neutral surface
-+
-orange icons
-+
-dark text
+duration:
+500–700ms
 
-The ticker animation itself must NOT restart when the theme changes.
+The official badge can have a very subtle scale:
 
-It should continue moving seamlessly.
+0.96 → 1
 
----
-
-# 11 — BUTTONS
-
-Primary CTA:
-
-Dark:
-orange background
-cream/white text
-
-Light:
-orange background
-white text
-
-Secondary CTA:
-
-Dark:
-dark card
-light text
-
-Light:
-white card
-dark text
-
-Add a subtle transition to hover states as well.
-
----
-
-# 12 — INPUTS / CONTACT FORM
-
-The Get in Touch form must also transition.
-
-Dark:
-
-dark inputs
-light text
-subtle dark borders
-
-Light:
-
-white inputs
-dark text
-light borders
-
-Placeholders should remain readable in both themes.
-
----
-
-# 13 — AVOID THIS
-
-Do NOT:
-
-- flash the entire screen white
-- use a simple instant color swap
-- make the animation slower than ~700ms
-- use excessive blur
-- use strong neon effects
-- change layout during theme switching
-- change font sizes
-- change spacing
-- move elements
-- reload the page
-- reset scroll position
-- restart unrelated animations
-
-The theme switch should feel like a visual transformation,
-not a page reload.
-
----
-
-# 14 — ACCESSIBILITY / PERFORMANCE
+Do NOT use dramatic entrance animations.
 
 Respect:
 
 prefers-reduced-motion
 
-If the user has reduced motion enabled:
+---
 
-Use a very short/simple color transition
-without the expanding reveal.
+# 13 — IMPORTANT
 
-Do not use heavy JavaScript animation if CSS transitions are sufficient.
+Do NOT:
 
-Prefer:
+- fabricate certification information
+- invent a certification date
+- invent an expiration date
+- invent a score
+- create a fake badge
+- use a generic certificate icon instead of the official badge
+- overcrowd the section
+- make it look like a university certificate
+- use excessive Microsoft branding
 
-CSS variables
-+
-transition
-+
-a lightweight theme-reveal effect
+The credential must clearly communicate:
 
-The theme switch must remain fast and responsive.
+Microsoft Certified
+Power BI Data Analyst Associate
+PL-300
+Verified Credential
 
 ---
 
-# 15 — PERSIST THE SELECTED THEME
+# 14 — FINAL VISUAL FEEL
 
-Keep the existing theme persistence behavior.
+The final component should feel like:
 
-If the user selects Light Mode and refreshes the page:
+"One of the strongest professional credentials on the portfolio."
 
-Light Mode should remain active.
+It should immediately communicate credibility to:
 
-If the user selects Dark Mode and refreshes:
+Recruiters
+Hiring Managers
+Data Analytics Teams
+Business Intelligence Teams
 
-Dark Mode should remain active.
-
-Avoid any visible flash of the wrong theme during page load.
-
----
-
-# FINAL UX
-
-The desired feeling:
-
-User sees:
-
-[ ☀ Light ]
-
-Clicks it.
-
-The toggle icon smoothly transforms.
-
-A subtle light-colored circular wave expands from the button.
-
-The dark navy interface smoothly transforms into the warm light theme.
-
-Cards, text, borders, Hero, ticker, forms, and backgrounds transition together.
-
-The result should feel:
+The design should feel:
 
 Premium
-Smooth
-Modern
 Technical
 Minimal
-Professional
+Credible
+Modern
+Interactive
 
-Think of it as a polished portfolio-level theme transition,
-not a basic CSS dark-mode toggle.
+The certification should look important without looking oversized or flashy.
